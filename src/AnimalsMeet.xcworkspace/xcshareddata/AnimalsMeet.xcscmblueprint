@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A3786450B0EC20A46F73AD15558E01113CFEB1DC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A3786450B0EC20A46F73AD15558E01113CFEB1DC" : 9223372036854775807,
+    "3F4BDC594DA73792A0DB3569EB933759F2F67C94" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F83FBEFF-E6CB-4B90-B19A-95BA8380B45B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A3786450B0EC20A46F73AD15558E01113CFEB1DC" : "animalsmeet-ios\/",
+    "3F4BDC594DA73792A0DB3569EB933759F2F67C94" : "animalsmeet-ios\/src\/AnimalsMeet\/Useful\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AnimalsMeet",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "src\/AnimalsMeet.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:lasson-g\/EasySwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3F4BDC594DA73792A0DB3569EB933759F2F67C94"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sifrah\/animalsmeet-ios",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A3786450B0EC20A46F73AD15558E01113CFEB1DC"
+    }
+  ]
+}
