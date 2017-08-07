@@ -281,7 +281,7 @@
         <scene sceneID="pnZ-TJ-b5k">
             <objects>
                 <collectionViewController id="pnU-Av-h5e" customClass="SearchResultsViewController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SKr-FN-t7r">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="SKr-FN-t7r">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -459,8 +459,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvJ-cY-qw4">
-                                <rect key="frame" x="306.5" y="318.5" width="52.5" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.00 Km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvJ-cY-qw4">
+                                <rect key="frame" x="271" y="318.5" width="88" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="vVT-2a-XfM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -472,8 +475,8 @@
                                     <action selector="send:" destination="zpi-uq-HDL" eventType="touchUpInside" id="hTf-pz-OV0"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="dSI-EG-d9m">
-                                <rect key="frame" x="45" y="318" width="247.5" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="dSI-EG-d9m">
+                                <rect key="frame" x="45" y="318" width="212" height="31"/>
                                 <connections>
                                     <action selector="sliderChanged:" destination="zpi-uq-HDL" eventType="valueChanged" id="LJM-bI-FeS"/>
                                 </connections>
@@ -1076,7 +1079,7 @@
             <objects>
                 <navigationController id="Jy5-tX-0wJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="FK9-oK-6Zv"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tah-fT-Aaf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Tah-fT-Aaf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1166,7 +1169,7 @@
         <scene sceneID="IQa-MJ-MWO">
             <objects>
                 <collectionViewController storyboardIdentifier="mosaic_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5eR-Ct-7nP" customClass="MosaicPictures" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" id="Yze-ma-5lD">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" dataMode="prototypes" id="Yze-ma-5lD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2374,7 +2377,7 @@ Toutes difficultés relatives à l'application ou à l'interprétation des CU li
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jsc-56-ZSX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="Notifications" image="music" id="cgO-kz-YNK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xew-1B-XJQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xew-1B-XJQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2484,7 +2487,7 @@ Toutes difficultés relatives à l'application ou à l'interprétation des CU li
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="38U-YF-CSX" userLabel="ChatNC" customClass="ChatNavigationController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="3" title="Messages" image="smartphone" id="fll-XD-NpJ" userLabel="Smartphone item"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pmr-2l-Cde">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Pmr-2l-Cde">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2499,7 +2502,7 @@ Toutes difficultés relatives à l'application ou à l'interprétation des CU li
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MmU-cu-czT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h5b-UZ-eWH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="h5b-UZ-eWH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2518,7 +2521,7 @@ Toutes difficultés relatives à l'application ou à l'interprétation des CU li
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sxm-pJ-lI7" customClass="NewsBaseViewController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Actualités" image="internet" id="Qw3-a7-wGx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="21b-Gy-gHW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="21b-Gy-gHW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2535,7 +2538,7 @@ Toutes difficultés relatives à l'application ou à l'interprétation des CU li
                     <tabBarItem key="tabBarItem" tag="4" title="Profil" image="user" id="baZ-4J-edt" userLabel="User item"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="o0j-Wb-gNd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="o0j-Wb-gNd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2553,7 +2556,7 @@ Toutes difficultés relatives à l'application ou à l'interprétation des CU li
             <objects>
                 <navigationController storyboardIdentifier="newPost" automaticallyAdjustsScrollViewInsets="NO" id="zmS-6a-U6u" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcJ-pE-TSW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lcJ-pE-TSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
