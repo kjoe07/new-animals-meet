@@ -26,7 +26,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     
     override func fetchItems(from: Int, count: Int) -> Promise<[MediaModel]> {
         return Api.instance.get(endpoint).then { JSON -> [MediaModel] in
-            JSON.arrayValue.map { MediaModel(fromJSON: $0) }
+            JSON["json"].arrayValue.map { MediaModel(fromJSON: $0) }
         }
     }
     
