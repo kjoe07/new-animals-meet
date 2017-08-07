@@ -50,6 +50,10 @@ class UserModel {
         let imageURI = result["image"].string
         if let imageURI = imageURI {
             image = URL(string: imageURI)
+            // WORKAROUND: avoid problem with fixed address being returned by the server
+            let path = image!.path
+            let baseUrl = URL(string: Api.instance.serverUrl)
+            image = URL(string: path, relativeTo: baseUrl)
         } else {
             image = URL(string: "http://5943f28e6f4c50095616f995.golpher-alba-38686.netlify.com/anonymous.png")
         }
