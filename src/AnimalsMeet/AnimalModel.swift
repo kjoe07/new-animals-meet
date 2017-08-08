@@ -91,7 +91,8 @@ class AnimalModel {
    }
    
    func breedName() -> String {
-      return App.instance.breeds[breed].nameFr
+      return App.instance.breeds.first(where: { $0.id == breed
+      })?.nameFr ?? ""
    }
    
    func serializeToDict() -> Dictionary<String, Any> {
