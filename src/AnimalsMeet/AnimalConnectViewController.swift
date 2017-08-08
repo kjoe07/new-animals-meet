@@ -100,8 +100,6 @@ class AnimalConnectViewController : UIViewController {
         rangeSlider.setValue(Float(Search.instance.range), animated: false)
         rangeTxt.text = "\(Search.instance.range) Km"
         print(Search.instance.range)
-        
-        doBalade.roundify()
     }
     
     
@@ -111,6 +109,4 @@ class AnimalConnectViewController : UIViewController {
             Search.instance.range = Int(rangeSlider.value)
         }
     }
-    
-    
 }

@@ -15,19 +15,23 @@ import Kingfisher
 import Sensitive
 import PromiseKit
 import Fusuma
+import FontAwesomeKit
 
 class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, FusumaDelegate {
    
    @IBOutlet var ask_name: UITextField!
    @IBOutlet var ask_age: UITextField!
-   @IBOutlet weak var askCountry: UITextField!
+//   @IBOutlet weak var askCountry: UITextField!
    @IBOutlet var ask_male: UISwitch!
    @IBOutlet var ask_femele: UISwitch!
+   @IBOutlet weak var ask_transgender: UISwitch!
+   
    @IBOutlet var ask_loof: UISwitch!
    @IBOutlet var ask_dog: UISwitch!
    @IBOutlet var ask_cat: UISwitch!
    @IBOutlet var race: UIButton!
    @IBOutlet var profilePic: UIImageView!
+   @IBOutlet weak var transgenderIcon: UIImageView!
    
    var picHaveChanged = false
    var animal: AnimalModel!
@@ -68,32 +72,38 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       
       if animal != nil {
          selection = []
-         if animal.breed != nil {
+         if animal.breed != nil && animal.breed != 0 {
             selection.append(animal.breed)
          }
       }
       
       let breedListVC = BreedSelectorTableViewController.newInstance(selection: selection, max: 1) { breeds in
-         self.animal.breed = breeds[0]
+         
+         if let breedId = breeds.first {
+            self.animal.breed = breedId
+            
+            if let breed = App.instance.breeds.first(where: { $0.id == breedId }) {
+               self.race.setTitle(breed.nameFr, for: .normal)
+            }
+            else {
+               self.race.setTitle("Sélectionner une race", for: .normal)
+            }
+         }
+         else {
+            self.animal.breed = 0
+            self.race.setTitle("Sélectionner une race", for: .normal)
+         }
       }
       navigationController?.pushViewController(breedListVC, animated: true)
    }
    
    override func viewWillAppear(_ animated: Bool) {
-      let radius: CGFloat = ask_name.bounds.height * 0.3
+//      let radius: CGFloat = ask_name.bounds.height * 0.3
       
-      UIKitViewUtils.setCornerRadius(sender: askCountry, radius: radius)
-      UIKitViewUtils.setBorderWidth(sender: askCountry, width: 1.5, hexString: "#cccccc")
+//      UIKitViewUtils.setCornerRadius(sender: askCountry, radius: radius)
+//      UIKitViewUtils.setBorderWidth(sender: askCountry, width: 1.5, hexString: "#cccccc")
       UIKitViewUtils.setCornerRadius(sender: race, radius: 8)
       UIKitViewUtils.setCornerRadius(sender: create_edit_button, radius: 7)
-      
-      var breed: String!
-      
-      if let breed_saved = UserDefaults.standard.string(forKey: "breeds_name_selected") {
-         breed = breed_saved
-      }
-      
-      race.setTitle(breed ?? "Sélectionnez une race", for: .normal)
       
       ask_name.delegate = self
       ask_name.leftViewMode = .always
@@ -111,20 +121,26 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       
       let round: CGFloat = profilePic.bounds.height * 0.5
       UIKitViewUtils.setCornerRadius(sender: profilePic, radius: round)
-   }
-   
-   override func viewDidAppear(_ animated: Bool) {
+      
       if animal == nil {
-         create_edit_button.setTitle("CRÉER L'ANIMAL", for: .normal)
+         create_edit_button.setTitle("Créer l'animal", for: .normal)
          animal = AnimalModel()
          newAnimal = true
       } else {
-         create_edit_button.setTitle("ENREGISTRER L'ANIMAL", for: .normal)
+         create_edit_button.setTitle("Enregister l'animal", for: .normal)
       }
    }
    
    override func viewDidLoad() {
       super.viewDidLoad()
+      
+      // TODO: use this icon from the storyboard like the other two
+      let transgenderImage = FAKFontAwesome.transgenderIcon(
+         withSize: 16
+      )
+      transgenderImage?.setAttributes([NSForegroundColorAttributeName: #colorLiteral(red: 0.431372549, green: 0.431372549, blue: 0.431372549, alpha: 1)])
+      
+      self.transgenderIcon.image = transgenderImage?.image(with: CGSize(width: 16, height: 16))
       
       self.view.onSwipe(to: .right) { (swipeGestureRecognizer) -> Void in
          self.navigationController?.popToRootViewController(animated: true)
@@ -140,6 +156,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          
          ask_male.setOn(animal.sex == .male, animated: false)
          ask_femele.setOn(animal.sex == .female, animated: false)
+         ask_transgender.setOn(animal.sex == .transgender, animated: false)
          
          ask_loof.setOn(animal.loof, animated: true)
          ask_name.text = animal.name
@@ -151,6 +168,15 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
                                 progressBlock: nil,
                                 completionHandler: nil)
          title = "Modifier votre animal"
+         
+         
+         if let breed = App.instance.breeds.first(where: { $0.id == animal.breed }) {
+            self.race.setTitle(breed.nameFr, for: .normal)
+         }
+         else {
+            self.race.setTitle("Sélectionner une race", for: .normal)
+         }
+         
       } else {
          title = "Nouvel animal"
       }
@@ -167,12 +193,18 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
    
    @IBAction func action_femele(_ sender: AnyObject) {
       ask_male.setOn(!ask_femele.isOn, animated: true)
+      ask_transgender.setOn(false, animated: true)
    }
    
    @IBAction func action_male(_ sender: AnyObject) {
       ask_femele.setOn(!ask_male.isOn, animated: true)
+      ask_transgender.setOn(false, animated: true)
    }
    
+   @IBAction func action_transgender(_ sender: Any) {
+      ask_femele.setOn(false, animated: true)
+      ask_male.setOn(!ask_transgender.isOn, animated: true)
+   }
    
    @IBAction func sendRequest(_ sender: Any) {
       
@@ -187,8 +219,11 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       
       if ask_male.isOn {
          animal.sex = .male
-      } else {
+      } else if ask_femele.isOn {
          animal.sex = .female
+      }
+      else {
+         animal.sex = .transgender
       }
       
       animal.name = ask_name.text!
