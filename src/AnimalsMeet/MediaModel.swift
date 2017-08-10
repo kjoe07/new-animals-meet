@@ -88,7 +88,7 @@ class MediaModel {
     }
     
     func callForUnlike() -> Promise<JSON> {
-        let parameters = ["like" : ["media" : "\(id ?? 0)", "like[animal]": "\(App.instance.getSelectedAnimal().id!)"]]
+        let parameters = ["like" : ["media" : "\(id ?? 0)", "animal": "\(App.instance.getSelectedAnimal().id!)"]]
         return Api.instance.delete("/like", withParams: parameters)
     }
     

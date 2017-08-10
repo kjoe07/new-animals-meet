@@ -31,7 +31,7 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
       return filtered.count
    }
    
-   func selectRow(cell: UITableViewCell, index: IndexPath, on: Bool) {
+   func selectRow(cell: UITableViewCell?, index: IndexPath, on: Bool) {
       let breed = self.filtered[index.row]
       
       if on {
@@ -40,13 +40,13 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
          }
          
          tableView.selectRow(at: index, animated: true, scrollPosition: .none)
-         cell.accessoryType = .checkmark
+         cell?.accessoryType = .checkmark
          
          if let max = self.max {
             if max == 1 && selection.count > 1 {
                let prevIndex = self.filtered.index(where: { $0.id == selection[0] })!
                let indexPath = IndexPath(row: prevIndex, section: 0)
-               selectRow(cell: tableView.cellForRow(at: indexPath)!, index: indexPath, on: false)
+               selectRow(cell: tableView.cellForRow(at: indexPath), index: indexPath, on: false)
             }
          }
       } else {
@@ -55,7 +55,7 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
          }
          
          tableView.deselectRow(at: index, animated: true)
-         cell.accessoryType = .none
+         cell?.accessoryType = .none
       }
    }
    
@@ -87,7 +87,7 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
    
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
-      let cell = tableView.cellForRow(at: indexPath)!
+      let cell = tableView.cellForRow(at: indexPath)
       let breed = filtered[indexPath.row]
       
       if let _ = getSelectionIndex(fromBreedId: breed.id) {
