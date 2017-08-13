@@ -19,6 +19,8 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
    var onCompletion: (([Int]) -> ())!
    var max: Int?
    
+   var firstTimeLoading = true
+   
    class func newInstance(selection: [Int], max: Int? = nil, onCompletion: @escaping (([Int]) -> Void)) -> BreedSelectorTableViewController {
       let vc = BreedSelectorTableViewController()
       vc.selection = selection
@@ -44,9 +46,13 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
          
          if let max = self.max {
             if max == 1 && selection.count > 1 {
-               let prevIndex = self.filtered.index(where: { $0.id == selection[0] })!
-               let indexPath = IndexPath(row: prevIndex, section: 0)
-               selectRow(cell: tableView.cellForRow(at: indexPath), index: indexPath, on: false)
+               if let prevIndex = self.filtered.index(where: { $0.id == selection[0] }) {
+                  let indexPath = IndexPath(row: prevIndex, section: 0)
+                  selectRow(cell: tableView.cellForRow(at: indexPath), index: indexPath, on: false)
+               }
+               else {
+                  selection.removeFirst()
+               }
             }
          }
       } else {
@@ -100,6 +106,8 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
 //         selection.append(breed.id)
 //         cell?.accessoryType = .checkmark
 //         tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+//         self.searchController.isActive = false
+         self.navigationController?.popViewController(animated: true)
       }
    }
    
@@ -114,7 +122,7 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
       
       filtered = App.instance.breeds.filter({ breed in
          let text: String = searchText.lowercased()
-         return breed.nameFr.range(of: text) != nil
+         return breed.nameFr.lowercased().range(of: text) != nil
       })
       if filtered.count != App.instance.breeds.count {
          tableView.reloadData()
@@ -135,6 +143,17 @@ class BreedSelectorTableViewController: UITableViewController, UISearchBarDelega
       self.view.onSwipe(to: .right) { (swipeGestureRecognizer) -> Void in
          self.navigationController?.popViewController(animated: true)
       }
+   }
+   
+   override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+   
+      if let index = self.selection.first, self.firstTimeLoading {
+         let indexPath = IndexPath(row: index, section: 0)
+         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+      }
+      
+      self.firstTimeLoading = false
    }
    
    override func viewWillDisappear(_ animated: Bool) {
