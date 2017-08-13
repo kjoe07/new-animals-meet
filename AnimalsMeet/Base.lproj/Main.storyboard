@@ -1120,7 +1120,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aiw-L4-RNA">
-                                <rect key="frame" x="16" y="140" width="343" height="483"/>
+                                <rect key="frame" x="16" y="132" width="343" height="491"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1128,11 +1128,11 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Exprimez-vous ..."/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-camera" translatesAutoresizingMaskIntoConstraints="NO" id="IhR-p4-Qmg">
-                                <rect key="frame" x="76" y="87" width="30" height="30"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-camera" translatesAutoresizingMaskIntoConstraints="NO" id="IhR-p4-Qmg">
+                                <rect key="frame" x="76" y="80" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IhR-p4-Qmg" secondAttribute="height" multiplier="1:1" id="Alt-vz-xW2"/>
-                                    <constraint firstAttribute="height" constant="30" id="OPB-gp-c7V"/>
+                                    <constraint firstAttribute="width" constant="44" id="sGW-4y-vhK"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -1142,11 +1142,18 @@
                             <constraint firstItem="AWV-Ho-OGz" firstAttribute="top" secondItem="aiw-L4-RNA" secondAttribute="bottom" id="7sZ-2G-dyF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aiw-L4-RNA" secondAttribute="trailing" id="BoQ-1J-fzu"/>
                             <constraint firstItem="aiw-L4-RNA" firstAttribute="leading" secondItem="de7-i1-eGF" secondAttribute="leadingMargin" id="BrE-D6-0jz"/>
+                            <constraint firstItem="aiw-L4-RNA" firstAttribute="top" secondItem="IhR-p4-Qmg" secondAttribute="bottom" constant="8" id="IFz-nL-BkJ"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="IhR-p4-Qmg" secondAttribute="trailing" id="MsL-t3-i9g"/>
                             <constraint firstItem="EYc-cN-qhJ" firstAttribute="top" secondItem="Eu3-N3-oRl" secondAttribute="bottom" constant="16" id="RPv-TT-FFR"/>
-                            <constraint firstItem="aiw-L4-RNA" firstAttribute="top" secondItem="EYc-cN-qhJ" secondAttribute="bottom" constant="16" id="bm3-fu-ndd"/>
-                            <constraint firstItem="IhR-p4-Qmg" firstAttribute="centerY" secondItem="EYc-cN-qhJ" secondAttribute="centerY" id="gyj-ka-CL4"/>
+                            <constraint firstItem="IhR-p4-Qmg" firstAttribute="top" secondItem="EYc-cN-qhJ" secondAttribute="top" id="Uzb-8p-0GY"/>
+                            <constraint firstItem="aiw-L4-RNA" firstAttribute="leading" secondItem="IhR-p4-Qmg" secondAttribute="leading" id="Vve-Fb-Taa"/>
                             <constraint firstItem="IhR-p4-Qmg" firstAttribute="leading" secondItem="EYc-cN-qhJ" secondAttribute="trailing" constant="16" id="nXf-ee-Dp7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Vve-Fb-Taa"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="1Zx-dX-8Zv">
@@ -1164,10 +1171,13 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="photoWidthConstraint" destination="sGW-4y-vhK" id="EK3-2S-aVE"/>
                         <outlet property="picIcon" destination="IhR-p4-Qmg" id="oHO-jw-lUa"/>
                         <outlet property="profilePic" destination="EYc-cN-qhJ" id="n4C-23-Tlf"/>
                         <outlet property="sendButton" destination="PiK-3j-DJ2" id="oiM-EL-CIY"/>
                         <outlet property="text" destination="aiw-L4-RNA" id="gIF-vn-9UP"/>
+                        <outlet property="textImageLeadingAligned" destination="Vve-Fb-Taa" id="7SV-AH-HKP"/>
+                        <outlet property="textSuperviewLeadingAligned" destination="BrE-D6-0jz" id="l1k-WR-u1q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYN-tQ-03N" userLabel="First Responder" sceneMemberID="firstResponder"/>
