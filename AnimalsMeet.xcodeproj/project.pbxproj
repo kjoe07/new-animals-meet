@@ -121,6 +121,7 @@
 /* Begin PBXFileReference section */
 		0B4014631DE59996008A0862 /* GenericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTextField.swift; sourceTree = "<group>"; };
 		153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
+		2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug offline.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug offline.xcconfig"; sourceTree = "<group>"; };
 		5B21BC9C1DBAE147008FEDA3 /* AnimalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTabBarController.swift; sourceTree = "<group>"; };
 		5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersTableViewController.swift; sourceTree = "<group>"; };
 		5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtend.swift; sourceTree = "<group>"; };
@@ -302,6 +303,7 @@
 			children = (
 				153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */,
 				A2866C354B7B8DCAF257C069 /* Pods-AnimalsMeet.release.xcconfig */,
+				2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -904,6 +906,81 @@
 			};
 			name = Release;
 		};
+		F1E492981F468179001CEA21 /* Debug Offline */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG OFFLINE";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug Offline";
+		};
+		F1E492991F468179001CEA21 /* Debug Offline */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AnimalsMeet/AnimalsMeet.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5DA656H26H;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = AnimalsMeet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nystery.dgds.animalsmeet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug Offline";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -911,6 +988,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A0D054C91DA276E8007B3944 /* Debug */,
+				F1E492981F468179001CEA21 /* Debug Offline */,
 				A0D054CA1DA276E8007B3944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -920,6 +998,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A0D054CC1DA276E8007B3944 /* Debug */,
+				F1E492991F468179001CEA21 /* Debug Offline */,
 				A0D054CD1DA276E8007B3944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
