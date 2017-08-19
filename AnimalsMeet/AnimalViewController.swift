@@ -42,8 +42,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
    @IBOutlet weak var likeCount: UILabel!
    @IBOutlet weak var topConstraint: NSLayoutConstraint!
    
-   @IBOutlet weak var scrollView: UIScrollView!
-   
    var animal: AnimalModel!
    var user: UserModel!
    var shouldHideNavigationBar = true
@@ -122,8 +120,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       tabsVC = ProfileTabViewController(viewControllers: [photoFeedVC, postFeedVC])
       tabsVC.delegate = self
       
-      scrollView.delegate = self
-      
       self.selectedViewController = photoFeedVC
       
       postFeedVC.pageTabBarItem.title = "Posts"
@@ -131,8 +127,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       photoFeedVC.pageTabBarItem.title = "Photos"
       photoFeedVC.pageTabBarItem.titleColor = .gray
       
-      postFeedVC.tableView.isScrollEnabled = false
-      photoFeedVC.tableView.isScrollEnabled = false
+//      postFeedVC.tableView.isScrollEnabled = false
+//      photoFeedVC.tableView.isScrollEnabled = false
       addChildViewController(tabsVC)
       feed.addSubview(tabsVC.view)
       tabsVC.view.frame = feed.bounds
@@ -362,8 +358,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
    
    var selectedViewController: UITableViewController! {
       didSet {
-         let bottomInset = self.selectedViewController.tableView.contentSize.height - feed.bounds.height + 44
-         self.scrollView.contentInset.bottom = max(0, bottomInset)
+//         let bottomInset = self.selectedViewController.tableView.contentSize.height - feed.bounds.height + 44
+//         self.scrollView.contentInset.bottom = max(0, bottomInset)
       }
    }
    
@@ -379,57 +375,57 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       }
    }
    
-   var isDragging = false
-   
-   let scrollOffset: CGFloat = 166
-   
-   var prevOffset: CGFloat = 166
+//   var isDragging = false
+//   
+//   let scrollOffset: CGFloat = 166
+//   
+//   var prevOffset: CGFloat = 166
 }
 
 extension AnimalVC: UIScrollViewDelegate {
-   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-      print(scrollView.contentOffset.y)
-      let offset = scrollView.contentOffset.y
-      
-      if offset > scrollOffset {
-         isDragging = true
-      }
-      
-      if isDragging {
-         let delta = offset - prevOffset
-         let tableView = self.selectedViewController.tableView!
-         tableView.contentOffset.y += delta
-         tableView.flashScrollIndicators()
-         
-         let translation = max(0, offset - scrollOffset)
-         scrollView.subviews.first?.transform = CGAffineTransform(translationX: 0, y: translation)
-         
-         prevOffset = offset
-      }
-      
-      let hasVisibleContent = scrollView.contentOffset.y < scrollOffset
-      postFeedVC.tableView.isScrollEnabled = !hasVisibleContent
-      photoFeedVC.tableView.isScrollEnabled = !hasVisibleContent
-   }
-   
-   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-      scrollDidEnd(scrollView)
-   }
-   
-   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-      if !decelerate {
-         scrollDidEnd(scrollView)
-      }
-   }
-   
-   func scrollDidEnd(_ scrollView: UIScrollView) {
-      isDragging = false
-      scrollView.subviews.first?.transform = CGAffineTransform.identity
-      
-      scrollView.contentOffset.y = min(scrollOffset, scrollView.contentOffset.y)
-      
-      self.prevOffset = scrollOffset
-   }
+//   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//      print(scrollView.contentOffset.y)
+//      let offset = scrollView.contentOffset.y
+//      
+//      if offset > scrollOffset {
+//         isDragging = true
+//      }
+//      
+//      if isDragging {
+//         let delta = offset - prevOffset
+//         let tableView = self.selectedViewController.tableView!
+//         tableView.contentOffset.y += delta
+//         tableView.flashScrollIndicators()
+//         
+//         let translation = max(0, offset - scrollOffset)
+//         scrollView.subviews.first?.transform = CGAffineTransform(translationX: 0, y: translation)
+//         
+//         prevOffset = offset
+//      }
+//      
+//      let hasVisibleContent = scrollView.contentOffset.y < scrollOffset
+//      postFeedVC.tableView.isScrollEnabled = !hasVisibleContent
+//      photoFeedVC.tableView.isScrollEnabled = !hasVisibleContent
+//   }
+//   
+//   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//      scrollDidEnd(scrollView)
+//   }
+//   
+//   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//      if !decelerate {
+//         scrollDidEnd(scrollView)
+//      }
+//   }
+//   
+//   func scrollDidEnd(_ scrollView: UIScrollView) {
+//      isDragging = false
+//      scrollView.subviews.first?.transform = CGAffineTransform.identity
+//      
+//      scrollView.contentOffset.y = min(scrollOffset, scrollView.contentOffset.y)
+//      
+//      self.prevOffset = scrollOffset
+//   }
    
    
 }
