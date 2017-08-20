@@ -229,6 +229,8 @@
 		B4D7FFC11EE8591200FB9A30 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsBaseViewController.swift; sourceTree = "<group>"; };
 		B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		F1D011201F49F92900F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		F1D011211F49F92A00F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,7 +573,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = A0D054971DA276E7007B3944;
@@ -749,6 +750,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A0D054A81DA276E7007B3944 /* Base */,
+				F1D011201F49F92900F29AAB /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -757,6 +759,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A0D054B01DA276E7007B3944 /* Base */,
+				F1D011211F49F92A00F29AAB /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

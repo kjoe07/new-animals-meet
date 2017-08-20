@@ -2934,10 +2934,10 @@ Cliquez sur le bouton!</string>
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hk7-Ko-FtT"/>
         <segue reference="WfR-eh-Tn4"/>
+        <segue reference="hk7-Ko-FtT"/>
         <segue reference="x47-6l-cMl"/>
-        <segue reference="8KI-6L-rDo"/>
+        <segue reference="HdO-sI-F7z"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

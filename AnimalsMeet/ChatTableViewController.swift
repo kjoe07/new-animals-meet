@@ -12,49 +12,25 @@ import SwiftyJSON
 import PromiseKit
 import AFDateHelper
 
-class ChatTableViewController: EasyTableViewController<ConversationModel, ConversationCell>, UISearchBarDelegate {
-
-    var searchController : UISearchController!
-    let searchBar = UISearchBar()
-
+class ChatTableViewController: EasyTableViewController<ConversationModel, ConversationCell> {
     
     @IBAction func newChat(_ sender: Any) {
         // TODO implement dis
     }
     
     override func fetchItems(from: Int, count: Int) -> Promise<[ConversationModel]> {
-        
-        func matching(_ person: ConversationModel) -> Bool {
-            return fuzzySearch(originalString: person.recipient.nickname ?? person.recipient.name!, stringToSearch: searchBar.text!)
-        }
-        
-        return Api.instance.get("/messaging/getCorrespondents/\(from)")
+        return Api.instance.get("/messaging/getCorrespondents/\(from + 1)")
             .then { json -> [ConversationModel] in
                 
                 let result = JSON(parseJSON: json["correspondents"].stringValue)
                 let conversations = result.arrayValue.map {
                     ConversationModel(json: $0)
                     }
-                if (self.searchBar.text?.isEmpty)! {
-                    return conversations
-                } else {
-                    return conversations.filter { matching($0) }
-                }
+               
+               return conversations
         }
     }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        _ = shouldRefresh()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,10 +38,6 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
         ViewForDoneButtonOnKeyboard.sizeToFit()
         let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
         ViewForDoneButtonOnKeyboard.items = [btnDoneOnKeyboard]
-        searchBar.inputAccessoryView = ViewForDoneButtonOnKeyboard
-        
-        searchBar.delegate = self
-        self.navigationItem.titleView = searchBar
         loadingEnabled = true
         pullToRefreshEnabled = true
         tableView.estimatedRowHeight = 120
@@ -73,7 +45,6 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
     }
     
     func doneBtnFromKeyboardClicked() {
-       self.searchBar.resignFirstResponder()
     }
     
     override func onPopulateCell(item: ConversationModel, cell: ConversationCell) {
