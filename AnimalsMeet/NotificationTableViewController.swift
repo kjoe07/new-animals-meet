@@ -11,6 +11,7 @@ import SwiftyJSON
 import AFDateHelper
 import PromiseKit
 import PullToRefreshSwift
+import SwiftDate
 
 // FIXME: show notification badges in tab. TODO: use easy table view
 class NotificationTableViewController: UITableViewController {
@@ -153,7 +154,8 @@ class NotificationTableViewController: UITableViewController {
         let notification = theData[indexPath.row]
         
         if let updateDate = notification.updatedAt {
-            cell.dateLabel.text = try! updateDate.colloquialSinceNow().colloquial
+            let region = Region(tz: TimeZoneName.europeParis, cal: CalendarName.current, loc: LocaleName.french)
+            cell.dateLabel.text = try! updateDate.colloquialSinceNow(in: region).colloquial
         }
         
         if let animal = notification.animal {
