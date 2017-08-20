@@ -87,6 +87,7 @@ class NotificationTableViewController: UITableViewController {
                 if self.theData != nil && self.theData.count > 0 {
                     return []
                 }
+
                 return JSON["notifs"].map { NotificationModel(fromJSON: $1) }
             }
     }

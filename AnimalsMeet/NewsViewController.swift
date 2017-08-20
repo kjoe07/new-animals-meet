@@ -37,8 +37,6 @@ class NewsViewController: UIViewController {
       self.addChildViewController(collectionVC)
       backView = feedVC.view
       frontView = collectionVC.view
-      //      backView = collectionVC.view
-      //      frontView = feedVC.view
       swapControllers()
       
       let padding: CGFloat = 16

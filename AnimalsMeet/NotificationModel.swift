@@ -10,24 +10,24 @@ import Foundation
 import SwiftyJSON
 
 class NotificationModel {
-    
-    var updatedAt: Date!
-    var type: Int!
-    var user: UserModel!
-    var animal: AnimalModel?
-    
-    init(fromJSON json: JSON) {
-        
-        var i = 0
-        user = UserModel(fromJSON: json[i])
-        
-        if !json[1]["created_at"].exists() {
-            i += 1
-            animal = AnimalModel(fromJSON: json[i])
-        }
-        
-        i += 1
-        let jsonNotif = json[i]
-        type = jsonNotif["code_action"].intValue
-    }
+   
+   var updatedAt: Date!
+   var type: Int!
+   var user: UserModel!
+   var animal: AnimalModel?
+   
+   init(fromJSON json: JSON) {
+      let notification = json["notification"]
+
+      user = UserModel(fromJSON: notification["user_sender"])
+      animal = AnimalModel(fromJSON: notification["animal_sender"])
+      type = notification["code_action"].intValue
+      
+      if let dateStr = notification["created_at"].string {
+         updatedAt = Date(fromString: dateStr, format: .isoDateTimeMilliSec)
+      }
+      else {
+         updatedAt = Date()
+      }
+   }
 }

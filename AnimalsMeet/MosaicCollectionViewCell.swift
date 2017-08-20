@@ -7,7 +7,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MosaicCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var image: UIImageView!
+   @IBOutlet weak var image: UIImageView!
+   var currentOperation: RetrieveImageTask?
+   
+   func set(url: URL) {
+      currentOperation = self.image.kf.setImage(with: url)
+   }
+   
+   override func prepareForReuse() {
+      super.prepareForReuse()
+      currentOperation?.cancel()
+      image.image = nil
+   }
 }
