@@ -20,7 +20,12 @@ class NotificationModel {
       let notification = json["notification"]
 
       user = UserModel(fromJSON: notification["user_sender"])
-      animal = AnimalModel(fromJSON: notification["animal_sender"])
+      let animalJSON = notification["animal_sender"]
+      
+      if animalJSON.exists() && animalJSON.null == nil {
+         animal = AnimalModel(fromJSON: animalJSON)
+      }
+      
       type = notification["code_action"].intValue
       
       if let dateStr = notification["created_at"].string {
