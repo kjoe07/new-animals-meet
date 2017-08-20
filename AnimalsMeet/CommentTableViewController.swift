@@ -10,62 +10,74 @@ import UIKit
 import PromiseKit
 
 class CommentTableViewController: EasyTableViewController<CommentModel, CommentTableViewCell> {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 140
-        loadingEnabled = true
-        pullToRefreshEnabled = true
-        paginated = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = false
-    }
-    
-    override func fetchItems(from: Int, count: Int) -> Promise<[CommentModel]> {
-        
-        var coms = [CommentModel]()
-        
-        return Api.instance.get("/media/\((parent as! CommentViewController).media.id!)/comments")
-            .then { JSON -> [CommentModel] in
-                for j in JSON["comments"].arrayValue {
-                    coms.append(CommentModel(fromJSON: j))
-                }
-                return coms
-        }
-    }
-    
-    override func onPopulateCell(item: CommentModel, cell: CommentTableViewCell) {
-        cell.configure(comment: item)
-        cell.like.onTap { _ in
-            
-            if item.iLiked {
-            _ = Api.instance.post("/media/comment/\(item.id!)/unlike")
-                item.likeCount! -= 1
-                item.iLiked = false
-            } else {
-                if item.id != nil {
-                    _ = Api.instance.post("/media/comment/\(item.id!)/like")
-                    item.likeCount! += 1
-                    item.iLiked = true
-                }
+   
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      
+      tableView.rowHeight = UITableViewAutomaticDimension
+      tableView.estimatedRowHeight = 140
+      loadingEnabled = true
+      pullToRefreshEnabled = true
+      paginated = false
+   }
+   
+   override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = true
+   }
+   
+   override func viewWillDisappear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = false
+   }
+   
+   override func fetchItems(from: Int, count: Int) -> Promise<[CommentModel]> {
+      
+      var coms = [CommentModel]()
+      
+      return Api.instance.get("/media/\((parent as! CommentViewController).media.id!)/comments")
+         .then { JSON -> [CommentModel] in
+            for j in JSON["comments"].arrayValue {
+               coms.append(CommentModel(fromJSON: j))
             }
-            
-            cell.updateLikeCount(comment: item)
-        }
-        cell.answer.onTap { _ in
-            let input = (self.parent as! CommentViewController).commentInput
-            input!.text = "@\(item.author.nickname!) \(input?.text ?? "")"
-            input?.becomeFirstResponder()
-        }
-    }
+            return coms
+      }
+   }
+   
+   override func onPopulateCell(item: CommentModel, cell: CommentTableViewCell) {
+      cell.configure(comment: item)
+      cell.like.onTap { _ in
+         
+         if item.iLiked {
+            _ = Api.instance.post("/media/comment/\(item.id!)/unlike")
+            item.likeCount! -= 1
+            item.iLiked = false
+         } else {
+            if item.id != nil {
+               _ = Api.instance.post("/media/comment/\(item.id!)/like")
+               item.likeCount! += 1
+               item.iLiked = true
+            }
+         }
+         
+         cell.updateLikeCount(comment: item)
+      }
+      cell.answer.onTap { _ in
+         let input = (self.parent as! CommentViewController).commentInput
+         input!.text = "@\(item.author.nickname!) \(input?.text ?? "")"
+         input?.becomeFirstResponder()
+      }
+   }
+   
+   override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+      return UITableViewCellEditingStyle.delete
+   }
+   
+   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+      print("deleting item")
+      let item = self.theData.remove(at: indexPath.row)
+      tableView.deleteRows(at: [indexPath], with: .fade)
+      
+      _ = Api.instance.post("/media/remove_comment/\(item.id ?? 0)")
+   }
 }

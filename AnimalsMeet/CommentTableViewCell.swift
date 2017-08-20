@@ -30,6 +30,7 @@ class CommentTableViewCell: UITableViewCell {
         commentContent.text = comment.text
         updateLikeCount(comment: comment)
         nickname.text = comment.author.nickname
+      
     }
     
     func updateLikeCount(comment: CommentModel) {
