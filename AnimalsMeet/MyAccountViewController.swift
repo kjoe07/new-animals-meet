@@ -102,6 +102,12 @@ class myaccount: UIViewController, MFMailComposeViewControllerDelegate, FusumaDe
             profil_pic.rounded()
         }
     }
+   
+   override func viewDidLayoutSubviews() {
+      super.viewDidLayoutSubviews()
+      
+      profil_pic.rounded()
+   }
     
     override func viewDidLoad() {
         self.view.onSwipe(to: .right) { (swipeGestureRecognizer) -> Void in

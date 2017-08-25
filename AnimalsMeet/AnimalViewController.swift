@@ -329,6 +329,11 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       configureNavigationBar()
    }
    
+   override func viewDidLayoutSubviews() {
+      super.viewDidLayoutSubviews()
+      
+   }
+   
    func setProfilePic(_ sender: Any) {
       let fusuma = FusumaViewController()
       fusuma.delegate = self
