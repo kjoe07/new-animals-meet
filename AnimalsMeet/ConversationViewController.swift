@@ -81,7 +81,6 @@ class ConversationViewController: NMessengerViewController {
    }
    
    override func sendText(_ text: String, isIncomingMessage: Bool) -> GeneralMessengerCell {
-      
       let textContent = TextContentNode(textMessageString: text, currentViewController: self, bubbleConfiguration: sharedBubbleConfiguration)
       
       let newMessage = MessageNode(content: textContent)
@@ -125,6 +124,7 @@ class ConversationViewController: NMessengerViewController {
    }
    
    func refreshConv() {
+      print("refreshing")
       let pageSize = 10
       let page = conversation.messagesFixme.count / pageSize + 1
       
@@ -134,16 +134,20 @@ class ConversationViewController: NMessengerViewController {
                MessageModel(fromJSON: msg)
             }
             
+            let messageCount = self.conversation.messagesFixme.count
+            let lastMessage = self.conversation.messagesFixme.last
+            
             for m in messages {
                
                let conv = self.conversation!
                
-               if conv.messagesFixme.count == 0 || m.id > conv.messagesFixme.last!.id {
+               if messageCount == 0 || m.id > lastMessage!.id {
                   if !self.conversationHasLoaded || m.senderId != App.instance.userModel.id {
                      conv.messagesFixme.append(m)
                      self.shouldSend = false
                      self.messageDate = m.date
                      _ = self.sendText(m.content, isIncomingMessage: m.senderId != App.instance.userModel.id)
+                     print("added item")
                      self.shouldSend = true
                   }
                } 
@@ -157,8 +161,10 @@ class ConversationViewController: NMessengerViewController {
    func addMessagesInConv() {
       
       self.shouldSend = false
+      print("willl add \(conversation.messagesFixme.count) messages")
       for m in conversation.messagesFixme {
          _ = self.sendText(m.content, isIncomingMessage: m.senderId != App.instance.userModel.id)
+         print("added message in conversation")
       }
       self.shouldSend = true
    }
@@ -174,11 +180,16 @@ class ConversationViewController: NMessengerViewController {
       self.navigationItem.rightBarButtonItem = showProfile
       
       (self.inputBarView as! NMessengerBarView).inputTextViewPlaceholder = "Message..."
-      self.addMessagesInConv()
-      self.refreshConv()
+      
       uglyConversationReloadingTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.refreshConv), userInfo: nil, repeats: true);
       self.navigationItem.title = conversation.recipient.name
       self.automaticallyAdjustsScrollViewInsets = false
+      
+      guard let recipient = self.conversation.recipient else { return }
+      self.conversation = ConversationModel(user: recipient)
+      
+//      self.addMessagesInConv()
+      self.refreshConv()
    }
    
    func showRecipientProfile() {

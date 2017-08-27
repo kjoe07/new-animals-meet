@@ -82,6 +82,21 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
          }.catch(execute: App.showRequestFailure)
    }
    
+   @IBAction func showFollowers(_ sender: Any) {
+      if let users = self.user?.followers {
+         let controller = UserListViewController(users: users)
+         
+         var title = "Abonmements"
+         
+         if let name = self.user?.nickname {
+            title = "\(name)'s \(title)"
+         }
+         
+         controller.title = title
+         self.navigationController?.pushViewController(controller, animated: true)
+      }
+   }
+   
    class func newInstance(_ animal: AnimalModel) -> AnimalVC {
       let animalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AnimalVC") as! AnimalVC
       animalVC.animal = animal
@@ -310,10 +325,10 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       
       UIKitViewUtils.setCornerRadius(sender: userProfilePic, radius: userProfilePic.frame.width / 2)
       
-      if (animal.sex == .female) {
-         UIKitViewUtils.setBorderWidth(sender: userProfilePic, width: 2.0, hexString: "#E42772")
-      } else {
+      if (animal.sex == .male) {
          UIKitViewUtils.setBorderWidth(sender: userProfilePic, width: 2.0, hexString: "#2978AC")
+      } else {
+         UIKitViewUtils.setBorderWidth(sender: userProfilePic, width: 2.0, hexString: "#E42772")
       }
    }
    

@@ -103,6 +103,9 @@
 		B4D7FFC41EE859A000FB9A30 /* NewsBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */; };
 		B4E127861EE728ED00E0AC95 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */; };
 		EDA7851B67E75457E5F3443D /* Pods_AnimalsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A116B0062B57B1E86235C523 /* Pods_AnimalsMeet.framework */; };
+		F14A3B981F5287FA00B31627 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */; };
+		F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */; };
+		F14A3B9B1F528B0D00B31627 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -229,6 +232,9 @@
 		B4D7FFC11EE8591200FB9A30 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsBaseViewController.swift; sourceTree = "<group>"; };
 		B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		F1D011201F49F92900F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		F1D011211F49F92A00F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -375,8 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				A0EB49A41EE6FDF300DFD36A /* MosaicCollectionViewCell.swift */,
-				A0EB49AA1EE70A8500DFD36A /* MosaicCollectionViewCell.xib */,
 				B405704A1ECDFA2400A6C260 /* MediaCell.xib */,
+				A0EB49AA1EE70A8500DFD36A /* MosaicCollectionViewCell.xib */,
 				A04E35351DF47479000D6F19 /* FeedViewController.swift */,
 				A0EB49A81EE705FD00DFD36A /* MosaicFeedController.swift */,
 				A04E353E1DF49A67000D6F19 /* MediaCell.swift */,
@@ -426,6 +432,7 @@
 		A0D054A21DA276E7007B3944 /* AnimalsMeet */ = {
 			isa = PBXGroup;
 			children = (
+				F14A3B951F5287B400B31627 /* Shared */,
 				A0F4F4C91EEB10BD004D67E6 /* Utils.swift */,
 				A0EAA9181EE96D3A00F0BC2B /* Balade */,
 				A00C3DBC1EBA320A00BDFFE3 /* App.swift */,
@@ -510,6 +517,16 @@
 				A0DBFB371EC3150800D531FA /* EasyTableViewController.swift */,
 			);
 			path = Useful;
+			sourceTree = "<group>";
+		};
+		F14A3B951F5287B400B31627 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */,
+				F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */,
+				F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -600,6 +617,7 @@
 				B42565D31ECCD82B00B3E91C /* EmptyTableBG.xib in Resources */,
 				B49285AF1ECF40A5004E5600 /* AnimalListTableViewCell.xib in Resources */,
 				B493ECF61ED83BAC003F6D1B /* CommentTableViewCell.xib in Resources */,
+				F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +703,7 @@
 				9352C1D61DFB605F00FA3490 /* useful.swift in Sources */,
 				B4AEB8231EE0164C00D0A69D /* UserPicsTableViewController.swift in Sources */,
 				B46C60951EF91D26007D419D /* CGUViewController.swift in Sources */,
+				F14A3B9B1F528B0D00B31627 /* UserListViewController.swift in Sources */,
 				5B89FDCC1DD148E5005FC42A /* UIKitViewUtils.swift in Sources */,
 				A0EAA9151EE80ECA00F0BC2B /* ProfilePictureViewController.swift in Sources */,
 				A0D054A41DA276E7007B3944 /* AppDelegate.swift in Sources */,
@@ -715,6 +734,7 @@
 				B431F7BA1EB8937C00A2C674 /* appendAttributedStringWithEase.swift in Sources */,
 				A07334181EC9CBE000276E03 /* AnimalTabBarController.swift in Sources */,
 				93B2645B1DF5756000B88635 /* NotificationTableViewCell.swift in Sources */,
+				F14A3B981F5287FA00B31627 /* UserTableViewCell.swift in Sources */,
 				A0F4F4CA1EEB10BD004D67E6 /* Utils.swift in Sources */,
 				A0EC2E231DBE6BD400A6A77C /* BreedSelectorTableViewController.swift in Sources */,
 				A0EB49A51EE6FDF300DFD36A /* MosaicCollectionViewCell.swift in Sources */,
