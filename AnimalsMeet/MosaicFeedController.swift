@@ -64,7 +64,7 @@ class MosaicViewController : EasyCollectionViewController<MediaModel, MosaicColl
       cell.set(url: item.url)
       
       cell.contentView.onTap { _ in
-         presentFullScreen(image: cell.image.image!, onVC: self)
+         presentFullScreen(image: cell.image.image!, onVC: self, media: item)
       }
    }
 }

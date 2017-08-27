@@ -83,7 +83,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
    }
    
    @IBAction func showFollowers(_ sender: Any) {
-      if let users = self.user?.followers {
+      if let users = self.user?.followers, !users.isEmpty {
          let controller = UserListViewController(users: users)
          
          var title = "Abonmements"
@@ -220,7 +220,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
             self.userProfilePic.kf.setImage(with: self.user?.image)
          }
          userProfilePic.onTap {_ in
-            presentFullScreen(image: self.userProfilePic.image!, onVC: self)
+            presentFullScreen(image: self.userProfilePic.image!, onVC: self, media: nil)
          }
       }
       
@@ -313,7 +313,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
                                    progressBlock: nil,
                                    completionHandler: nil)
       animalProfilePic.onTap {_ in
-         presentFullScreen(image: self.animalProfilePic.image!, onVC: self)
+         presentFullScreen(image: self.animalProfilePic.image!, onVC: self, media: nil)
       }
       
       animalProfilePic.center.x = userProfilePic.frame.midX + (cos(7 * .pi / 4) * userProfilePic.frame.width / 2 - 2

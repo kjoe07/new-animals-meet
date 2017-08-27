@@ -10,17 +10,26 @@ import UIKit
 import Lightbox
 import FontAwesomeKit
 
-func presentFullScreen(image: UIImage, onVC VC: UIViewController) {
-   let controller = LightboxController(images: [LightboxImage(image: image)])
-   VC.present(controller, animated: true, completion: nil)
+func presentFullScreen(image: UIImage, onVC VC: UIViewController, media: MediaModel?) {
+   let controller = CustomLightBoxController(images: [LightboxImage(image: image)])
+   
+   if let media = media {
+      presentFullScreen(controller: controller, onVC: VC, media: media)
+   }
+   else {
+      VC.present(controller, animated: true, completion: nil)
+   }
 }
 
 func presentFullScreen(imageURL: URL, onVC VC: UIViewController, media: MediaModel) {
    let controller = CustomLightBoxController(images: [LightboxImage(imageURL: imageURL)])
-   
+   presentFullScreen(controller: controller, onVC: VC, media: media)
+}
+
+func presentFullScreen(controller: CustomLightBoxController, onVC VC: UIViewController, media: MediaModel) {
    let view = UIView()
    view.backgroundColor = .clear
-//   view.backgroundColor = .red
+   //   view.backgroundColor = .red
    controller.footerView.addSubview(view)
    view.frame = CGRect(x: 0, y: 0, width: controller.footerView.width, height: 30)
    view.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
@@ -31,7 +40,7 @@ func presentFullScreen(imageURL: URL, onVC VC: UIViewController, media: MediaMod
    
    let filledHeartIcon = FAKIonIcons.iosHeartIcon(withSize: 20)
    filledHeartIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
-//   let heartImage = heartIcon?.image(with: CGSize(width: 24, height: 24))
+   //   let heartImage = heartIcon?.image(with: CGSize(width: 24, height: 24))
    
    let heartButton = UIButton(type: .system)
    
@@ -46,24 +55,24 @@ func presentFullScreen(imageURL: URL, onVC VC: UIViewController, media: MediaMod
    heartButton.translatesAutoresizingMaskIntoConstraints = false
    
    heartButton.onTap { (recognizer) in
-//      UIView.transition(with: heartButton, duration: 0.2, options: .transitionCrossDissolve, animations: {
+      //      UIView.transition(with: heartButton, duration: 0.2, options: .transitionCrossDissolve, animations: {
       
-         if media.isLiked {
-            media.likeCount -= 1
-            media.isLiked = false
-            
-            _ = media.callForUnlike().then { _ -> Void in  }
-//            heartButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
-            heartButton.setAttributedTitle(heartIcon?.attributedString(), for: .normal)
-         } else {
-            media.likeCount += 1
-            media.isLiked = true
-            
-            _ = media.callForLike(fromAnimal: App.instance.getSelectedAnimal().id).then { _ -> Void in  }
-//            heartButton.setImage(#imageLiteral(resourceName: "heart red"), for: .normal)
-            heartButton.setAttributedTitle(filledHeartIcon?.attributedString(), for: .normal)
-         }
-//      }, completion: nil)
+      if media.isLiked {
+         media.likeCount -= 1
+         media.isLiked = false
+         
+         _ = media.callForUnlike().then { _ -> Void in  }
+         //            heartButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+         heartButton.setAttributedTitle(heartIcon?.attributedString(), for: .normal)
+      } else {
+         media.likeCount += 1
+         media.isLiked = true
+         
+         _ = media.callForLike(fromAnimal: App.instance.getSelectedAnimal().id).then { _ -> Void in  }
+         //            heartButton.setImage(#imageLiteral(resourceName: "heart red"), for: .normal)
+         heartButton.setAttributedTitle(filledHeartIcon?.attributedString(), for: .normal)
+      }
+      //      }, completion: nil)
    }
    
    view.addSubview(heartButton)
@@ -90,7 +99,7 @@ func presentFullScreen(imageURL: URL, onVC VC: UIViewController, media: MediaMod
       let backButton = UIBarButtonItem(title: "Close", style: .done, target: controller, action: #selector(controller.dismissItem(_:)))
       profileVC.navigationItem.rightBarButtonItem = backButton
       
-//      controller.navigationController?.pushViewController(profileVC, animated: true)
+      //      controller.navigationController?.pushViewController(profileVC, animated: true)
       let navigationController = UINavigationController(rootViewController: profileVC)
       
       controller.present(navigationController, animated: true, completion: nil)
@@ -122,19 +131,6 @@ class CustomLightBoxController: LightboxController {
          (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = false
       }
    }
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-   }
-   
-   override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      self.navigationController?.setNavigationBarHidden(true, animated: true)
-   }
-
-   override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      self.navigationController?.setNavigationBarHidden(false, animated: true)
-   }
 }
+
+
