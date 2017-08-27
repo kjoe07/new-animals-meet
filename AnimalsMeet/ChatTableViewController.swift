@@ -52,8 +52,7 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
       cell.profilePic.kf.setImage(with: item.recipient.image)
       cell.name.text = item.recipient.nickname
       cell.lastMsg.text = item.messages?[0]
-      let region = Region(tz: TimeZoneName.europeParis, cal: CalendarName.current, loc: LocaleName.french)
-      cell.lastMsgTime.text = try! item.date.colloquialSinceNow(in: region).colloquial
+      cell.lastMsgTime.text = item.date.localizedString
       
       cell.onTap { _ in
          let vc = ConversationViewController()

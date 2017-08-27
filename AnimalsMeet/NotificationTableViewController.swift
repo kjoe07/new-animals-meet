@@ -154,8 +154,7 @@ class NotificationTableViewController: UITableViewController {
         let notification = theData[indexPath.row]
         
         if let updateDate = notification.updatedAt {
-            let region = Region(tz: TimeZoneName.europeParis, cal: CalendarName.current, loc: LocaleName.french)
-            cell.dateLabel.text = try! updateDate.colloquialSinceNow(in: region).colloquial
+            cell.dateLabel.text = updateDate.localizedString
         }
         
         if let animal = notification.animal {

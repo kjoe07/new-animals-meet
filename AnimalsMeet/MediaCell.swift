@@ -51,7 +51,7 @@ class MediaCell: UITableViewCell {
       legend.textContainerInset = UIEdgeInsets.zero
       legend.textContainer.lineFragmentPadding = 0;
       legend.text = media.description ?? "hello world"
-      postTime.text = try! media.updatedAt.colloquialSinceNow().colloquial
+      postTime.text = media.updatedAt.localizedString
       
       if media.animal.id != 0 {
          profilePic.kf.setImage(with: media.animal.profilePicUrl)

@@ -28,7 +28,7 @@ class ConversationViewController: NMessengerViewController {
       formatter.dateStyle = .medium
       formatter.timeStyle = .short
       
-      let dateString = try! date.colloquialSinceNow().colloquial
+      let dateString = date.localizedString
       
       let messageTimestamp = MessageSentIndicator()
       messageTimestamp.messageSentText = dateString

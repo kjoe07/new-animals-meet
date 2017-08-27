@@ -106,6 +106,7 @@
 		F14A3B981F5287FA00B31627 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */; };
 		F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */; };
 		F14A3B9B1F528B0D00B31627 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */; };
+		F14A3B9E1F5294A300B31627 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B9D1F5294A300B31627 /* Foundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -235,6 +236,7 @@
 		F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		F14A3B9D1F5294A300B31627 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		F1D011201F49F92900F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		F1D011211F49F92A00F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -432,6 +434,7 @@
 		A0D054A21DA276E7007B3944 /* AnimalsMeet */ = {
 			isa = PBXGroup;
 			children = (
+				F14A3B9C1F52945700B31627 /* Extensions */,
 				F14A3B951F5287B400B31627 /* Shared */,
 				A0F4F4C91EEB10BD004D67E6 /* Utils.swift */,
 				A0EAA9181EE96D3A00F0BC2B /* Balade */,
@@ -527,6 +530,14 @@
 				F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		F14A3B9C1F52945700B31627 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F14A3B9D1F5294A300B31627 /* Foundation.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -707,6 +718,7 @@
 				5B89FDCC1DD148E5005FC42A /* UIKitViewUtils.swift in Sources */,
 				A0EAA9151EE80ECA00F0BC2B /* ProfilePictureViewController.swift in Sources */,
 				A0D054A41DA276E7007B3944 /* AppDelegate.swift in Sources */,
+				F14A3B9E1F5294A300B31627 /* Foundation.swift in Sources */,
 				B431F7BB1EB8937C00A2C674 /* Useful.swift in Sources */,
 				A0D7C2971DC75F02006771C8 /* AnimalConfigurationViewController.swift in Sources */,
 				A098D98C1DD205270014270D /* AnimalListTableViewController.swift in Sources */,
