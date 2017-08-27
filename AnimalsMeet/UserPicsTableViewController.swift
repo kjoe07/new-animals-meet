@@ -55,7 +55,7 @@ class UserPicsTableViewController: EasyTableViewController<MediaModel, MediaCell
       cell.setMedia(item)
       
       cell.mediaView.onTap {_ in
-         presentFullScreen(imageURL: item.url, onVC: self)
+         presentFullScreen(imageURL: item.url, onVC: self, media: item)
       }
       
       cell.goToProfile = {

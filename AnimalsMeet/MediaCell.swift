@@ -34,9 +34,31 @@ class MediaCell: UITableViewCell {
    }
    
    func setMedia(_ media: MediaModel) {
+      updateCurrentMedia(media)
+      
+      NotificationCenter.default.addObserver(
+         self,
+         selector: #selector(processLikeNotification(notification:)),
+         name: MediaModel.MediaLikedNotification,
+         object: nil
+      )
+   }
+   
+   func processLikeNotification(notification: Notification) {
+      guard let media = notification.userInfo?[MediaModel.MediaKey] as? MediaModel else {
+         return
+      }
+      
+      if self.media.id == media.id {
+         self.updateCurrentMedia(media)
+      }
+   }
+   
+   func updateCurrentMedia(_ media: MediaModel) {
       for v in mediaView.subviews {
          v.removeFromSuperview()
       }
+      
       self.media = media
       
       let title = NSMutableAttributedString()
@@ -167,20 +189,29 @@ class MediaCell: UITableViewCell {
       UIView.transition(with: sender, duration: 0.2, options: .transitionCrossDissolve, animations: {
          
          if self.media.isLiked {
-            self.media.isLiked = false
             self.media.likeCount -= 1
+            self.media.isLiked = false
             _ = self.media.callForUnlike().then { _ -> Void in self.updateLikeCount() }
-            sender.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+//            sender.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
          } else {
-            self.media.isLiked = true
             self.media.likeCount += 1
+            self.media.isLiked = true
+            
             _ = self.media.callForLike(fromAnimal: App.instance.getSelectedAnimal().id).then { _ -> Void in self.updateLikeCount() }
-            sender.setImage(#imageLiteral(resourceName: "heart red"), for: .normal)
+//            sender.setImage(#imageLiteral(resourceName: "heart red"), for: .normal)
          }
       }, completion: nil)
    }
    
    @IBAction func showComments(_ sender: Any) {
       goToComments?()
+   }
+   
+   override func prepareForReuse() {
+      NotificationCenter.default.removeObserver(
+         self,
+         name: MediaModel.MediaLikedNotification,
+         object: nil
+      )
    }
 }

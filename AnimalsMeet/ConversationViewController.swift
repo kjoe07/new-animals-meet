@@ -116,11 +116,11 @@ class ConversationViewController: NMessengerViewController {
    }
    
    override func viewWillAppear(_ animated: Bool) {
-      (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = true
+      (self.tabBarController as? AnimalTabBarController)?.centerButton.isHidden = true
    }
    
    override func viewWillDisappear(_ animated: Bool) {
-      (self.tabBarController as! AnimalTabBarController).centerButton.isHidden = false
+      (self.tabBarController as? AnimalTabBarController)?.centerButton.isHidden = false
    }
    
    func refreshConv() {

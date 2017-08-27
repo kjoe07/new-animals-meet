@@ -36,8 +36,9 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         cell.setMedia(item)
         
         if !item.isText {
-            cell.mediaView.onTap {_ in 
-                presentFullScreen(imageURL: item.url, onVC: self)
+            cell.mediaView.onTap {_ in
+               presentFullScreen(imageURL: item.url, onVC: self, media: item)
+//                presentFullScreen(imageURL: item.url, onVC: self)
             }
         }
 
