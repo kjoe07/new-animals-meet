@@ -21,7 +21,6 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
    
    @IBOutlet var ask_name: UITextField!
    @IBOutlet var ask_age: UITextField!
-//   @IBOutlet weak var askCountry: UITextField!
    @IBOutlet var ask_male: UISwitch!
    @IBOutlet var ask_femele: UISwitch!
    @IBOutlet weak var ask_transgender: UISwitch!
@@ -291,7 +290,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
             }
             }.catch { err in
                print(err)
-               alert.showAlertSuccess(title: "Erreur", subTitle: "Un problème est survenu. Veuillez réessayer.")
+               alert.showAlertError(title: "Erreur", subTitle: "Un problème est survenu. Veuillez réessayer.")
          }
       }
       

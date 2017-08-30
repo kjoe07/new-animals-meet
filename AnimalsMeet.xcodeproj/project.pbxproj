@@ -107,6 +107,7 @@
 		F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */; };
 		F14A3B9B1F528B0D00B31627 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */; };
 		F14A3B9E1F5294A300B31627 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B9D1F5294A300B31627 /* Foundation.swift */; };
+		F1FC84451F5511780085A673 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FC84441F5511780085A673 /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -239,6 +240,7 @@
 		F14A3B9D1F5294A300B31627 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		F1D011201F49F92900F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		F1D011211F49F92A00F29AAB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F1FC84441F5511780085A673 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +472,7 @@
 				A098D98B1DD205270014270D /* AnimalListTableViewController.swift */,
 				B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */,
 				B43FB88E1EE71784004EE2E7 /* ProfileTabViewController.swift */,
+				F1FC84441F5511780085A673 /* EditProfileViewController.swift */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				A04031E61DA3A7F600D83E92 /* LoginViewController.swift in Sources */,
 				B40B09561EB88A9A00782417 /* CommentTableViewCell.swift in Sources */,
 				A0EB49A71EE7010A00DFD36A /* EasyCollectionViewController.swift in Sources */,
+				F1FC84451F5511780085A673 /* EditProfileViewController.swift in Sources */,
 				93B264581DF4E1A100B88635 /* NotificationTableViewController.swift in Sources */,
 				A0AF13F21EC5A5410011C2B1 /* BreedModel.swift in Sources */,
 				A0DBFB381EC3150800D531FA /* EasyTableViewController.swift in Sources */,

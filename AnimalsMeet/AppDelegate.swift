@@ -49,10 +49,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
          App.instance.requestUserBreedsAndAnimals()
             .always {
                ARSLineProgress.hide()
-            }.catch { err in
+            }
+            .then { () -> Void in
+               if App.instance.userModel?.animals?.isEmpty == false {
+                  print("Already setup welcome controller")
+               }
+               else {
+                  print("Should display welcome controller")
+               }
+            }
+            .catch { err in
                print(err)
                App.instance.logout()
-         }
+            }
       }
       
       Fabric.with([Answers.self])
