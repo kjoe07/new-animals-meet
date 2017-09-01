@@ -468,8 +468,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPn-B3-HhR">
-                                <rect key="frame" x="112.5" y="398" width="150" height="30"/>
-                                <state key="normal" title="Commencer la balade"/>
+                                <rect key="frame" x="86.5" y="398" width="202" height="40"/>
+                                <color key="backgroundColor" red="0.0039215686274509803" green="0.62745098039215685" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
+                                <state key="normal" title="Commencer la balade">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="send:" destination="zpi-uq-HDL" eventType="touchUpInside" id="hTf-pz-OV0"/>
                                 </connections>
@@ -526,6 +536,7 @@
                         <outlet property="distance" destination="AvJ-cY-qw4" id="MgY-Z1-geN"/>
                         <outlet property="distanceSlider" destination="dSI-EG-d9m" id="r2u-fe-H5K"/>
                         <outlet property="followedFriends" destination="Zdn-d7-DkA" id="cCk-dU-lXa"/>
+                        <outlet property="startButton" destination="gPn-B3-HhR" id="VPz-kt-8g9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfu-h8-1FR" userLabel="First Responder" sceneMemberID="firstResponder"/>

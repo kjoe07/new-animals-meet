@@ -14,6 +14,9 @@ class BaladeViewController: UIViewController {
    @IBOutlet weak var distance: UILabel!
    @IBOutlet weak var followedFriends: UISwitch!
    @IBOutlet weak var baladeDescription: UITextView!
+   
+   @IBOutlet weak var startButton: UIButton!
+   
    var animalId: Int!
    
    override func viewDidLoad() {
@@ -22,8 +25,8 @@ class BaladeViewController: UIViewController {
    }
    
    @IBAction func sliderChanged(_ sender: UISlider) {
-      let value = String(format: "%.2f", sender.value)
-      distance.text = "\(value) Km"
+//      let value = String(format: "%.2f", sender.value)
+      distance.text = "\(Int(sender.value * 1000)) m"
    }
    
    @IBAction func send(_ sender: Any) {
