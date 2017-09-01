@@ -121,14 +121,14 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
       guard contentChanged || avatarChanged else { return }
 
       guard nameField.text!.characters.count > 1 else {
-         alert.showAlertError(title: "Attention", subTitle: "Veuilliez saisir un nom")
+         alert.showAlertError(title: "Attention", subTitle: "Veuillez saisir un nom")
          return
       }
       
       guard nicknameField.text!.characters.count > 1 else {
          alert.showAlertError(
             title: "Attention",
-            subTitle: "Veuilliez saisir un nom d' utilisateur"
+            subTitle: "Veuillez saisir un nom d' utilisateur"
          )
          
          return
@@ -189,14 +189,4 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
    func fusumaVideoCompleted(withFileURL fileURL: URL) {}
    func fusumaCameraRollUnauthorized() {}
    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) { }
-   /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-   
 }

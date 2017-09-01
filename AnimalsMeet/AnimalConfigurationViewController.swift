@@ -249,11 +249,11 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       if profilePic.image == nil {
          alert.showAlertError(title: "Attention", subTitle: "Veuillez choisir une photo de profil")
       } else if animal.name.characters.count <= 1 {
-         alert.showAlertError(title: "Attention", subTitle: "Veuilliez saisir un nom")
+         alert.showAlertError(title: "Attention", subTitle: "Veuillez saisir un nom")
       } else if animal.year.characters.count == 0 {
-         alert.showAlertError(title: "Attention", subTitle: "Veuilliez saisir son age")
+         alert.showAlertError(title: "Attention", subTitle: "Veuillez saisir son age")
       } else if animal.breed == nil {
-         alert.showAlertError(title: "Attention", subTitle: "Veuilliez choisir une race")
+         alert.showAlertError(title: "Attention", subTitle: "Veuillez choisir une race")
       } else {
          
          alert.showProgressAlert(title: "Chargement en cours", subTitle: "Enregistrement de l'animal...")
