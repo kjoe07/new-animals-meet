@@ -18,6 +18,8 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
    @IBOutlet weak var avatarImageView: UIImageView!
    @IBOutlet weak var saveButton: UIButton!
    
+   var onSuccess: (() -> Void)?
+   
    var user: UserModel!
    
    var avatarChanged: Bool = false {
@@ -30,6 +32,19 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
       didSet {
          self.saveButton.isEnabled = contentChanged || avatarChanged
       }
+   }
+   
+   class func newInstance() -> EditProfileViewController {
+      let storyboard = UIStoryboard(name: "Main", bundle: .main)
+      let controller = storyboard.instantiateViewController(
+         withIdentifier: "EditProfileViewController"
+      )
+      
+      guard let editController = controller as? EditProfileViewController else {
+         fatalError()
+      }
+      
+      return editController
    }
    
    override func viewDidLoad() {
@@ -127,7 +142,10 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
             
             let media = MediaModel()
             media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
-            return media.callForCreate().then { _ -> Void in }
+            return media.callForCreate().then { json -> Void in
+               let createdMedia = MediaModel(fromJSON: json)
+               self.user.image = createdMedia.url
+            }
          }
       }
       
@@ -142,7 +160,6 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
          }
       }
       
-//      alert.showAlertWarning(title: "Chargement en cours", subTitle: "Modifier le profil...")
       alert.showProgressAlert(title: "Chargement en cours", subTitle: "Modifier le profil...")
       
       when(fulfilled: avatarPromise, infoPromise)
@@ -156,6 +173,8 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
             self.contentChanged = false
             
             alert.showAlertSuccess(title: "Félicitation", subTitle: "Votre profil vient d'être modifié")
+            
+            self.onSuccess?()
          }.catch { error in
             print(error)
             alert.showAlertError(title: "Erreur", subTitle: "Un problème est survenu. Veuillez réessayer.")

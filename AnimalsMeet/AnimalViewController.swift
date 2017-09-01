@@ -62,41 +62,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
    lazy var animalListVC: AnimalListTableViewController = self.makeAndAddVC()
    var tabsVC: ProfileTabViewController!
    
-   @IBAction func follow(_ sender: UIButton) {
-      let mode = user.isFriend() ? "unfriend" : "friend"
-      if mode == "unfriend" {
-         sender.backgroundColor = .white
-      } else {
-         sender.backgroundColor = addFriendBgColor
-      }
-      
-      Api.instance.post("/user/\(user.id!)/\(mode)")
-         .then { _ -> Void in
-            if mode == "unfriend" {
-               self.user.unfriend()
-            } else {
-               self.user.friend()
-            }
-            let message = self.user.isFriend() ? "Vous suivez maintenant cette personne" : "Vous ne suivez plus cette personne"
-            alert.showAlertSuccess(title: "Ami", subTitle: message)
-         }.catch(execute: App.showRequestFailure)
-   }
-   
-   @IBAction func showFollowers(_ sender: Any) {
-      if let users = self.user?.followers, !users.isEmpty {
-         let controller = UserListViewController(users: users)
-         
-         var title = "Abonmements"
-         
-         if let name = self.user?.nickname {
-            title = "\(name)'s \(title)"
-         }
-         
-         controller.title = title
-         self.navigationController?.pushViewController(controller, animated: true)
-      }
-   }
-   
    class func newInstance(_ animal: AnimalModel) -> AnimalVC {
       let animalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AnimalVC") as! AnimalVC
       animalVC.animal = animal
@@ -118,6 +83,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       if shouldHideNavigationBar {
          //navigationController!.setNavigationBarHidden(true, animated: false)
       }
+      
       navigationController?.navigationBar.isTranslucent = true
    }
    
@@ -168,17 +134,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
        */
    }
    
-   @IBAction func displayAnimalList(_ sender: Any) {
-      navigationController?.pushViewController(animalListVC, animated: true)
-   }
-   
-   func editAnimal(animal: AnimalModel?) {
-      let vc = AnimalConfigurationViewController.newInstance(animal: animal)
-      navigationController?.pushViewController(vc, animated: true)
-   }
-   
-   var loadedanimalsfixme = false
-   
    override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
       
@@ -197,7 +152,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
                self.setProfilePic(self)
             }
          }
-         
          
          if me.animals!.count == 0 {
             editAnimal(animal: animal)
@@ -244,6 +198,53 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
          self.editAnimal(animal: nil)
       }
    }
+
+   
+   @IBAction func displayAnimalList(_ sender: Any) {
+      navigationController?.pushViewController(animalListVC, animated: true)
+   }
+   
+   @IBAction func follow(_ sender: UIButton) {
+      let mode = user.isFriend() ? "unfriend" : "friend"
+      if mode == "unfriend" {
+         sender.backgroundColor = .white
+      } else {
+         sender.backgroundColor = addFriendBgColor
+      }
+      
+      Api.instance.post("/user/\(user.id!)/\(mode)")
+         .then { _ -> Void in
+            if mode == "unfriend" {
+               self.user.unfriend()
+            } else {
+               self.user.friend()
+            }
+            let message = self.user.isFriend() ? "Vous suivez maintenant cette personne" : "Vous ne suivez plus cette personne"
+            alert.showAlertSuccess(title: "Ami", subTitle: message)
+         }.catch(execute: App.showRequestFailure)
+   }
+   
+   @IBAction func showFollowers(_ sender: Any) {
+      if let users = self.user?.followers, !users.isEmpty {
+         let controller = UserListViewController(users: users)
+         
+         var title = "Abonmements"
+         
+         if let name = self.user?.nickname {
+            title = "\(name)'s \(title)"
+         }
+         
+         controller.title = title
+         self.navigationController?.pushViewController(controller, animated: true)
+      }
+   }
+   
+   func editAnimal(animal: AnimalModel?) {
+      let vc = AnimalConfigurationViewController.newInstance(animal: animal)
+      navigationController?.pushViewController(vc, animated: true)
+   }
+   
+   var loadedanimalsfixme = false
    
    @IBOutlet weak var animalButtonConstraintRight: NSLayoutConstraint!
    
@@ -363,7 +364,9 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       
       let media = MediaModel()
       media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
-      media.callForCreate().then { _ -> Void in
+      media.callForCreate().then { json -> Void in
+         let createdMedia = MediaModel(fromJSON: json)
+         self.user.image = createdMedia.url
          self.userProfilePic.image = image
          alert.showAlertSuccess(title: "Nouvelle image", subTitle: "Votre photo a été enregistré. Elle s'affichera au relancement de l'appli.")
          }.catch(execute: App.showRequestFailure)
@@ -449,33 +452,3 @@ extension AnimalVC: UIScrollViewDelegate {
    
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

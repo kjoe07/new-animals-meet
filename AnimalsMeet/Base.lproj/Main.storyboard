@@ -2203,7 +2203,7 @@ Cliquez sur le bouton!</string>
         <!--Modifier le profil-->
         <scene sceneID="x8P-R2-XIX">
             <objects>
-                <viewController title="Modifier le profil" id="hU7-u6-tjL" customClass="EditProfileViewController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" title="Modifier le profil" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hU7-u6-tjL" customClass="EditProfileViewController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yJH-en-nBi"/>
                         <viewControllerLayoutGuide type="bottom" id="0A0-F7-iHQ"/>
@@ -2597,6 +2597,8 @@ Cliquez sur le bouton!</string>
                         <outlet property="ask_name" destination="U7V-bh-eFr" id="UJW-4V-9d8"/>
                         <outlet property="ask_transgender" destination="kF3-vm-FDu" id="M78-zT-kYO"/>
                         <outlet property="create_edit_button" destination="yzg-1S-q0L" id="L2w-rz-Jrz"/>
+                        <outlet property="femaleIconView" destination="kn3-4e-RnG" id="dJy-h5-7eB"/>
+                        <outlet property="maleIconView" destination="cty-r7-wQZ" id="aD2-aJ-4IF"/>
                         <outlet property="profilePic" destination="iPw-D9-he9" id="o8h-za-nAX"/>
                         <outlet property="race" destination="ev3-vk-u7i" id="lRK-d9-A3K"/>
                         <outlet property="transgenderIcon" destination="DId-qy-Ees" id="p42-B0-6AT"/>

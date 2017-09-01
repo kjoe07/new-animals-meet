@@ -43,20 +43,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
          ARSLineProgress.show()
          
          let storyboard = UIStoryboard(name: "Main", bundle: nil)
-         let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-         self.window?.rootViewController = tabBarViewController
+         let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+         self.window?.rootViewController = initialViewController
          self.window?.makeKeyAndVisible()
+         
          App.instance.requestUserBreedsAndAnimals()
             .always {
                ARSLineProgress.hide()
             }
             .then { () -> Void in
+               // FIXME: put this code in only one place. It's also repeated
+               // in the login controller
                if App.instance.userModel?.animals?.isEmpty == false {
                   print("Already setup welcome controller")
+                  self.window?.rootViewController = initialViewController
                }
                else {
                   print("Should display welcome controller")
+                  let controller = EditProfileViewController.newInstance()
+                  controller.title = "Enregister le profil"
+                  
+                  controller.onSuccess = {
+                     let animalConfigVC = AnimalConfigurationViewController.newInstance()
+                     
+                     animalConfigVC.onSuccess = {
+                        self.window?.rootViewController = initialViewController
+                     }
+                     
+                     controller.navigationController?.pushViewController(animalConfigVC, animated: true)
+                  }
+                  
+                  let navigation = UINavigationController(rootViewController: controller)
+                  self.window?.rootViewController = navigation
                }
+
             }
             .catch { err in
                print(err)
