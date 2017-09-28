@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       
       #if OFFLINE
-      Api.instance.serverUrl = "http://192.168.1.2:3000/v1"
+      Api.instance.serverUrl = "http://localhost:3000/v1"
       #else
       Api.instance.serverUrl = "http://api.animals-meet.com/v1"
       #endif

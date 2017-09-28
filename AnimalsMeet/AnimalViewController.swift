@@ -153,7 +153,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
             }
          }
          
-         if me.animals!.count == 0 {
+         if (me.animals ?? []).count == 0 {
             editAnimal(animal: animal)
             return
          } else {

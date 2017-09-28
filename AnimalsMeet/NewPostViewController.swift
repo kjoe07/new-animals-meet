@@ -14,16 +14,19 @@ import PromiseKit
 class NewPostViewController: UIViewController, FusumaDelegate {
    
    @IBOutlet weak var profilePic: UIImageView!
-   @IBOutlet weak var text: UITextView!
+   //@IBOutlet weak var text: UITextView!
    @IBOutlet weak var picIcon: UIImageView!
    @IBOutlet weak var sendButton: UIBarButtonItem!
+    @IBOutlet weak var text: UILabel!
+    @IBOutlet weak var textView: UIView!
    
    @IBOutlet weak var photoWidthConstraint: NSLayoutConstraint!
-   @IBOutlet weak var textImageLeadingAligned: NSLayoutConstraint!
-   @IBOutlet weak var textSuperviewLeadingAligned: NSLayoutConstraint!
+//   @IBOutlet weak var textImageLeadingAligned: NSLayoutConstraint!
+//   @IBOutlet weak var textSuperviewLeadingAligned: NSLayoutConstraint!
    
    var newMedia: MediaModel!
-   
+    var legend: String!
+    
    @IBAction func stop(_ sender: Any) {
       dismiss(animated: true, completion: nil)
    }
@@ -77,7 +80,7 @@ class NewPostViewController: UIViewController, FusumaDelegate {
       
       if newMedia != nil {
          postPicture(description: text.text)
-      } else if !text.text.isEmpty {
+      } else if let t = text.text, !t.isEmpty {
          sendPost()
       } else {
          sendButton.isEnabled = true
@@ -99,9 +102,9 @@ class NewPostViewController: UIViewController, FusumaDelegate {
       picIcon.layer.cornerRadius = 4
       
       self.photoWidthConstraint.isActive = false
-      self.text.placeholder = "Écrire une légende…"
-      self.textSuperviewLeadingAligned.isActive = false
-      self.textImageLeadingAligned.isActive = true
+      self.text.text = "Écrire une légende…"
+      //self.textSuperviewLeadingAligned.isActive = false
+//      self.textImageLeadingAligned.isActive = true
    }
    
    func fusumaDismissedWithImage(_ image: UIImage) {}
@@ -123,5 +126,26 @@ class NewPostViewController: UIViewController, FusumaDelegate {
          vc.hasVideo = false
          self.present(vc, animated: true)
       }
+    
+    textView.onTap { _ in
+        if self.newMedia != nil {
+            self.performSegue(withIdentifier: "NewLegend", sender: nil)
+
+        }
+    }
    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? LegendViewController, segue.identifier == "NewLegend" {
+            controller.delegate = self
+            controller.legend = legend
+        }
+    }
+}
+
+extension NewPostViewController: NewLegend {
+    func legend(legend: String) {
+        self.legend = legend
+        text.text = legend
+    }
 }

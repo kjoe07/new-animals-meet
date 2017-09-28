@@ -24,7 +24,8 @@ class Api {
         
         if ProcessInfo.processInfo.environment["ENV"] == "DEBUG" {
             
-            serverUrl = "http://193.70.42.87:4001"
+            //serverUrl = "http://193.70.42.87:4001"
+            serverUrl = "http://localhost:3000"
             authServerUrl = "http://193.70.42.87:4000"
         }
     }
