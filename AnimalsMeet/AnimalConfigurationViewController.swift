@@ -24,7 +24,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
    @IBOutlet var ask_age: UITextField!
    @IBOutlet var ask_male: UISwitch!
    @IBOutlet var ask_femele: UISwitch!
-   @IBOutlet weak var ask_transgender: UISwitch!
+   @IBOutlet weak var ask_crossed: UISwitch!
    
    @IBOutlet var ask_loof: UISwitch!
    @IBOutlet var ask_dog: UISwitch!
@@ -34,7 +34,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
    
    @IBOutlet weak var maleIconView: UIImageView!
    @IBOutlet weak var femaleIconView: UIImageView!
-   @IBOutlet weak var transgenderIcon: UIImageView!
+   @IBOutlet weak var crossedIcon: UIImageView!
    
    @IBOutlet var create_edit_button: UIButton!
    
@@ -57,15 +57,15 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       let side: CGFloat = 20
       let size = CGSize(width: side, height: side)
       
-      let transgenderImage = FAKIonIcons.transgenderIcon(withSize: side)
+      let crossedImage = FAKIonIcons.transgenderIcon(withSize: side)
       let maleImage = FAKIonIcons.maleIcon(withSize: side)
       let femaleImage = FAKIonIcons.femaleIcon(withSize: side)
       
-      [transgenderImage, maleImage, femaleImage].forEach {
+      [crossedImage, maleImage, femaleImage].forEach {
          $0?.setAttributes([NSForegroundColorAttributeName: #colorLiteral(red: 0.431372549, green: 0.431372549, blue: 0.431372549, alpha: 1)])
       }
       
-      self.transgenderIcon.image = transgenderImage?.image(with: size)
+      self.crossedIcon.image = crossedImage?.image(with: size)
       self.maleIconView.image = maleImage?.image(with: size)
       self.femaleIconView.image = femaleImage?.image(with: size)
       
@@ -83,7 +83,6 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          
          ask_male.setOn(animal.sex == .male, animated: false)
          ask_femele.setOn(animal.sex == .female, animated: false)
-         ask_transgender.setOn(animal.sex == .transgender, animated: false)
          
          ask_loof.setOn(animal.loof, animated: true)
          ask_name.text = animal.name
@@ -201,17 +200,10 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
    
    @IBAction func action_femele(_ sender: AnyObject) {
       ask_male.setOn(!ask_femele.isOn, animated: true)
-      ask_transgender.setOn(false, animated: true)
    }
    
    @IBAction func action_male(_ sender: AnyObject) {
       ask_femele.setOn(!ask_male.isOn, animated: true)
-      ask_transgender.setOn(false, animated: true)
-   }
-   
-   @IBAction func action_transgender(_ sender: Any) {
-      ask_femele.setOn(false, animated: true)
-      ask_male.setOn(!ask_transgender.isOn, animated: true)
    }
    
    var currentSync: Promise<Void>?
@@ -231,9 +223,8 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       } else if ask_femele.isOn {
          animal.sex = .female
       }
-      else {
-         animal.sex = .transgender
-      }
+      
+      // TODO: Send crossed value
       
       animal.name = ask_name.text!
       animal.year = ask_age.text!

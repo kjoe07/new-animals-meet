@@ -15,16 +15,13 @@ class AnimalModel {
    enum Sex {
       case male
       case female
-      case transgender
       
       static func fromString(_ str: String) -> Sex {
          switch str {
          case "f":
             return .female
-         case "m":
-            return .male
          default:
-            return .transgender
+            return .male
          }
       }
       
@@ -34,8 +31,6 @@ class AnimalModel {
             return "m"
          case .female:
             return "f"
-         default:
-            return "t"
          }
       }
    }

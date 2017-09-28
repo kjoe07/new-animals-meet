@@ -228,11 +228,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
       if let users = self.user?.followers, !users.isEmpty {
          let controller = UserListViewController(users: users)
          
-         var title = "Abonmements"
-         
-         if let name = self.user?.nickname {
-            title = "\(name)'s \(title)"
-         }
+         let title = "Abonnés"
          
          controller.title = title
          self.navigationController?.pushViewController(controller, animated: true)

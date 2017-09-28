@@ -63,6 +63,8 @@ class AnimalListTableViewController: EasyTableViewController<AnimalModel, Animal
       let animalVC = navigationController!.viewControllers[n - 2] as! AnimalVC
       animalVC.animal = user.animals![indexPath.row]
       animalVC.reloadAnimal()
+      
+      navigationController?.popViewController(animated: true)
    }
    
    override func fetchItems(from: Int, count: Int) -> Promise<[AnimalModel]> {
