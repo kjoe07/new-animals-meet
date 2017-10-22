@@ -12,7 +12,13 @@
 		5B89FDCA1DD12F2E005FC42A /* UIColorExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */; };
 		5B89FDCC1DD148E5005FC42A /* UIKitViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FDCB1DD148E5005FC42A /* UIKitViewUtils.swift */; };
 		5BE889AD1DBADAAC00C9BFB2 /* AnimalConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE889AC1DBADAAC00C9BFB2 /* AnimalConnectViewController.swift */; };
+		8A28E5C3342C329BA4E6A139 /* Pods_AnimalsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A116B0062B57B1E86235C523 /* Pods_AnimalsMeet.framework */; };
 		8F3B92C01F7B4A0F00874DAD /* LegendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3B92BF1F7B4A0F00874DAD /* LegendViewController.swift */; };
+		8F8FDC9B1F96A959002E5112 /* OLEContainerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FDC941F96A959002E5112 /* OLEContainerScrollView.m */; };
+		8F8FDC9C1F96A959002E5112 /* OLEContainerScrollView+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FDC961F96A959002E5112 /* OLEContainerScrollView+Swizzling.m */; };
+		8F8FDC9D1F96A959002E5112 /* OLEContainerScrollViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FDC981F96A959002E5112 /* OLEContainerScrollViewContentView.m */; };
+		8F8FDC9E1F96A959002E5112 /* OLESwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FDC9A1F96A959002E5112 /* OLESwizzling.m */; };
+		8F8FDCA01F99A4B2002E5112 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FDC9F1F99A4B2002E5112 /* TestViewController.swift */; };
 		93370C591E11B62700A75BE7 /* NMessenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93370C581E11B62700A75BE7 /* NMessenger.framework */; };
 		933C6F941DF6BB1900A8EFE6 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933C6F931DF6BB1900A8EFE6 /* ChatTableViewController.swift */; };
 		9348376B1E0BCB5400CEFFAB /* FuzzySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348376A1E0BCB5400CEFFAB /* FuzzySearch.swift */; };
@@ -103,7 +109,6 @@
 		B4D7FFC21EE8591200FB9A30 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7FFC11EE8591200FB9A30 /* NewsViewController.swift */; };
 		B4D7FFC41EE859A000FB9A30 /* NewsBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */; };
 		B4E127861EE728ED00E0AC95 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */; };
-		EDA7851B67E75457E5F3443D /* Pods_AnimalsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A116B0062B57B1E86235C523 /* Pods_AnimalsMeet.framework */; };
 		F14A3B981F5287FA00B31627 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */; };
 		F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */; };
 		F14A3B9B1F528B0D00B31627 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */; };
@@ -134,6 +139,18 @@
 		5B89FDCB1DD148E5005FC42A /* UIKitViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitViewUtils.swift; sourceTree = "<group>"; };
 		5BE889AC1DBADAAC00C9BFB2 /* AnimalConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalConnectViewController.swift; sourceTree = "<group>"; };
 		8F3B92BF1F7B4A0F00874DAD /* LegendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendViewController.swift; sourceTree = "<group>"; };
+		8F3B92FF1F94163B00874DAD /* SearchTextField */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SearchTextField; path = Pods/SearchTextField; sourceTree = "<group>"; };
+		8F8FDC911F96A958002E5112 /* AnimalsMeet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnimalsMeet-Bridging-Header.h"; sourceTree = "<group>"; };
+		8F8FDC921F96A959002E5112 /* OLEContainerScrollView_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLEContainerScrollView_Private.h; sourceTree = "<group>"; };
+		8F8FDC931F96A959002E5112 /* OLEContainerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLEContainerScrollView.h; sourceTree = "<group>"; };
+		8F8FDC941F96A959002E5112 /* OLEContainerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLEContainerScrollView.m; sourceTree = "<group>"; };
+		8F8FDC951F96A959002E5112 /* OLEContainerScrollView+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OLEContainerScrollView+Swizzling.h"; sourceTree = "<group>"; };
+		8F8FDC961F96A959002E5112 /* OLEContainerScrollView+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OLEContainerScrollView+Swizzling.m"; sourceTree = "<group>"; };
+		8F8FDC971F96A959002E5112 /* OLEContainerScrollViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLEContainerScrollViewContentView.h; sourceTree = "<group>"; };
+		8F8FDC981F96A959002E5112 /* OLEContainerScrollViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLEContainerScrollViewContentView.m; sourceTree = "<group>"; };
+		8F8FDC991F96A959002E5112 /* OLESwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLESwizzling.h; sourceTree = "<group>"; };
+		8F8FDC9A1F96A959002E5112 /* OLESwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLESwizzling.m; sourceTree = "<group>"; };
+		8F8FDC9F1F99A4B2002E5112 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		93370C581E11B62700A75BE7 /* NMessenger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMessenger.framework; path = "/Users/sevauk/code/animalsmeet-ios/AnimalsMeet/NMessenger.framework"; sourceTree = "<absolute>"; };
 		933C6F931DF6BB1900A8EFE6 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		9348376A1E0BCB5400CEFFAB /* FuzzySearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuzzySearch.swift; sourceTree = "<group>"; };
@@ -266,7 +283,7 @@
 				A04031CF1DA2810400D83E92 /* SnapKit.framework in Frameworks */,
 				A04031D01DA2810400D83E92 /* SwiftyJSON.framework in Frameworks */,
 				A061F2FE1DA2792200CCD8EC /* Alamofire.framework in Frameworks */,
-				EDA7851B67E75457E5F3443D /* Pods_AnimalsMeet.framework in Frameworks */,
+				8A28E5C3342C329BA4E6A139 /* Pods_AnimalsMeet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +293,7 @@
 		2476698192DE7DA225F5D00A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F3B92FF1F94163B00874DAD /* SearchTextField */,
 				A04397981E3B6CB200E15544 /* SwiftGifOrigin.framework */,
 				A0DB2CDD1E34E1140062D550 /* Haneke.framework */,
 				A0A3497C1E21B4CF0083F313 /* TOCropViewController.framework */,
@@ -320,6 +338,23 @@
 				2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8F8FDC901F96A909002E5112 /* OLEContainerScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				8F8FDC921F96A959002E5112 /* OLEContainerScrollView_Private.h */,
+				8F8FDC931F96A959002E5112 /* OLEContainerScrollView.h */,
+				8F8FDC941F96A959002E5112 /* OLEContainerScrollView.m */,
+				8F8FDC951F96A959002E5112 /* OLEContainerScrollView+Swizzling.h */,
+				8F8FDC961F96A959002E5112 /* OLEContainerScrollView+Swizzling.m */,
+				8F8FDC971F96A959002E5112 /* OLEContainerScrollViewContentView.h */,
+				8F8FDC981F96A959002E5112 /* OLEContainerScrollViewContentView.m */,
+				8F8FDC991F96A959002E5112 /* OLESwizzling.h */,
+				8F8FDC9A1F96A959002E5112 /* OLESwizzling.m */,
+				8F8FDC911F96A958002E5112 /* AnimalsMeet-Bridging-Header.h */,
+			);
+			path = OLEContainerScrollView;
 			sourceTree = "<group>";
 		};
 		933C6F951DF6BB2600A8EFE6 /* Chat */ = {
@@ -438,6 +473,7 @@
 		A0D054A21DA276E7007B3944 /* AnimalsMeet */ = {
 			isa = PBXGroup;
 			children = (
+				8F8FDC901F96A909002E5112 /* OLEContainerScrollView */,
 				F14A3B9C1F52945700B31627 /* Extensions */,
 				F14A3B951F5287B400B31627 /* Shared */,
 				A0F4F4C91EEB10BD004D67E6 /* Utils.swift */,
@@ -476,6 +512,7 @@
 				B43FB88E1EE71784004EE2E7 /* ProfileTabViewController.swift */,
 				F1FC84441F5511780085A673 /* EditProfileViewController.swift */,
 				8F3B92BF1F7B4A0F00874DAD /* LegendViewController.swift */,
+				8F8FDC9F1F99A4B2002E5112 /* TestViewController.swift */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -584,6 +621,7 @@
 					A0D0549F1DA276E7007B3944 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 5DA656H26H;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -721,6 +759,7 @@
 				"${BUILT_PRODUCTS_DIR}/PullToRefreshSwift/PullToRefreshSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PusherSwift/PusherSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Sensitive/Sensitive.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
@@ -763,6 +802,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToRefreshSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PusherSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sensitive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
@@ -798,6 +838,7 @@
 				A04031EA1DA3A81B00D83E92 /* alert.swift in Sources */,
 				B493ECF41ED8327C003F6D1B /* CommentModel.swift in Sources */,
 				A0D5FBC11DA9C4C800F3C9BE /* RegisterViewController.swift in Sources */,
+				8F8FDC9D1F96A959002E5112 /* OLEContainerScrollViewContentView.m in Sources */,
 				93A1BF621E0AB93F00D69CB1 /* StackViewVerticalCut.swift in Sources */,
 				9352C1D61DFB605F00FA3490 /* useful.swift in Sources */,
 				B4AEB8231EE0164C00D0A69D /* UserPicsTableViewController.swift in Sources */,
@@ -811,6 +852,7 @@
 				A0D7C2971DC75F02006771C8 /* AnimalConfigurationViewController.swift in Sources */,
 				A098D98C1DD205270014270D /* AnimalListTableViewController.swift in Sources */,
 				A04031DC1DA3A7B300D83E92 /* UserModel.swift in Sources */,
+				8F8FDCA01F99A4B2002E5112 /* TestViewController.swift in Sources */,
 				A088E38F1DBE1AA800B372F5 /* AnimalModel.swift in Sources */,
 				A06CD7A11E1DB92200402965 /* ListMyAnimals.swift in Sources */,
 				9383B86B1DF8706E0048C071 /* ConversationViewController.swift in Sources */,
@@ -827,12 +869,15 @@
 				F1FC84451F5511780085A673 /* EditProfileViewController.swift in Sources */,
 				8F3B92C01F7B4A0F00874DAD /* LegendViewController.swift in Sources */,
 				93B264581DF4E1A100B88635 /* NotificationTableViewController.swift in Sources */,
+				8F8FDC9B1F96A959002E5112 /* OLEContainerScrollView.m in Sources */,
 				A0AF13F21EC5A5410011C2B1 /* BreedModel.swift in Sources */,
+				8F8FDC9E1F96A959002E5112 /* OLESwizzling.m in Sources */,
 				A0DBFB381EC3150800D531FA /* EasyTableViewController.swift in Sources */,
 				A04E35381DF4748D000D6F19 /* MosaicPictures.swift in Sources */,
 				A04031EE1DA3A86500D83E92 /* event.swift in Sources */,
 				B40B095A1EB88AC600782417 /* CommentTableViewController.swift in Sources */,
 				A0C861021DD0F6500088A014 /* MyAccountViewController.swift in Sources */,
+				8F8FDC9C1F96A959002E5112 /* OLEContainerScrollView+Swizzling.m in Sources */,
 				B431F7BA1EB8937C00A2C674 /* appendAttributedStringWithEase.swift in Sources */,
 				A07334181EC9CBE000276E03 /* AnimalTabBarController.swift in Sources */,
 				93B2645B1DF5756000B88635 /* NotificationTableViewCell.swift in Sources */,
@@ -992,6 +1037,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AnimalsMeet/AnimalsMeet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1004,6 +1050,8 @@
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evelio.animalsmeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AnimalsMeet/OLEContainerScrollView/AnimalsMeet-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1015,6 +1063,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AnimalsMeet/AnimalsMeet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1026,6 +1075,7 @@
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evelio.animalsmeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AnimalsMeet/OLEContainerScrollView/AnimalsMeet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1089,6 +1139,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AnimalsMeet/AnimalsMeet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1101,6 +1152,8 @@
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evelio.animalsmeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AnimalsMeet/OLEContainerScrollView/AnimalsMeet-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
