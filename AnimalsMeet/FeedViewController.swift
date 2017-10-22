@@ -13,6 +13,7 @@ import PromiseKit
 
 class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     var endpoint: String!
+    var searchTerm: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,13 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     }
     
     override func fetchItems(from: Int, count: Int) -> Promise<[MediaModel]> {
+        
         return Api.instance.get(endpoint).then { JSON -> [MediaModel] in
-            JSON["json"].arrayValue.map { MediaModel(fromJSON: $0) }
+            JSON["json"].arrayValue.map {
+                MediaModel(fromJSON: $0)
+            }
+            .filter { m -> Bool in
+                return self.searchTerm != nil ? (m.author.name?.lowercased().contains(self.searchTerm.lowercased()) ?? true) : true }
         }
     }
     

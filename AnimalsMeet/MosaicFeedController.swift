@@ -35,7 +35,9 @@ class MosaicViewController : EasyCollectionViewController<MediaModel, MosaicColl
     override func fetchItems(from: Int, count: Int) -> Promise<[MediaModel]> {
         return Api.instance.get(endpoint).then { JSON -> [MediaModel] in
             let res = JSON[self.jsonIndex ?? "json"].arrayValue.map { MediaModel(fromJSON: $0) }
-            return res.filter { !$0.isText }
+            let filter = self.jsonIndex == nil ? res.filter { !$0.isText } : res.filter { !$0.isText && $0.animal != nil }
+            
+            return filter
         }
     }
     
