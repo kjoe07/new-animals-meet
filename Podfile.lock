@@ -82,6 +82,7 @@ PODS:
   - PullToRefreshSwift (3.0.3)
   - PusherSwift (4.1.0)
   - SCLAlertView (0.7.0)
+  - SearchTextField (1.1.8)
   - Sensitive (5.2)
   - SnapKit (3.2.0)
   - SwiftDate (4.1.2)
@@ -120,6 +121,7 @@ DEPENDENCIES:
   - PullToRefreshSwift
   - PusherSwift
   - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift`)
+  - SearchTextField
   - Sensitive
   - SnapKit
   - SwiftDate (~> 4.0)
@@ -193,6 +195,7 @@ SPEC CHECKSUMS:
   PullToRefreshSwift: 0743b818072bfd7c9464addc2d1b987b131057ca
   PusherSwift: 13257260d77445f44ee26d7843e9311186b26e79
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  SearchTextField: 1d43b423c2acd3a9e2b37a74180e0cb137fcf1e7
   Sensitive: 010a176b4ebf6f0bf8beadc397d27e8405bf5bdf
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
@@ -206,6 +209,6 @@ SPEC CHECKSUMS:
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: d758038ab14df4abf3796a90d108517ea2f09fb6
+PODFILE CHECKSUM: 3e7e3adec795586d21c2af8c28373ca127059892
 
 COCOAPODS: 1.3.1

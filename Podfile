@@ -42,5 +42,6 @@ target 'AnimalsMeet' do
     pod 'IQKeyboardManagerSwift'
     pod 'Material'
     pod 'SwiftDate', '~> 4.0'
+    pod 'SearchTextField'
 
 end

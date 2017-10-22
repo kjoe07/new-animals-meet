@@ -52,7 +52,12 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     let button = UIButton()
     var isTVC = false
     
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var feed: UIView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    let screenHeight = UIScreen.main.bounds.height
+    let scrollViewContentHeight = 3000 as CGFloat
     
     func makeAndAddVC<T: UIViewController>() -> T {
         let vc = T()
@@ -148,6 +153,34 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
          self.topConstraint.constant += panGestureRecognizer.translation(in: self.view).y
          }, configure: nil)
          */
+        
+//        scrollView.delegate = self
+
+        
+//        let v = createView(self.view.frame, height: 230)
+//        v.addSubview(infoView)
+//        infoView.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//            make.left.equalToSuperview()
+//            make.right.equalToSuperview()
+//        }
+//        scrollView.contentView.addSubview(v)
+        
+//        let v1 = createView(self.tabsVC.view.frame, height: nil)
+//        v1.backgroundColor = UIColor.red
+//        v1.addSubview(tabsVC.view)
+//        scrollView.contentView.addSubview(v1)
+        
+//        scrollView.contentView.addSubview(selectedViewController.view)
+    }
+    
+    func createView(_ frame: CGRect, height: CGFloat?) -> UIView {
+        var frame = frame
+        if let h = height {
+            frame.size.height = h
+        }
+        return UIView(frame: frame)
     }
     
     func addMosaicButton() {
@@ -271,6 +304,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
                     self.user.unfriend()
                 } else {
                     self.user.friend()
+                    self.followersCount.text = "\(self.user.followersCount!)"
                 }
                 let message = self.user.isFriend() ? "Vous suivez maintenant cette personne" : "Vous ne suivez plus cette personne"
                 alert.showAlertSuccess(title: "Ami", subTitle: message)
@@ -397,6 +431,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = true
+        
     }
     
     func setProfilePic(_ sender: Any) {
@@ -449,57 +485,99 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         }
     }
     
-    //   var isDragging = false
-    //
-    //   let scrollOffset: CGFloat = 166
-    //
-    //   var prevOffset: CGFloat = 166
+//    var isDragging = false
+//    
+//    let scrollOffset: CGFloat = 166
+//    
+//    var prevOffset: CGFloat = 166
 }
 
 extension AnimalVC: UIScrollViewDelegate {
-    //   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    //      print(scrollView.contentOffset.y)
-    //      let offset = scrollView.contentOffset.y
-    //
-    //      if offset > scrollOffset {
-    //         isDragging = true
-    //      }
-    //
-    //      if isDragging {
-    //         let delta = offset - prevOffset
-    //         let tableView = self.selectedViewController.tableView!
-    //         tableView.contentOffset.y += delta
-    //         tableView.flashScrollIndicators()
-    //
-    //         let translation = max(0, offset - scrollOffset)
-    //         scrollView.subviews.first?.transform = CGAffineTransform(translationX: 0, y: translation)
-    //
-    //         prevOffset = offset
-    //      }
-    //
-    //      let hasVisibleContent = scrollView.contentOffset.y < scrollOffset
-    //      postFeedVC.tableView.isScrollEnabled = !hasVisibleContent
-    //      photoFeedVC.tableView.isScrollEnabled = !hasVisibleContent
-    //   }
-    //
-    //   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    //      scrollDidEnd(scrollView)
-    //   }
-    //
-    //   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    //      if !decelerate {
-    //         scrollDidEnd(scrollView)
-    //      }
-    //   }
-    //
-    //   func scrollDidEnd(_ scrollView: UIScrollView) {
-    //      isDragging = false
-    //      scrollView.subviews.first?.transform = CGAffineTransform.identity
-    //
-    //      scrollView.contentOffset.y = min(scrollOffset, scrollView.contentOffset.y)
-    //
-    //      self.prevOffset = scrollOffset
-    //   }
-    
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        var isDown = false
+//        if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
+//            isDown = false
+//            print("Direction up")
+//        } else {
+//            isDown = true
+//            print("Direction down")
+//        }
+        let tableView = self.selectedViewController.tableView!
+        if scrollView.bounds.intersects(infoView.frame) == true {
+            //the UIView is within frame, use the UIScrollView's scrolling.
+
+            if tableView.contentOffset.y == 0 {
+                //tableViews content is at the top of the tableView.
+
+                tableView.isUserInteractionEnabled = false
+                tableView.resignFirstResponder()
+                print("using scrollView scroll")
+
+            } else {
+
+                //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
+
+                tableView.isUserInteractionEnabled = true
+                scrollView.resignFirstResponder()
+                print("using tableView scroll")
+            }
+
+        } else {
+
+            //UIView is not in frame. Use tableViews scroll.
+
+            tableView.isUserInteractionEnabled = true
+            scrollView.resignFirstResponder()
+            print("using tableView scroll")
+
+        }
+    }
 }
+
+//extension AnimalVC: UIScrollViewDelegate {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print(scrollView.contentOffset.y)
+//        let offset = scrollView.contentOffset.y
+//        
+//        if offset > scrollOffset {
+//            isDragging = true
+//        }
+//        
+//        if isDragging {
+//            let delta = offset - prevOffset
+//            let tableView = self.selectedViewController.tableView!
+//            tableView.contentOffset.y += delta
+//            tableView.flashScrollIndicators()
+//            
+//            let translation = max(0, offset - scrollOffset)
+//            scrollView.subviews.first?.transform = CGAffineTransform(translationX: 0, y: translation)
+//            
+//            prevOffset = offset
+//        }
+//        let hasVisibleContent = scrollView.contentOffset.y < scrollOffset
+//        
+//
+//        self.selectedViewController.tableView.isScrollEnabled = !hasVisibleContent
+////        postFeedVC.tableView.isScrollEnabled = !hasVisibleContent
+////        photoFeedVC.tableView.isScrollEnabled = !hasVisibleContent
+//    }
+//    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        scrollDidEnd(scrollView)
+//    }
+//    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if !decelerate {
+//            scrollDidEnd(scrollView)
+//        }
+//    }
+//    
+//    func scrollDidEnd(_ scrollView: UIScrollView) {
+//        isDragging = false
+//        scrollView.subviews.first?.transform = CGAffineTransform.identity
+//        
+//        scrollView.contentOffset.y = min(scrollOffset, scrollView.contentOffset.y)
+//        
+//        self.prevOffset = scrollOffset
+//    }
+//}
