@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         #if OFFLINE
             Api.instance.serverUrl = "http://localhost:3000/v1"
         #elseif DEBUG
-            Api.instance.serverUrl = "http://52.169.82.167"
+            Api.instance.serverUrl = "http://52.169.82.167/v1"
         #else
-            Api.instance.serverUrl = "http://52.169.82.167"
+            Api.instance.serverUrl = "http://52.169.82.167/v1"
         #endif
         App.instance.loadUserData()
         
