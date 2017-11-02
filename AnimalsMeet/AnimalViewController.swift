@@ -261,8 +261,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
             userProfilePic.onTap {_ in
                 presentFullScreen(image: self.userProfilePic.image!, onVC: self, media: nil)
             }
-        }
-        
+        }        
         setAnimalPicture()
         configureAnimalInfo()
         
@@ -277,7 +276,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
                 }
             }
         }
-        
         animalListVC.view.frame = feed.bounds
         animalListVC.createAnimal = {
             self.editAnimal(animal: nil)
@@ -492,7 +490,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
 //    var prevOffset: CGFloat = 166
 }
 
-extension AnimalVC: UIScrollViewDelegate {
+/*extension AnimalVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        var isDown = false
 //        if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
@@ -532,7 +530,7 @@ extension AnimalVC: UIScrollViewDelegate {
 
         }
     }
-}
+}*/
 
 //extension AnimalVC: UIScrollViewDelegate {
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {

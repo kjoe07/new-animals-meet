@@ -92,13 +92,15 @@ class NewsViewController: UIViewController {
 }
 
 extension NewsViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {            self.view.endEditing(true)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let text = searchText.isEmpty ? nil : searchText
         
         feedVC.searchTerm = text
+        //feedVC.fetchItems(from: <#T##Int#>, count: <#T##Int#>)
         let _ = feedVC.shouldRefresh()
     }
 
