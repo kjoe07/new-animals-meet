@@ -18,8 +18,8 @@ import ARSLineProgress
 import Fusuma
 import Material
 
-class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, PageTabBarControllerDelegate {
-    
+class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, PageTabBarControllerDelegate{
+    //MARK: - Oulets -
     @IBOutlet weak var nickname: UILabel!
     @IBOutlet var animal_name_age: UILabel!
     @IBOutlet var animal_breed: UILabel!
@@ -41,37 +41,166 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     @IBOutlet weak var followingCount: UILabel!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    
+    //@IBOutlet weak var infoViewHeiht: NSLayoutConstraint!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var feed: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var animalButtonConstraintRight: NSLayoutConstraint!
+    //MARK: - properties -
     var animal: AnimalModel!
     var user: UserModel!
     var shouldHideNavigationBar = true
     let addFriendBgColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
-    
+    var loadedanimalsfixme = false
     let tabFontSize: CGFloat = 18
-    
     let button = UIButton()
     var isTVC = false
-    
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var feed: UIView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
     let screenHeight = UIScreen.main.bounds.height
     let scrollViewContentHeight = 3000 as CGFloat
-    
-    func makeAndAddVC<T: UIViewController>() -> T {
-        let vc = T()
-        self.addChildViewController(vc)
-        return vc
-    }
-    
     lazy var photoFeedVC: UserPicsTableViewController = self.makeAndAddVC()
     lazy var postFeedVC: PostFeedVC = self.makeAndAddVC()
     lazy var animalListVC: AnimalListTableViewController = self.makeAndAddVC()
     lazy var collectionVC = MosaicViewController(collectionViewLayout: UICollectionViewFlowLayout())
-    
     var tabsVC: ProfileTabViewController!
+    var selectedViewController: UITableViewController! {
+        didSet {
+            //         let bottomInset = self.selectedViewController.tableView.contentSize.height - feed.bounds.height + 44
+            //         self.scrollView.contentInset.bottom = max(0, bottomInset)
+        }
+    }
+    //MARK: - View Functions -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        scrollView.delegate = self
+        //containerView.frame.size.height += 150
+        //self.feed.frame.size.height += 150.0
+        //self.scrollView.contentSize.height = containerView.height + 10.0
+        if user == nil && animal != nil {
+            user = UserModel()
+            user.id = animal.ownerId
+            if user.isMe {
+                user = App.instance.userModel
+            }
+        }
+        if user == nil {
+            setUser(App.instance.userModel!) //was commented
+        }
+        tabsVC = ProfileTabViewController(viewControllers: [photoFeedVC, postFeedVC])
+        tabsVC.delegate = self
+        self.selectedViewController = photoFeedVC
+        postFeedVC.pageTabBarItem.title = "Posts"
+        postFeedVC.pageTabBarItem.titleColor = .gray
+        photoFeedVC.pageTabBarItem.title = "Photos"
+        photoFeedVC.pageTabBarItem.titleColor = .gray
+        //      postFeedVC.tableView.isScrollEnabled = false
+        //      photoFeedVC.tableView.isScrollEnabled = false
+        addChildViewController(tabsVC)
+        feed.addSubview(tabsVC.view)
+        tabsVC.view.frame = feed.bounds
+        postFeedVC.tableView.showsVerticalScrollIndicator = true
+        photoFeedVC.tableView.showsVerticalScrollIndicator = true
+        myAccount.roundify()
+        animalsButton.roundify()
+        addFriendButton.roundify()
+        addFriendButton.isEnabled = user != nil && user.followers != nil
+        sendMessageButton.roundify()
+        plume.roundify()
+        plume.backgroundColor = #colorLiteral(red: 0.4651720524, green: 0.7858714461, blue: 0.9568093419, alpha: 1)
+        photoFeedVC.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: tabFontSize)
+        collectionVC.endpoint = "/user/\(self.user.id ?? 0 )/images/0"
+        collectionVC.jsonIndex = "images"
+        addChildViewController(collectionVC)
+        addMosaicButton()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("aparece la vista")
+        
+        var profileLoadPromise: Promise<Void>!
+        
+        print(self.scrollView.height)
+        print(self.feed.frame.size.height)
+        if user == nil {
+            setUser(App.instance.userModel!)
+        }
+        if user.isMe {
+            let me = App.instance.userModel!
+            setUser(me)
+            userProfilePic.kf.setImage(with: me.image)
+            userProfilePic.onTap { _ in
+                if self.user.id == App.instance.userModel.id {
+                    self.setProfilePic(self)
+                }
+            }
+            if (me.animals ?? []).count == 0 {
+                editAnimal(animal: animal)
+                return
+            } else {
+                if App.instance.userData.selectedAnimal >= me.animals!.count {
+                    App.instance.userData.selectedAnimal = 0
+                }
+                animal = me.animals![App.instance.userData.selectedAnimal]
+                photoFeedVC.animal = animal
+                photoFeedVC.unready.ready()
+            }
+            
+            profileLoadPromise = Promise(value: ())
+            setUser(user)
+        } else {
+            profileLoadPromise = Api.instance.get("/user/\(animal.ownerId!)").then { json -> Void in
+                self.setUser(UserModel(fromJSON: json["user"]))
+                self.userProfilePic.kf.setImage(with: self.user?.image)
+            }
+            userProfilePic.onTap {_ in
+                presentFullScreen(image: self.userProfilePic.image!, onVC: self, media: nil)
+            }
+        }
+        setAnimalPicture()
+        configureAnimalInfo()
+        if user.isMe {
+            animalListVC.promiseLoadAnimals = Promise(value: user.animals!)
+        } else {
+            animalListVC.promiseLoadAnimals = profileLoadPromise.then {
+                return Api.instance.get("/user/\(self.animal.ownerId!)/animals")
+                    .then { json -> [AnimalModel] in
+                        self.user.animals = json["animals"].arrayValue.map { AnimalModel(fromJSON: $0) }
+                        return self.user.animals!
+                }
+            }
+        }
+        animalListVC.view.frame = feed.bounds
+        animalListVC.createAnimal = {
+            self.editAnimal(animal: nil)
+        }
+    }
+    //MARK:  ViewDidAppear
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print("aparecio la vista")
+        containerView.frame.size.height += 150
+        self.feed.frame.size.height += 150.0
+        self.scrollView.contentSize.height = containerView.height + 10
+        self.scrollView.layoutIfNeeded()
+    }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        configureNavigationBar()
+    }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.translatesAutoresizingMaskIntoConstraints = true
+    }
+    
+    func createView(_ frame: CGRect, height: CGFloat?) -> UIView {
+        var frame = frame
+        if let h = height {
+            frame.size.height = h
+        }
+        return UIView(frame: frame)
+    }
+    //MARK: - Class Functions -
     class func newInstance(_ animal: AnimalModel) -> AnimalVC {
         let animalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AnimalVC") as! AnimalVC
         animalVC.animal = animal
@@ -85,7 +214,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     }
     
     @objc(cropViewController:didCropToImage:withRect:angle:) func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: Int) {
-        cropViewController.dismiss(animated: true) { () -> Void in}}
+        cropViewController.dismiss(animated: true) { () -> Void in}
+    }
     func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
         cropViewController.dismiss(animated: true) { () -> Void in  }}
     
@@ -93,96 +223,27 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         if shouldHideNavigationBar {
             //navigationController!.setNavigationBarHidden(true, animated: false)
         }
-        
         navigationController?.navigationBar.isTranslucent = true
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func pageTabBarController(pageTabBarController: PageTabBarController, didTransitionTo viewController: UIViewController) {
+        self.selectedViewController = viewController as? UITableViewController
         
-        if user == nil && animal != nil {
-            user = UserModel()
-            user.id = animal.ownerId
-            if user.isMe {
-                user = App.instance.userModel
-            }
+        if viewController == photoFeedVC {
+            postFeedVC.pageTabBarItem.titleLabel!.font = UIFont.systemFont(ofSize: tabFontSize)
+            photoFeedVC.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: tabFontSize)
+            button.isHidden = false
+        } else {
+            photoFeedVC.pageTabBarItem.titleLabel!.font = UIFont.systemFont(ofSize: tabFontSize)
+            postFeedVC.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: tabFontSize)
+            button.isHidden = true
         }
-        
-        if user == nil {
-            setUser(App.instance.userModel!)
-        }
-        
-        tabsVC = ProfileTabViewController(viewControllers: [photoFeedVC, postFeedVC])
-        tabsVC.delegate = self
-        
-        self.selectedViewController = photoFeedVC
-        
-        postFeedVC.pageTabBarItem.title = "Posts"
-        postFeedVC.pageTabBarItem.titleColor = .gray
-        photoFeedVC.pageTabBarItem.title = "Photos"
-        photoFeedVC.pageTabBarItem.titleColor = .gray
-        
-        //      postFeedVC.tableView.isScrollEnabled = false
-        //      photoFeedVC.tableView.isScrollEnabled = false
-        addChildViewController(tabsVC)
-        
-        feed.addSubview(tabsVC.view)
-        tabsVC.view.frame = feed.bounds
-        
-        postFeedVC.tableView.showsVerticalScrollIndicator = true
-        photoFeedVC.tableView.showsVerticalScrollIndicator = true
-        
-        myAccount.roundify()
-        animalsButton.roundify()
-        addFriendButton.roundify()
-        addFriendButton.isEnabled = user != nil && user.followers != nil
-        sendMessageButton.roundify()
-        plume.roundify()
-        plume.backgroundColor = #colorLiteral(red: 0.4651720524, green: 0.7858714461, blue: 0.9568093419, alpha: 1)
-        
-        photoFeedVC.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: tabFontSize)
-        
-        collectionVC.endpoint = "/user/\(self.user.id!)/images/0"
-        collectionVC.jsonIndex = "images"
-        addChildViewController(collectionVC)
-        
-        addMosaicButton()
-        
-        /*
-         view.onPan(when: .always, handle: { (panGestureRecognizer) in
-         self.topConstraint.constant += panGestureRecognizer.translation(in: self.view).y
-         }, configure: nil)
-         */
-        
-//        scrollView.delegate = self
-
-        
-//        let v = createView(self.view.frame, height: 230)
-//        v.addSubview(infoView)
-//        infoView.snp.makeConstraints { make in
-//            make.top.equalToSuperview()
-//            make.bottom.equalToSuperview()
-//            make.left.equalToSuperview()
-//            make.right.equalToSuperview()
-//        }
-//        scrollView.contentView.addSubview(v)
-        
-//        let v1 = createView(self.tabsVC.view.frame, height: nil)
-//        v1.backgroundColor = UIColor.red
-//        v1.addSubview(tabsVC.view)
-//        scrollView.contentView.addSubview(v1)
-        
-//        scrollView.contentView.addSubview(selectedViewController.view)
     }
-    
-    func createView(_ frame: CGRect, height: CGFloat?) -> UIView {
-        var frame = frame
-        if let h = height {
-            frame.size.height = h
-        }
-        return UIView(frame: frame)
+    func makeAndAddVC<T: UIViewController>() -> T {
+        let vc = T()
+        self.addChildViewController(vc)
+        return vc
     }
-    
+    //MARK: - setup funtions -
     func addMosaicButton() {
         let padding: CGFloat = 16
         button.imageEdgeInsets = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
@@ -219,70 +280,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         button.setImage(isTVC ? #imageLiteral(resourceName: "list") : #imageLiteral(resourceName: "grid"), for: .normal)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        var profileLoadPromise: Promise<Void>!
-        
-        if user == nil {
-            setUser(App.instance.userModel!)
-        }
-        
-        if user.isMe {
-            let me = App.instance.userModel!
-            setUser(me)
-            userProfilePic.kf.setImage(with: me.image)
-            userProfilePic.onTap { _ in
-                if self.user.id == App.instance.userModel.id {
-                    self.setProfilePic(self)
-                }
-            }
-            
-            if (me.animals ?? []).count == 0 {
-                editAnimal(animal: animal)
-                return
-            } else {
-                if App.instance.userData.selectedAnimal >= me.animals!.count {
-                    App.instance.userData.selectedAnimal = 0
-                }
-                
-                animal = me.animals![App.instance.userData.selectedAnimal]
-                photoFeedVC.animal = animal
-                photoFeedVC.unready.ready()
-            }
-            
-            profileLoadPromise = Promise(value: ())
-            setUser(user)
-        } else {
-            profileLoadPromise = Api.instance.get("/user/\(animal.ownerId!)").then { json -> Void in
-                self.setUser(UserModel(fromJSON: json["user"]))
-                self.userProfilePic.kf.setImage(with: self.user?.image)
-            }
-            userProfilePic.onTap {_ in
-                presentFullScreen(image: self.userProfilePic.image!, onVC: self, media: nil)
-            }
-        }        
-        setAnimalPicture()
-        configureAnimalInfo()
-        
-        if user.isMe {
-            animalListVC.promiseLoadAnimals = Promise(value: user.animals!)
-        } else {
-            animalListVC.promiseLoadAnimals = profileLoadPromise.then {
-                return Api.instance.get("/user/\(self.animal.ownerId!)/animals")
-                    .then { json -> [AnimalModel] in
-                        self.user.animals = json["animals"].arrayValue.map { AnimalModel(fromJSON: $0) }
-                        return self.user.animals!
-                }
-            }
-        }
-        animalListVC.view.frame = feed.bounds
-        animalListVC.createAnimal = {
-            self.editAnimal(animal: nil)
-        }
-        
-    }
-    
     
     @IBAction func displayAnimalList(_ sender: Any) {
         navigationController?.pushViewController(animalListVC, animated: true)
@@ -295,7 +292,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         } else {
             sender.backgroundColor = addFriendBgColor
         }
-        
         Api.instance.post("/user/\(user.id!)/\(mode)")
             .then { _ -> Void in
                 if mode == "unfriend" {
@@ -312,9 +308,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     @IBAction func showFollowers(_ sender: Any) {
         if let users = self.user?.followers, !users.isEmpty {
             let controller = UserListViewController(users: users)
-            
             let title = "Abonnés"
-            
             controller.title = title
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -325,9 +319,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    var loadedanimalsfixme = false
     
-    @IBOutlet weak var animalButtonConstraintRight: NSLayoutConstraint!
     
     func setUser(_ user: UserModel) {
         self.user = user
@@ -337,12 +329,10 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         animalListVC.unready.ready()
         postFeedVC.user = user
         postFeedVC.unready.ready()
-        
         nickname.text = "@\(user.nickname!)"
         followingCount.text = "\(user.followingCount!)"
         followersCount.text = "\(user.followersCount!)"
         likeCount.text = "\(user.likeCount!)"
-        
         myAccount.isHidden = !user.isMe
         sendMessageButton.isHidden = user.isMe
         addFriendButton.isHidden = user.isMe
@@ -361,10 +351,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     }
     
     func configureAnimalInfo() {
-        
         animal_name_age.text = "\(animal.name!), \(animal.year!)"
         animal_breed.text = animal.breedName()
-        
         if animal.loof && animal.heat ?? false {
             animal_state_icon_3.image = UIImage(named: "thermometer")
             animal_state_icon_4.image = UIImage(named: "family-tree")
@@ -379,7 +367,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
             animal_state_icon_3.isHidden = false
             animal_state_icon_4.isHidden = true
         }
-        
         if animal.type == "dog" {
             animal_state_icon_1.image = #imageLiteral(resourceName: "husky")
         }
@@ -387,7 +374,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     }
     
     func setAnimalPicture() {
-        
         animalProfilePic.kf.indicatorType = .activity
         animalProfilePic.kf.setImage(with: animal.profilePicUrl,
                                      placeholder: nil,
@@ -397,16 +383,13 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         animalProfilePic.onTap {_ in
             presentFullScreen(image: self.animalProfilePic.image!, onVC: self, media: nil)
         }
-        
         animalProfilePic.center.x = userProfilePic.frame.midX + (cos(7 * .pi / 4) * userProfilePic.frame.width / 2 - 2
             - animalProfilePic.frame.width / 2 + (cos(7 * .pi / 4) * animalProfilePic.frame.width / 2))
         animalProfilePic.center.y = userProfilePic.frame.midY + (cos(7 * .pi / 4) * userProfilePic.frame.height / 2 - 2
             - animalProfilePic.frame.height / 2 + (cos(7 * .pi / 4) * animalProfilePic.frame.height / 2))
         animalProfilePic.layer.cornerRadius = animalProfilePic.frame.width / 2
         animalProfilePic.clipsToBounds = true
-        
         UIKitViewUtils.setCornerRadius(sender: userProfilePic, radius: userProfilePic.frame.width / 2)
-        
         if (animal.sex == .male) {
             UIKitViewUtils.setBorderWidth(sender: userProfilePic, width: 2.0, hexString: "#2978AC")
         } else {
@@ -420,19 +403,6 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         navigationController!.pushViewController(vc, animated: true)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        configureNavigationBar()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = true
-        
-    }
-    
     func setProfilePic(_ sender: Any) {
         let fusuma = FusumaViewController()
         fusuma.delegate = self
@@ -440,7 +410,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         fusuma.allowMultipleSelection = false
         self.present(fusuma, animated: true, completion: nil)
     }
-    
+    //MARK: - Fusuma Delegate -
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
         
         let imageData = UIImageJPEGRepresentation(image, 0.3)!
@@ -462,120 +432,185 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     func fusumaWillClosed() {}
     func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) { }
     
-    var selectedViewController: UITableViewController! {
-        didSet {
-            //         let bottomInset = self.selectedViewController.tableView.contentSize.height - feed.bounds.height + 44
-            //         self.scrollView.contentInset.bottom = max(0, bottomInset)
-        }
-    }
-    
-    func pageTabBarController(pageTabBarController: PageTabBarController, didTransitionTo viewController: UIViewController) {
-        self.selectedViewController = viewController as? UITableViewController
-        
-        if viewController == photoFeedVC {
-            postFeedVC.pageTabBarItem.titleLabel!.font = UIFont.systemFont(ofSize: tabFontSize)
-            photoFeedVC.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: tabFontSize)
-            button.isHidden = false
-        } else {
-            photoFeedVC.pageTabBarItem.titleLabel!.font = UIFont.systemFont(ofSize: tabFontSize)
-            postFeedVC.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: tabFontSize)
-            button.isHidden = true
-        }
-    }
-    
-//    var isDragging = false
-//    
-//    let scrollOffset: CGFloat = 166
-//    
-//    var prevOffset: CGFloat = 166
 }
 
-/*extension AnimalVC: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        var isDown = false
-//        if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
-//            isDown = false
-//            print("Direction up")
-//        } else {
-//            isDown = true
-//            print("Direction down")
-//        }
-        let tableView = self.selectedViewController.tableView!
-        if scrollView.bounds.intersects(infoView.frame) == true {
-            //the UIView is within frame, use the UIScrollView's scrolling.
-
-            if tableView.contentOffset.y == 0 {
-                //tableViews content is at the top of the tableView.
-
-                tableView.isUserInteractionEnabled = false
-                tableView.resignFirstResponder()
-                print("using scrollView scroll")
-
-            } else {
-
-                //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
-
-                tableView.isUserInteractionEnabled = true
-                scrollView.resignFirstResponder()
-                print("using tableView scroll")
-            }
-
+extension AnimalVC: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("delegado en accion ")
+        if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
+            //            isDown = false
+            print("Direction down")
         } else {
-
-            //UIView is not in frame. Use tableViews scroll.
-
+            print("Direction up")
+            
+        }
+        let offset = scrollView.contentOffset
+        let bounds = infoView.bounds//scrollView.bounds
+        let size = infoView.frame.size
+        let inset = scrollView.contentInset
+        let y: Float = Float(offset.y) + Float(bounds.size.height) + Float(inset.bottom)
+        let height: Float = Float(size.height)
+        let distance: Float = 10
+        print("el offset \(offset)")
+        print("content size \(size)")
+        print("el inset \(inset)")
+        print("el valor de y: \(y)")
+        print("el valor de height \(height)")
+        print("la altura del contentsize del scroll: \(scrollView.contentSize.height)")
+        print("la altura del feed \(feed.height)")
+        let tableView = self.selectedViewController.tableView!
+        if y > height + distance{
+            print("es mayor")
             tableView.isUserInteractionEnabled = true
             scrollView.resignFirstResponder()
             print("using tableView scroll")
-
+        }else{
+            print("no es mayor")
+            tableView.isUserInteractionEnabled = false
+            tableView.resignFirstResponder()
+            print("using scrollView scroll")
         }
+        /* let tableView = self.selectedViewController.tableView!
+         if !scrollView.bounds.contains(infoView.frame){ // intersects(infoView.frame) == true {
+         print("contentOffset.y del tableview \(tableView.contentOffset.y)")
+         if tableView.contentOffset.y == 0 {
+         //tableViews content is at the top of the tableView.
+         tableView.isUserInteractionEnabled = false
+         tableView.resignFirstResponder()
+         print("using scrollView scroll")
+         } else {
+         //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
+         tableView.isUserInteractionEnabled = true
+         scrollView.resignFirstResponder()
+         print("using tableView scroll")
+         }
+         }else{
+         //UIView is not in frame. Use tableViews scroll.
+         print("normal size")
+         tableView.isUserInteractionEnabled = true
+         scrollView.resignFirstResponder()
+         print("using tableView scroll")
+         
+         }*/
     }
-}*/
-
-//extension AnimalVC: UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print(scrollView.contentOffset.y)
-//        let offset = scrollView.contentOffset.y
-//        
-//        if offset > scrollOffset {
-//            isDragging = true
-//        }
-//        
-//        if isDragging {
-//            let delta = offset - prevOffset
-//            let tableView = self.selectedViewController.tableView!
-//            tableView.contentOffset.y += delta
-//            tableView.flashScrollIndicators()
-//            
-//            let translation = max(0, offset - scrollOffset)
-//            scrollView.subviews.first?.transform = CGAffineTransform(translationX: 0, y: translation)
-//            
-//            prevOffset = offset
-//        }
-//        let hasVisibleContent = scrollView.contentOffset.y < scrollOffset
-//        
-//
-//        self.selectedViewController.tableView.isScrollEnabled = !hasVisibleContent
-////        postFeedVC.tableView.isScrollEnabled = !hasVisibleContent
-////        photoFeedVC.tableView.isScrollEnabled = !hasVisibleContent
-//    }
-//    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        scrollDidEnd(scrollView)
-//    }
-//    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if !decelerate {
-//            scrollDidEnd(scrollView)
-//        }
-//    }
-//    
-//    func scrollDidEnd(_ scrollView: UIScrollView) {
-//        isDragging = false
-//        scrollView.subviews.first?.transform = CGAffineTransform.identity
-//        
-//        scrollView.contentOffset.y = min(scrollOffset, scrollView.contentOffset.y)
-//        
-//        self.prevOffset = scrollOffset
-//    }
-//}
+}
+/* func scrollViewDidScroll(_ scrollView: UIScrollView) {
+ //        var isDown = false
+ /* if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
+ //            isDown = false
+ print("Direction up")
+ self.infoViewHeiht.constant = 230.0
+ } else {
+ print("Direction down")
+ self.infoViewHeiht.constant = 0.0
+ }*/
+ /* print(infoView.bounds.origin.y)
+ if infoView.bounds.maxY == infoView.frame.origin.y{
+ print("se mueve por encima de su posicion")
+ }else { //if infoView.bounds.maxY{
+ print("vuelve a su lugar")
+ }*/
+ let offset = scrollView.contentOffset
+ let bounds = scrollView.bounds
+ let size = scrollView.contentSize
+ let inset = scrollView.contentInset
+ let y: Float = Float(offset.y) + Float(bounds.size.height) + Float(inset.bottom)
+ let height: Float = Float(size.height)
+ let distance: Float = 10
+ print("el offset \(offset)")
+ print("content size \(size)")
+ print("el inset \(inset)")
+ print("el valor de y: \(y)")
+ print("el valor de height \(height)")
+ print("la altura del contentsize del scroll: \(scrollView.contentSize.height)")
+ print("la altura del feed \(feed.height)")
+ if y > height + distance {
+ print("hacia Arriba")//self.checkNew()
+ 
+ ///nfoViewHeiht.constant = 0.0
+ //feed.frame.size.height += infoView.height
+ }else{
+ //infoViewHeiht.constant = 230.0
+ //feed.frame.size.height -= infoView.height
+ print("Abajo")
+ }
+ 
+ /* let tableView = self.selectedViewController.tableView!
+ if scrollView.bounds.intersects(infoView.frame) == true {
+ 
+ 
+ if tableView.contentOffset.y == 0 {
+ //tableViews content is at the top of the tableView.
+ 
+ tableView.isUserInteractionEnabled = false
+ tableView.resignFirstResponder()
+ print("using scrollView scroll")
+ 
+ } else {
+ 
+ //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
+ 
+ tableView.isUserInteractionEnabled = true
+ scrollView.resignFirstResponder()
+ print("using tableView scroll")
+ }
+ 
+ } else {
+ 
+ //UIView is not in frame. Use tableViews scroll.
+ print("normal size")
+ tableView.isUserInteractionEnabled = true
+ scrollView.resignFirstResponder()
+ print("using tableView scroll")
+ 
+ }*/
+ }//*/
+ }*/
+ /**/
+ //extension AnimalVC: UIScrollViewDelegate {
+ //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+ //        print(scrollView.contentOffset.y)
+ //        let offset = scrollView.contentOffset.y
+ //
+ //        if offset > scrollOffset {
+ //            isDragging = true
+ //        }
+ //
+ //        if isDragging {
+ //            let delta = offset - prevOffset
+ //            let tableView = self.selectedViewController.tableView!
+ //            tableView.contentOffset.y += delta
+ //            tableView.flashScrollIndicators()
+ //
+ //            let translation = max(0, offset - scrollOffset)
+ //            scrollView.subviews.first?.transform = CGAffineTransform(translationX: 0, y: translation)
+ //
+ //            prevOffset = offset
+ //        }
+ //        let hasVisibleContent = scrollView.contentOffset.y < scrollOffset
+ //
+ //
+ //        self.selectedViewController.tableView.isScrollEnabled = !hasVisibleContent
+ ////        postFeedVC.tableView.isScrollEnabled = !hasVisibleContent
+ ////        photoFeedVC.tableView.isScrollEnabled = !hasVisibleContent
+ //    }
+ //
+ //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+ //        scrollDidEnd(scrollView)
+ //    }
+ //
+ //    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+ //        if !decelerate {
+ //            scrollDidEnd(scrollView)
+ //        }
+ //    }
+ //
+ //    func scrollDidEnd(_ scrollView: UIScrollView) {
+ //        isDragging = false
+ //        scrollView.subviews.first?.transform = CGAffineTransform.identity
+ //
+ //        scrollView.contentOffset.y = min(scrollOffset, scrollView.contentOffset.y)
+ //
+ //        self.prevOffset = scrollOffset
+ //    }
+ //}*/
