@@ -65,6 +65,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     var tabsVC: ProfileTabViewController!
     var selectedViewController: UITableViewController! {
         didSet {
+            selectedViewController.tableView.isUserInteractionEnabled = false
             //         let bottomInset = self.selectedViewController.tableView.contentSize.height - feed.bounds.height + 44
             //         self.scrollView.contentInset.bottom = max(0, bottomInset)
         }
