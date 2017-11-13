@@ -12,7 +12,7 @@ protocol NewLegend {
     func legend(legend: String)
 }
 
-class LegendViewController: UIViewController {
+class LegendViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var textView: UITextView!
     var delegate: NewLegend!
@@ -32,5 +32,13 @@ class LegendViewController: UIViewController {
     @IBAction func send(_ sender: UIBarButtonItem) {
         delegate.legend(legend: textView.text)
         navigationController?.popViewController(animated: true)
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == " ",let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
+            let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.textView.font!] as [String : Any]
+            let attributedString = NSMutableAttributedString(string: lastWord, attributes: attributes)
+            textView.textStorage.replaceCharacters(in:lastWordRange, with:attributedString)
+        }
+        return true
     }
 }

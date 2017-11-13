@@ -11,7 +11,7 @@ import Fusuma
 import ARSLineProgress
 import PromiseKit
 
-class NewPostViewController: UIViewController, FusumaDelegate {
+class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegate {
    
    @IBOutlet weak var profilePic: UIImageView!
    //@IBOutlet weak var text: UITextView!
@@ -117,7 +117,7 @@ class NewPostViewController: UIViewController, FusumaDelegate {
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
+    
       profilePic.kf.setImage(with: App.instance.userModel.image)
       profilePic.layer.cornerRadius = 8
       picIcon.onTap { _ in
@@ -141,11 +141,36 @@ class NewPostViewController: UIViewController, FusumaDelegate {
             controller.legend = legend
         }
     }
+    
 }
 
 extension NewPostViewController: NewLegend {
     func legend(legend: String) {
         self.legend = legend
-        text.text = legend
+        //text.text = legend
+        let attributedText = NSMutableAttributedString()
+        //if text == " ",let lastWord = textView.text.components(separatedBy: " ").last,
+        let words = legend.components(separatedBy: " ")
+        for word in words/*.filter({
+            $0.hasPrefix("@")
+        })*/{
+          //  let lastWordRange =  legend.range(of: word)
+            if word.hasPrefix("@"){
+                let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.text.font!] as [String : Any]
+                let attributedString = NSMutableAttributedString(string: word, attributes: attributes)
+               attributedText.append(attributedString)
+                attributedText.append(" ")
+            }else{
+                attributedText.append(word)
+                attributedText.append(" ")
+                
+            }
+            text.attributedText = attributedText
+            //(legend as? NSString)?.range(of: <#T##String#>)
+            //lastWord.contains("@"), let lastWordRange = (textView.text as? NSString)?.range(of: lastWord){
+            //text.attributedText
+            //text.textStorage.replaceCharacters(in:lastWordRange, with:attributedString)
+        }
+        
     }
 }

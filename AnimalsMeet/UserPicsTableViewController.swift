@@ -26,6 +26,7 @@ class UserPicsTableViewController: EasyTableViewController<MediaModel, MediaCell
       loadingEnabled = true
       pageTabBarItem.title = "Photos"
       pageTabBarItem.titleColor = .gray
+        self.tableView.backgroundColor = .gray
    }
    
    var realCount = 0
@@ -73,8 +74,9 @@ class UserPicsTableViewController: EasyTableViewController<MediaModel, MediaCell
       let width = CGFloat(theData[indexPath.row].height)
       let scaleFactor = UIScreen.main.scale
       let screenWidth = CGFloat(UIScreen.main.bounds.width)
-      
-      return (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
+      let value  = (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
+      return value > 0 ? value : 100
+      //return (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
    }
    
    

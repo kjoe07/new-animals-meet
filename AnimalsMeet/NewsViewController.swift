@@ -63,6 +63,7 @@ class NewsViewController: UIViewController {
         
         feedVC.automaticallyAdjustsScrollViewInsets = false
         collectionVC.automaticallyAdjustsScrollViewInsets = false
+
         hideKeyboardWhenTappedAround()
         swapControllers()
     }

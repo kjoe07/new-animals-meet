@@ -103,8 +103,8 @@ class MediaCell: UITableViewCell {
          let width = CGFloat(media.width)
          let scaleFactor = UIScreen.main.scale
          let screenWidth = CGFloat(UIScreen.main.bounds.width)
-         let imageHeight = (height / (width / (screenWidth * scaleFactor))) / scaleFactor
-         
+        let imageHeight = ((height / (width / (screenWidth * scaleFactor))) / scaleFactor) > 0  ? (height / (width / (screenWidth * scaleFactor))) / scaleFactor : 335.5
+        
          image.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.height.equalTo(imageHeight)

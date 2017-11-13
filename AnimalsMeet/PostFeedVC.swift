@@ -23,6 +23,8 @@ class PostFeedVC: FeedViewController {
     }
     
     override func fetchItems(from: Int, count: Int) -> Promise<[MediaModel]> {
+        print("el valor from \(from)")
+        print("/user/\(self.user.id!)/posts/\(from)")
         return unready.promiseReady.then {
             Api.instance.get("/user/\(self.user.id!)/posts/\(from)").then { JSON -> [MediaModel] in
                 JSON["posts"].arrayValue.map { MediaModel(fromJSON: $0) }

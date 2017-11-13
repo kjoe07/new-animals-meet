@@ -94,6 +94,13 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         postFeedVC.pageTabBarItem.titleColor = .gray
         photoFeedVC.pageTabBarItem.title = "Photos"
         photoFeedVC.pageTabBarItem.titleColor = .gray
+        /*photoFeedVC.tableView.snp.makeConstraints({(make) -> Void in
+            make.bottom.equalTo(containerView)
+        })
+        postFeedVC.tableView.snp.makeConstraints({ make -> Void in
+            make.bottom.equalTo(self.view)
+        })*/
+        //photoFeedVC.tableView.backgroundColor = .gray
         //      postFeedVC.tableView.isScrollEnabled = false
         //      photoFeedVC.tableView.isScrollEnabled = false
         addChildViewController(tabsVC)
@@ -180,9 +187,20 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         super.viewDidAppear(true)
         print("aparecio la vista")
         containerView.frame.size.height += 150
-        self.feed.frame.size.height += 150.0
+        
+        self.feed.frame.size.height += infoView.bounds.height
+        self.photoFeedVC.tableView.frame.size.height += infoView.bounds.height
+        self.postFeedVC.tableView.frame.size.height += infoView.bounds.height
         self.scrollView.contentSize.height = containerView.height + 10
         self.scrollView.layoutIfNeeded()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        containerView.frame.size.height -= 150
+        self.feed.frame.size.height -= infoView.bounds.height
+        self.photoFeedVC.tableView.frame.size.height -= infoView.bounds.height
+        self.postFeedVC.tableView.frame.size.height -= infoView.bounds.height
+        self.scrollView.contentSize.height = containerView.height + 10
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -462,14 +480,27 @@ extension AnimalVC: UIScrollViewDelegate {
         let tableView = self.selectedViewController.tableView!
         if y > height + distance{
             print("es mayor")
+            
+            
             tableView.isUserInteractionEnabled = true
             scrollView.resignFirstResponder()
             print("using tableView scroll")
         }else{
             print("no es mayor")
-            tableView.isUserInteractionEnabled = false
+            /*tableView.isUserInteractionEnabled = false
             tableView.resignFirstResponder()
-            print("using scrollView scroll")
+            print("using scrollView scroll")*/
+            if tableView.contentOffset.y == 0 {
+                //tableViews content is at the top of the tableView.
+                tableView.isUserInteractionEnabled = false
+                tableView.resignFirstResponder()
+                print("using scrollView scroll offset 0")
+            } else {
+                //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
+                tableView.isUserInteractionEnabled = true
+                scrollView.resignFirstResponder()
+                print("using tableView scroll")
+            }
         }
         /* let tableView = self.selectedViewController.tableView!
          if !scrollView.bounds.contains(infoView.frame){ // intersects(infoView.frame) == true {

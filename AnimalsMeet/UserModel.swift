@@ -48,7 +48,8 @@ class UserModel {
       id = result["id"].intValue
       uid = result["uid"].stringValue
       let imageURI = result["image"].string
-      if let imageURI = imageURI {
+      if let imageURI = imageURI, imageURI != "" { //modified in case image is ""Url.init explote
+        print("la imagen \(imageURI)")
          image = URL(string: imageURI)
          // WORKAROUND: avoid problem with fixed address being returned by the server
          let path = image!.path
