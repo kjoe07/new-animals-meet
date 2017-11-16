@@ -79,7 +79,7 @@ class myaccount: UIViewController, MFMailComposeViewControllerDelegate, FusumaDe
       
       let media = MediaModel()
       media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
-      media.callForCreate().then { _ -> Void in
+      media.callForCreate(taggedUser: nil).then { _ -> Void in
          self.loadPic()
          alert.showAlertSuccess(title: "Nouvelle image", subTitle: "Votre photo a été enregistré")
          }.catch(execute: App.showRequestFailure)

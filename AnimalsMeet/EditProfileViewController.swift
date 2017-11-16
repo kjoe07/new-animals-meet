@@ -142,7 +142,7 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
             
             let media = MediaModel()
             media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
-            return media.callForCreate().then { json -> Void in
+            return media.callForCreate(taggedUser: nil).then { json -> Void in
                let createdMedia = MediaModel(fromJSON: json)
                self.user.image = createdMedia.url
             }

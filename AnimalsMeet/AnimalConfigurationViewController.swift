@@ -265,7 +265,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          if picHaveChanged {
             animalSync = animalSync.then {
                // create new media object associated to the animal
-               return media.callForCreate()
+               return media.callForCreate(taggedUser: nil)
                .then { json -> Void in
                      self.animal.profilePicMediaId = Int(json["id"].stringValue)
                }

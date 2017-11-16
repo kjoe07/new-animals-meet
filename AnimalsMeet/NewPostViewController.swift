@@ -26,7 +26,35 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
    
    var newMedia: MediaModel!
     var legend: String!
-    
+    var arrayId = [String]()
+    //MARK: - ViewDidLoad -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        profilePic.kf.setImage(with: App.instance.userModel.image)
+        profilePic.layer.cornerRadius = 8
+        picIcon.onTap { _ in
+            let vc = FusumaViewController()
+            vc.delegate = self
+            vc.hasVideo = false
+            self.present(vc, animated: true)
+        }
+        
+        textView.onTap { _ in
+          //  if self.newMedia != nil {
+                self.performSegue(withIdentifier: "NewLegend", sender: nil)
+                
+          //  }
+        }
+    }
+    //MARK: - Navigation -
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? LegendViewController, segue.identifier == "NewLegend" {
+            controller.delegate = self
+            controller.legend = legend
+        }
+    }
+ 
    @IBAction func stop(_ sender: Any) {
       dismiss(animated: true, completion: nil)
    }
@@ -42,12 +70,26 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
       fusuma.allowMultipleSelection = false
       self.present(fusuma, animated: true, completion: nil)
    }
-   
+    //MARK: - Send Functions -
+    @IBAction func send(_ sender: Any) {
+        
+        sendButton.isEnabled = false
+        ARSLineProgress.show()
+        
+        if newMedia != nil {
+            postPicture(description: text.text)
+        } else if let t = text.text, !t.isEmpty {
+            sendPost()
+        } else {
+            sendButton.isEnabled = true
+            ARSLineProgress.hide()
+        }
+    }
    func postPicture(description: String?) {
       
       newMedia.description = text.text
       
-      newMedia.callForCreate().then { _ -> Void in
+      newMedia.callForCreate(taggedUser: self.arrayId).then { _ -> Void in
          alert.showAlertSuccess(title: "Nouvelle image", subTitle: "Votre photo a été postée")
          self.stop(self)
          }.always {
@@ -59,7 +101,7 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
    }
    
    func sendPost() {
-      _ = Api.instance.post("/media/createPost", withParams: ["content": text.text, "animal_id": getAnimal().id!])
+    _ = Api.instance.post("/media/createPost", withParams: ["content": text.text, "animal_id": getAnimal().id!, "users": self.arrayId])
          .then { _ -> () in
             alert.showAlertSuccess(title: "Succès", subTitle: "Votre post a été envoyé !")
             self.stop(self)
@@ -73,21 +115,8 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
       }
    }
    
-   @IBAction func send(_ sender: Any) {
-      
-      sendButton.isEnabled = false
-      ARSLineProgress.show()
-      
-      if newMedia != nil {
-         postPicture(description: text.text)
-      } else if let t = text.text, !t.isEmpty {
-         sendPost()
-      } else {
-         sendButton.isEnabled = true
-         ARSLineProgress.hide()
-      }
-   }
    
+   //MARK: - Fusuma -
    /* Fusuma */
    public func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
       
@@ -115,38 +144,13 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
    @objc func fusumaClosed() {}
    @objc func fusumaWillClosed() {}
    
-   override func viewDidLoad() {
-      super.viewDidLoad()
-    
-      profilePic.kf.setImage(with: App.instance.userModel.image)
-      profilePic.layer.cornerRadius = 8
-      picIcon.onTap { _ in
-         let vc = FusumaViewController()
-         vc.delegate = self
-         vc.hasVideo = false
-         self.present(vc, animated: true)
-      }
-    
-    textView.onTap { _ in
-        if self.newMedia != nil {
-            self.performSegue(withIdentifier: "NewLegend", sender: nil)
-
-        }
-    }
-   }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? LegendViewController, segue.identifier == "NewLegend" {
-            controller.delegate = self
-            controller.legend = legend
-        }
-    }
     
 }
 
 extension NewPostViewController: NewLegend {
-    func legend(legend: String) {
+    func legend(legend: String, array: [String]) {
         self.legend = legend
+        self.arrayId = array
         //text.text = legend
         let attributedText = NSMutableAttributedString()
         //if text == " ",let lastWord = textView.text.components(separatedBy: " ").last,

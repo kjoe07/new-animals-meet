@@ -34,7 +34,8 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             }
             .filter { m -> Bool in
                 debugPrint(m)
-                return self.searchTerm != nil ? (m.author.nickname?.lowercased().contains(self.searchTerm.lowercased()) ?? false) : true} //true
+                return self.searchTerm != nil ? (m.author.nickname?.lowercased().contains(self.searchTerm.lowercased()) ?? false) : true
+            } //true
         }
         print("el resultado de la busqueda \(c)")
         return c

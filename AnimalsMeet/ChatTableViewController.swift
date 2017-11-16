@@ -13,28 +13,30 @@ import PromiseKit
 import AFDateHelper
 import SwiftDate
 
-class ChatTableViewController: EasyTableViewController<ConversationModel, ConversationCell> {
+class ChatTableViewController: EasyTableViewController<ConversationModel, ConversationCell>,UISearchResultsUpdating,UISearchBarDelegate,UISearchControllerDelegate  {
    
    @IBAction func newChat(_ sender: Any) {
       // TODO implement dis
    }
-   
-   override func fetchItems(from: Int, count: Int) -> Promise<[ConversationModel]> {
+   let searchController = UISearchController(searchResultsController: nil)
+    override func fetchItems(from: Int, count: Int) -> Promise<[ConversationModel]> {
       return Api.instance.get("/messaging/getCorrespondents/\(from + 1)")
          .then { json -> [ConversationModel] in
-            
             let result = JSON(parseJSON: json["correspondents"].stringValue)
             let conversations = result.arrayValue.map {
                ConversationModel(json: $0)
+                }.filter { m -> Bool in
+                    debugPrint(m)
+                    return self.searchController.searchBar.text != nil ? (m.recipient.nickname?.lowercased().contains(self.searchController.searchBar.text!.lowercased()) ?? false) : true
             }
-            
             return conversations
       }
    }
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
+      searchController.searchBar.sizeToFit()
+      self.navigationItem.titleView = searchController.searchBar
       let ViewForDoneButtonOnKeyboard = UIToolbar()
       ViewForDoneButtonOnKeyboard.sizeToFit()
       let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
@@ -43,6 +45,12 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
       pullToRefreshEnabled = true
       tableView.estimatedRowHeight = 120
       tableView.rowHeight = UITableViewAutomaticDimension
+      searchController.searchResultsUpdater = self
+      definesPresentationContext = true
+      searchController.dimsBackgroundDuringPresentation = false
+      self.searchController.hidesNavigationBarDuringPresentation = false
+      self.searchController.searchBar.showsCancelButton = true
+      searchController.searchBar.delegate = self
    }
    
    func doneBtnFromKeyboardClicked() {
@@ -53,7 +61,6 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
       cell.name.text = item.recipient.nickname
       cell.lastMsg.text = item.messages?[0]
       cell.lastMsgTime.text = item.date.localizedString
-      
       cell.onTap { _ in
          let vc = ConversationViewController()
          vc.conversation = item
@@ -61,4 +68,24 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
          self.navigationController?.pushViewController(vc, animated: true)
       }
    }
+   /* func filterContentForSearchText(searchText:String,scope:String = "All"){
+        news.instance.filter(search: searchText)
+    }*/
+    func updateSearchResults(for searchController: UISearchController) {
+       /* news.instance.filteredData.removeAll()
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+        if news.instance.filteredData.count == 0{
+            HUD.flash(.label("No existen Noticias para el criterio de búsqueda seleccionado"), delay: 1.5){ _ in
+                print("No existen Noticias nuevas")
+            }
+        }
+        self.mytableView.reloadData()*/
+        let _ = self.shouldRefresh()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchController.searchBar.text = nil
+        searchController.searchBar.resignFirstResponder()
+       let _ = self.shouldRefresh()
+    }
+
 }

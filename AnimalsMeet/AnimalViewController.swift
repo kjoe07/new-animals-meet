@@ -47,6 +47,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     @IBOutlet weak var feed: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var animalButtonConstraintRight: NSLayoutConstraint!
+    @IBOutlet weak var containerHeight: NSLayoutConstraint!
     //MARK: - properties -
     var animal: AnimalModel!
     var user: UserModel!
@@ -120,6 +121,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         collectionVC.jsonIndex = "images"
         addChildViewController(collectionVC)
         addMosaicButton()
+        //self.selectedViewController.tableView.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -129,6 +131,10 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         
         print(self.scrollView.height)
         print(self.feed.frame.size.height)
+        print("el offset del scroll: \(scrollView.contentOffset.y)")
+        print("el offset del tableView: \(photoFeedVC.tableView.contentOffset.y)")
+        print("el height del navigation bar \(self.navigationController?.navigationBar.height)")
+        print("el heigth del tableview: \(selectedViewController.tableView.contentSize)")
         if user == nil {
             setUser(App.instance.userModel!)
         }
@@ -181,35 +187,52 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         animalListVC.createAnimal = {
             self.editAnimal(animal: nil)
         }
+        //containerHeight.constant += 400.0
+        //containerView.frame.size.height = infoView.bounds.height + feed.bounds.height + infoView.height/2
     }
     //MARK:  ViewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("aparecio la vista")
-        containerView.frame.size.height += 150
-        
+        print("la altura del feed \(feed.height)")
+        scrollView.contentSize.height = infoView.bounds.height + feed.bounds.height + 190.0
+        selectedViewController.tableView.isUserInteractionEnabled = false
+        //containerView.frame.size.height = infoView.bounds.height + feed.bounds.height + 170.0//bounds.size.height = infoView.bounds.height + feed.bounds.height + 170.0
+        //feed.bounds.size.height += 170.0
+        //feed.frame.size.height += 230.0
+        //containerHeight.constant += 400.0
+        /*containerView.frame.size.height += infoView.bounds.height
+        photoFeedVC.tableView.isUserInteractionEnabled = false
+        postFeedVC.tableView.isUserInteractionEnabled = false
         self.feed.frame.size.height += infoView.bounds.height
         self.photoFeedVC.tableView.frame.size.height += infoView.bounds.height
         self.postFeedVC.tableView.frame.size.height += infoView.bounds.height
-        self.scrollView.contentSize.height = containerView.height + 10
+        containerHeight.constant = infoView.bounds.height
+        self.scrollView.contentSize.height = containerView.height + 10*/
         self.scrollView.layoutIfNeeded()
+        //print("el tamaño del container \(containerView.frame.height)")
+        //scrollView.layoutSubviews()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        containerView.frame.size.height -= 150
-        self.feed.frame.size.height -= infoView.bounds.height
-        self.photoFeedVC.tableView.frame.size.height -= infoView.bounds.height
-        self.postFeedVC.tableView.frame.size.height -= infoView.bounds.height
-        self.scrollView.contentSize.height = containerView.height + 10
+        //feed.bounds.size.height -= 170.0
+        //containerHeight.constant -= 400.0
+        //containerView.frame.size.height -= 230.0//infoView.bounds.height
+        //self.feed.frame.size.height -= infoView.bounds.height
+        //self.photoFeedVC.tableView.frame.size.height -= infoView.bounds.height
+        //self.postFeedVC.tableView.frame.size.height -= infoView.bounds.height
+        //self.scrollView.contentSize.height = containerView.height + 10/**/
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         configureNavigationBar()
+        //self.containerView.frame.size.height = self.scrollView.contentSize.height
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.translatesAutoresizingMaskIntoConstraints = true
+        
     }
     
     func createView(_ frame: CGRect, height: CGFloat?) -> UIView {
@@ -436,7 +459,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         
         let media = MediaModel()
         media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
-        media.callForCreate().then { json -> Void in
+        media.callForCreate(taggedUser: nil).then { json -> Void in
             let createdMedia = MediaModel(fromJSON: json)
             self.user.image = createdMedia.url
             self.userProfilePic.image = image
@@ -454,16 +477,32 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
 }
 
 extension AnimalVC: UIScrollViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+   /* func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("delegado en accion ")
+        let tableView = self.selectedViewController.tableView!
+        
+        print("el offset del tableView \(tableView.contentOffset.y)")
+        
         if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
             //            isDown = false
             print("Direction down")
+            if tableView.contentOffset.y == 0 {
+                tableView.isUserInteractionEnabled = false
+                scrollView.isScrollEnabled = true
+            }
         } else {
             print("Direction up")
+            if scrollView.contentOffset.y > self.infoView.height - ((self.navigationController?.navigationBar.height)! + 20){
+                //self.photoFeedVC.tableView.isUserInteractionEnabled = true
+                //self.postFeedVC.tableView.isUserInteractionEnabled = true
+                //if tableView.contentOffset <
+                scrollView.isScrollEnabled = false
+                tableView.isUserInteractionEnabled = true
+                
+            }
             
         }
-        let offset = scrollView.contentOffset
+        /*let offset = scrollView.contentOffset
         let bounds = infoView.bounds//scrollView.bounds
         let size = infoView.frame.size
         let inset = scrollView.contentInset
@@ -501,7 +540,24 @@ extension AnimalVC: UIScrollViewDelegate {
                 scrollView.resignFirstResponder()
                 print("using tableView scroll")
             }
-        }
+        }*/
+        
+       /* let tableView = self.selectedViewController.tableView!
+        
+        print("el offset del tableView \(tableView.contentOffset.y)")
+        if scrollView.contentOffset.y > self.infoView.height - ((self.navigationController?.navigationBar.height)! + 20){
+            //self.photoFeedVC.tableView.isUserInteractionEnabled = true
+            //self.postFeedVC.tableView.isUserInteractionEnabled = true
+            //if tableView.contentOffset <
+            scrollView.isScrollEnabled = false
+            tableView.isUserInteractionEnabled = true
+            
+        }else{
+            if tableView.contentOffset.y == 0 {
+                tableView.isUserInteractionEnabled = false
+            }
+            
+        }*/
         /* let tableView = self.selectedViewController.tableView!
          if !scrollView.bounds.contains(infoView.frame){ // intersects(infoView.frame) == true {
          print("contentOffset.y del tableview \(tableView.contentOffset.y)")
@@ -525,8 +581,54 @@ extension AnimalVC: UIScrollViewDelegate {
          
          }*/
     }
+}*/
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tableView = self.selectedViewController.tableView!
+        /*print("el offset del tableView \(tableView.contentOffset.y)")
+        if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
+            //            isDown = false
+            print("Direction down")
+            if tableView.contentOffset.y == 0 {
+                tableView.isUserInteractionEnabled = false
+                scrollView.isScrollEnabled = true
+                tableView.resignFirstResponder()
+            }
+        }else{
+            print("Direction up")
+            if scrollView.contentOffset.y > self.infoView.height - ((self.navigationController?.navigationBar.height)! + 20){
+                //self.photoFeedVC.tableView.isUserInteractionEnabled = true
+                //self.postFeedVC.tableView.isUserInteractionEnabled = true
+                //if tableView.contentOffset <
+                scrollView.isScrollEnabled = false
+                tableView.isUserInteractionEnabled = true
+                scrollView.resignFirstResponder()
+            }
+        }*/
+        if scrollView.contentOffset.y > self.infoView.height - ((self.navigationController?.navigationBar.height ?? 24) + 20){
+        //!scrollView.bounds.contains(infoView.frame){ scrollView.bounds.intersects(infoView.frame) == true {
+            print("contentOffset.y del tableview \(tableView.contentOffset.y)")
+            if tableView.contentOffset.y == 0 {
+                //tableViews content is at the top of the tableView.
+                tableView.isUserInteractionEnabled = false
+                tableView.resignFirstResponder()
+                print("using scrollView scroll")
+            } else {
+                //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
+                tableView.isUserInteractionEnabled = true
+                scrollView.resignFirstResponder()
+                print("using tableView scroll")
+            }
+        }else{
+            //UIView is not in frame. Use tableViews scroll.
+            print("normal size")
+            tableView.isUserInteractionEnabled = true
+            scrollView.resignFirstResponder()
+            print("using tableView scroll")
+            
+        }
+    }
 }
-/* func scrollViewDidScroll(_ scrollView: UIScrollView) {
+/*
  //        var isDown = false
  /* if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
  //            isDown = false
@@ -597,7 +699,7 @@ extension AnimalVC: UIScrollViewDelegate {
  
  }*/
  }//*/
- }*/
+ //}*/
  /**/
  //extension AnimalVC: UIScrollViewDelegate {
  //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
