@@ -88,12 +88,12 @@ class MediaModel {
       if animal != nil {
          id = animal.id
       }
-        var mediaObj: Parameters = ["file64": rawData, "idAnimal": "\(id)","users": taggedUser ?? ""]
+        var mediaObj: Parameters = ["file64": rawData, "idAnimal": "\(id)"]
       if let legend = self.description {
          mediaObj["legend"] = legend
       }
       
-      let parameters: Parameters = ["media" : mediaObj]
+      let parameters: Parameters = ["media" : mediaObj,"users": taggedUser ?? ""]
       return Api.instance.post("/media", withParams: parameters)
    }
    
