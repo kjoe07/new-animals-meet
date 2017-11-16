@@ -43,5 +43,6 @@ target 'AnimalsMeet' do
     pod 'Material'
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
+    pod 'CZPicker'
 
 end

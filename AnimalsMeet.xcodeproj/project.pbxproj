@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B4014641DE59996008A0862 /* GenericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4014631DE59996008A0862 /* GenericTextField.swift */; };
+		112795A41FBAA2C8008A204C /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112795A31FBAA2C8008A204C /* request.swift */; };
 		5B7211D41DCAA12900160458 /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */; };
 		5B89FDCA1DD12F2E005FC42A /* UIColorExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */; };
 		5B89FDCC1DD148E5005FC42A /* UIKitViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FDCB1DD148E5005FC42A /* UIKitViewUtils.swift */; };
@@ -131,6 +132,7 @@
 
 /* Begin PBXFileReference section */
 		0B4014631DE59996008A0862 /* GenericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTextField.swift; sourceTree = "<group>"; };
+		112795A31FBAA2C8008A204C /* request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = request.swift; path = AnimalsMeet/request.swift; sourceTree = SOURCE_ROOT; };
 		153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
 		2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug offline.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug offline.xcconfig"; sourceTree = "<group>"; };
 		5B21BC9C1DBAE147008FEDA3 /* AnimalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTabBarController.swift; sourceTree = "<group>"; };
@@ -360,10 +362,10 @@
 		933C6F951DF6BB2600A8EFE6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				B45950341EDB642C0057E9D8 /* ConversationCell.xib */,
-				B45950361EDB652D0057E9D8 /* ConversationCell.swift */,
 				B433064D1ED07594004FC683 /* ChatNavigationController.swift */,
 				933C6F931DF6BB1900A8EFE6 /* ChatTableViewController.swift */,
+				B45950361EDB652D0057E9D8 /* ConversationCell.swift */,
+				B45950341EDB642C0057E9D8 /* ConversationCell.xib */,
 				9383B86A1DF8706E0048C071 /* ConversationViewController.swift */,
 			);
 			name = Chat;
@@ -372,8 +374,8 @@
 		93B264591DF4E1CA00B88635 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				93B264571DF4E1A100B88635 /* NotificationTableViewController.swift */,
 				93B2645A1DF5756000B88635 /* NotificationTableViewCell.swift */,
+				93B264571DF4E1A100B88635 /* NotificationTableViewController.swift */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -421,12 +423,12 @@
 		A04E35391DF47707000D6F19 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				A0EB49A41EE6FDF300DFD36A /* MosaicCollectionViewCell.swift */,
-				B405704A1ECDFA2400A6C260 /* MediaCell.xib */,
-				A0EB49AA1EE70A8500DFD36A /* MosaicCollectionViewCell.xib */,
 				A04E35351DF47479000D6F19 /* FeedViewController.swift */,
-				A0EB49A81EE705FD00DFD36A /* MosaicFeedController.swift */,
 				A04E353E1DF49A67000D6F19 /* MediaCell.swift */,
+				B405704A1ECDFA2400A6C260 /* MediaCell.xib */,
+				A0EB49A41EE6FDF300DFD36A /* MosaicCollectionViewCell.swift */,
+				A0EB49AA1EE70A8500DFD36A /* MosaicCollectionViewCell.xib */,
+				A0EB49A81EE705FD00DFD36A /* MosaicFeedController.swift */,
 				B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */,
 				B4D7FFC11EE8591200FB9A30 /* NewsViewController.swift */,
 			);
@@ -436,18 +438,18 @@
 		A081B92E1DA27A7A006EC8E9 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				B40A58021E1DB73200497998 /* MarkedUIImage.swift */,
-				9348376A1E0BCB5400CEFFAB /* FuzzySearch.swift */,
-				0B4014631DE59996008A0862 /* GenericTextField.swift */,
 				A04031E91DA3A81B00D83E92 /* alert.swift */,
 				A04031ED1DA3A86500D83E92 /* event.swift */,
-				5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */,
-				5B89FDCB1DD148E5005FC42A /* UIKitViewUtils.swift */,
-				A04E35371DF4748D000D6F19 /* MosaicPictures.swift */,
-				A04E353C1DF48D38000D6F19 /* MosaicPicturesCell.swift */,
-				9352C1D51DFB605F00FA3490 /* useful.swift */,
+				9348376A1E0BCB5400CEFFAB /* FuzzySearch.swift */,
+				0B4014631DE59996008A0862 /* GenericTextField.swift */,
 				A06CD7A01E1DB92200402965 /* ListMyAnimals.swift */,
 				A06CD7A21E1DB93800402965 /* ListMyAnimalsCell.swift */,
+				B40A58021E1DB73200497998 /* MarkedUIImage.swift */,
+				A04E35371DF4748D000D6F19 /* MosaicPictures.swift */,
+				A04E353C1DF48D38000D6F19 /* MosaicPicturesCell.swift */,
+				5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */,
+				5B89FDCB1DD148E5005FC42A /* UIKitViewUtils.swift */,
+				9352C1D51DFB605F00FA3490 /* useful.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -498,21 +500,21 @@
 		A0D7C2931DC74846006771C8 /* Profil */ = {
 			isa = PBXGroup;
 			children = (
-				A0EAA9141EE80ECA00F0BC2B /* ProfilePictureViewController.swift */,
-				B4AEB8221EE0164C00D0A69D /* UserPicsTableViewController.swift */,
-				A02BBB4C1EE016EE0035C3D8 /* PostFeedVC.swift */,
-				B49285AE1ECF40A5004E5600 /* AnimalListTableViewCell.xib */,
-				B49285B01ECF41F0004E5600 /* AnimalListTableViewCell.swift */,
-				A0D7C2941DC7485F006771C8 /* AnimalViewController.swift */,
 				A0D7C2961DC75F02006771C8 /* AnimalConfigurationViewController.swift */,
-				A0C861011DD0F6500088A014 /* MyAccountViewController.swift */,
-				B493ECF11ED4A2CE003F6D1B /* CreateAnimalView.swift */,
+				B49285B01ECF41F0004E5600 /* AnimalListTableViewCell.swift */,
+				B49285AE1ECF40A5004E5600 /* AnimalListTableViewCell.xib */,
 				A098D98B1DD205270014270D /* AnimalListTableViewController.swift */,
-				B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */,
-				B43FB88E1EE71784004EE2E7 /* ProfileTabViewController.swift */,
+				A0D7C2941DC7485F006771C8 /* AnimalViewController.swift */,
+				B493ECF11ED4A2CE003F6D1B /* CreateAnimalView.swift */,
 				F1FC84441F5511780085A673 /* EditProfileViewController.swift */,
 				8F3B92BF1F7B4A0F00874DAD /* LegendViewController.swift */,
+				A0C861011DD0F6500088A014 /* MyAccountViewController.swift */,
+				B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */,
+				A02BBB4C1EE016EE0035C3D8 /* PostFeedVC.swift */,
+				A0EAA9141EE80ECA00F0BC2B /* ProfilePictureViewController.swift */,
+				B43FB88E1EE71784004EE2E7 /* ProfileTabViewController.swift */,
 				8F8FDC9F1F99A4B2002E5112 /* TestViewController.swift */,
+				B4AEB8221EE0164C00D0A69D /* UserPicsTableViewController.swift */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -528,13 +530,13 @@
 		A0EC2E1F1DBE29A300A6A77C /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				A0EC2E1D1DBE211400A6A77C /* Search.swift */,
-				93A1BF5F1E0AA8C000D69CB1 /* AnimalResultCollectionViewCell.swift */,
-				93A1BF5D1E0AA44400D69CB1 /* SearchResultViewController.swift */,
 				5BE889AC1DBADAAC00C9BFB2 /* AnimalConnectViewController.swift */,
-				93A1BF611E0AB93F00D69CB1 /* StackViewVerticalCut.swift */,
+				93A1BF5F1E0AA8C000D69CB1 /* AnimalResultCollectionViewCell.swift */,
 				A0EC2E221DBE6BD400A6A77C /* BreedSelectorTableViewController.swift */,
 				5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */,
+				A0EC2E1D1DBE211400A6A77C /* Search.swift */,
+				93A1BF5D1E0AA44400D69CB1 /* SearchResultViewController.swift */,
+				93A1BF611E0AB93F00D69CB1 /* StackViewVerticalCut.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -543,9 +545,9 @@
 			isa = PBXGroup;
 			children = (
 				B40B09551EB88A9A00782417 /* CommentTableViewCell.swift */,
+				B493ECF51ED83BAC003F6D1B /* CommentTableViewCell.xib */,
 				B40B09591EB88AC600782417 /* CommentTableViewController.swift */,
 				B431F7BD1EB8FCDE00A2C674 /* CommentViewController.swift */,
-				B493ECF51ED83BAC003F6D1B /* CommentTableViewCell.xib */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -553,14 +555,15 @@
 		B431F7B41EB8937C00A2C674 /* Useful */ = {
 			isa = PBXGroup;
 			children = (
-				A0EB49A61EE7010A00DFD36A /* EasyCollectionViewController.swift */,
-				B42565D21ECCD82B00B3E91C /* EmptyTableBG.xib */,
 				B431F7B51EB8937C00A2C674 /* Api.swift */,
 				B431F7B61EB8937C00A2C674 /* appendAttributedStringWithEase.swift */,
-				B431F7B71EB8937C00A2C674 /* Useful.swift */,
-				B4AEB8281EE022E700D0A69D /* Unready.swift */,
-				B431F7B81EB8937C00A2C674 /* ViewUseful.swift */,
+				A0EB49A61EE7010A00DFD36A /* EasyCollectionViewController.swift */,
 				A0DBFB371EC3150800D531FA /* EasyTableViewController.swift */,
+				B42565D21ECCD82B00B3E91C /* EmptyTableBG.xib */,
+				112795A31FBAA2C8008A204C /* request.swift */,
+				B4AEB8281EE022E700D0A69D /* Unready.swift */,
+				B431F7B71EB8937C00A2C674 /* Useful.swift */,
+				B431F7B81EB8937C00A2C674 /* ViewUseful.swift */,
 			);
 			path = Useful;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AsyncDisplayKit/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/CZPicker/CZPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Cereal/Cereal.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -780,6 +784,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CZPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cereal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
@@ -861,6 +866,7 @@
 				A03F0C321EBB93EA0071DB55 /* NotificationModel.swift in Sources */,
 				5B7211D41DCAA12900160458 /* FiltersTableViewController.swift in Sources */,
 				933C6F941DF6BB1900A8EFE6 /* ChatTableViewController.swift in Sources */,
+				112795A41FBAA2C8008A204C /* request.swift in Sources */,
 				A00C3DBD1EBA320A00BDFFE3 /* App.swift in Sources */,
 				B40A58031E1DB73200497998 /* MarkedUIImage.swift in Sources */,
 				A04031E61DA3A7F600D83E92 /* LoginViewController.swift in Sources */,

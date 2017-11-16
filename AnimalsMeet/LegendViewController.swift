@@ -9,6 +9,7 @@
 import UIKit
 import PromiseKit
 import SwiftyJSON
+import CZPicker
 protocol NewLegend {
     func legend(legend: String, array: [String])
 }
@@ -63,6 +64,22 @@ class LegendViewController: UIViewController, UITextViewDelegate {
         return true
         
     }
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
+            let picker = CZPickerView(headerTitle: "Friends", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+            picker?.delegate = self
+            picker?.dataSource = self
+            picker?.needFooterView = false
+            picker?.show()
+            /*if self.search(in: lastWord), searchDuplicate(this: lastWord) == 1  {
+                let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.textView.font!] as [String : Any]
+                let attributedString = NSMutableAttributedString(string: lastWord, attributes: attributes)
+                textView.textStorage.replaceCharacters(in:lastWordRange, with:attributedString)
+                
+            }*/
+            
+        }
+    }
     /*func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if text == " " {
@@ -80,10 +97,10 @@ class LegendViewController: UIViewController, UITextViewDelegate {
         return Array(Set(filtered)).joined()
     }*/
     func loadUser(){
-        let endpoint = "/user"
+        let endpoint = "/user/\(App.instance.userModel.id!)/friends" //"/user" //
         Api.instance.get(endpoint).then {JSON in
-           // print("the Json in response promise \(JSON)")
-          self.userJson =  JSON["users"].arrayValue
+           //print("the Json in response promise \(JSON)")
+          self.userJson =  JSON["friends"].arrayValue
             }
         /*let requestO = request()
         requestO.request(endpoint, withParams: [:], method: .get, completion: { data, error in
@@ -142,6 +159,52 @@ class LegendViewController: UIViewController, UITextViewDelegate {
                     
                 }
                 self.textView.attributedText = attributedText
+        }
+    }
+}
+extension LegendViewController: CZPickerViewDelegate, CZPickerViewDataSource {
+   /* func czpickerView(_ pickerView: CZPickerView!, imageForRow row: Int) -> UIImage! {
+        if pickerView == pickerWithImage {
+            return self.userJson[row]["image"].stringValue
+        }
+        return nil
+    }*/
+    
+    func numberOfRows(in pickerView: CZPickerView!) -> Int {
+        print(userJson.count)
+        return userJson.count
+    }
+    
+    func czpickerView(_ pickerView: CZPickerView!, titleForRow row: Int) -> String! {
+        
+        return userJson[row]["name"].stringValue
+    }
+    
+    func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
+        print("aqui es adonde")
+        print("el valor del row\(userJson[row].arrayValue)")
+        //print(fruits[row])
+        textView.text.append(userJson[row]["nickname"].stringValue)
+        if let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord, options: .backwards){
+            let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.textView.font!] as [String : Any]
+            let attributedString = NSMutableAttributedString(string: "@"+userJson[row]["nickname"].stringValue, attributes: attributes)
+            
+            textView.textStorage.replaceCharacters(in: lastWordRange, with: attributedString)
+            self.search(in: userJson[row]["nickname"].stringValue)
+        }
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func czpickerViewDidClickCancelButton(_ pickerView: CZPickerView!) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    @nonobjc func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
+        
+        for row in rows {
+            if let row = row as? Int {
+               // print(fruits[row])
+            }
         }
     }
 }
