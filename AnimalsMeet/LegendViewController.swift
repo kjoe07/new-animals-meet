@@ -41,7 +41,7 @@ class LegendViewController: UIViewController, UITextViewDelegate {
         delegate.legend(legend: textView.text, array: id)
         navigationController?.popViewController(animated: true)
     }
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    /*func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == " ",let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
             if self.search(in: lastWord), searchDuplicate(this: lastWord) == 1  {
                 let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.textView.font!] as [String : Any]
@@ -63,7 +63,7 @@ class LegendViewController: UIViewController, UITextViewDelegate {
         }
         return true
         
-    }
+    }*/
     func textViewDidChangeSelection(_ textView: UITextView) {
         if let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
             let picker = CZPickerView(headerTitle: "Friends", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
