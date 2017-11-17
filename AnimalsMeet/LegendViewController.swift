@@ -21,12 +21,17 @@ class LegendViewController: UIViewController, UITextViewDelegate {
     var legend: String!
     var arrayId = [["id":"","nickname":""]]
     var id = [String]()
+    let picker = CZPickerView(headerTitle: "Friends", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = legend
         textView.becomeFirstResponder()
         arrayId.removeAll()
         loadUser()
+        
+        picker?.delegate = self
+        picker?.dataSource = self
+        picker?.needFooterView = false
         if (legend) != nil {
             self.formatText()
         }
@@ -66,10 +71,7 @@ class LegendViewController: UIViewController, UITextViewDelegate {
     }*/
     func textViewDidChangeSelection(_ textView: UITextView) {
         if let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
-            let picker = CZPickerView(headerTitle: "Friends", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-            picker?.delegate = self
-            picker?.dataSource = self
-            picker?.needFooterView = false
+            
             picker?.show()
             /*if self.search(in: lastWord), searchDuplicate(this: lastWord) == 1  {
                 let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.textView.font!] as [String : Any]
@@ -101,7 +103,9 @@ class LegendViewController: UIViewController, UITextViewDelegate {
         Api.instance.get(endpoint).then {JSON in
            //print("the Json in response promise \(JSON)")
           self.userJson =  JSON["friends"].arrayValue
-            }
+            }.always {
+                self.picker?.reloadData()
+        }
         /*let requestO = request()
         requestO.request(endpoint, withParams: [:], method: .get, completion: { data, error in
             if let data = data {
