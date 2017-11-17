@@ -193,7 +193,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     //MARK:  ViewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("aparecio la vista")
+        /*print("aparecio la vista")
         print("la altura del feed \(feed.height)")
         scrollView.contentSize.height = infoView.bounds.height + feed.bounds.height + 190.0
         selectedViewController.tableView.isUserInteractionEnabled = false
@@ -211,7 +211,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         self.scrollView.contentSize.height = containerView.height + 10*/
         self.scrollView.layoutIfNeeded()
         //print("el tamaño del container \(containerView.frame.height)")
-        //scrollView.layoutSubviews()
+        //scrollView.layoutSubviews()*/
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -583,7 +583,7 @@ extension AnimalVC: UIScrollViewDelegate {
     }
 }*/
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let tableView = self.selectedViewController.tableView!
+        /*let tableView = self.selectedViewController.tableView!
         /*print("el offset del tableView \(tableView.contentOffset.y)")
         if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
             //            isDown = false
@@ -668,8 +668,9 @@ extension AnimalVC: UIScrollViewDelegate {
  //feed.frame.size.height -= infoView.height
  print("Abajo")
  }
- 
- /* let tableView = self.selectedViewController.tableView!
+ */
+ */
+ let tableView = self.selectedViewController.tableView!
  if scrollView.bounds.intersects(infoView.frame) == true {
  
  
@@ -697,8 +698,9 @@ extension AnimalVC: UIScrollViewDelegate {
  scrollView.resignFirstResponder()
  print("using tableView scroll")
  
- }*/
- }//*/
+ }
+ }
+}//*/
  //}*/
  /**/
  //extension AnimalVC: UIScrollViewDelegate {

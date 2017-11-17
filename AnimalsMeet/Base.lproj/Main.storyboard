@@ -359,7 +359,7 @@
         <scene sceneID="pnZ-TJ-b5k">
             <objects>
                 <collectionViewController id="pnU-Av-h5e" customClass="SearchResultsViewController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="SKr-FN-t7r">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SKr-FN-t7r">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1177,7 +1177,7 @@
             <objects>
                 <navigationController id="Jy5-tX-0wJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="FK9-oK-6Zv"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Tah-fT-Aaf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tah-fT-Aaf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1273,13 +1273,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYN-tQ-03N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5935" y="635"/>
+            <point key="canvasLocation" x="5871" y="738"/>
         </scene>
         <!--Mosaic Pictures-->
         <scene sceneID="IQa-MJ-MWO">
             <objects>
                 <collectionViewController storyboardIdentifier="mosaic_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5eR-Ct-7nP" customClass="MosaicPictures" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" dataMode="prototypes" id="Yze-ma-5lD">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" id="Yze-ma-5lD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1463,20 +1463,20 @@
         <!--User-->
         <scene sceneID="Zfu-qu-KgD">
             <objects>
-                <viewController title="Profil utilisateur" extendedLayoutIncludesOpaqueBars="YES" id="3oR-ch-bF3" userLabel="User" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnimalVC" title="Profil utilisateur" extendedLayoutIncludesOpaqueBars="YES" id="3oR-ch-bF3" userLabel="User" customClass="AnimalVC" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sg0-WM-1Ni"/>
                         <viewControllerLayoutGuide type="bottom" id="nfO-2m-wYw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Kgs-le-HPw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzl-NF-bRX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWX-At-zax">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yR2-5k-7zk" userLabel="Info View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
@@ -1701,7 +1701,7 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="he6-v2-mVI">
-                                                <rect key="frame" x="0.0" y="230" width="375" height="437"/>
+                                                <rect key="frame" x="0.0" y="230" width="375" height="388"/>
                                                 <color key="backgroundColor" red="1" green="0.25909818680000002" blue="0.28913161030000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="558" id="suS-sd-B5X"/>
@@ -1799,7 +1799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBB-ap-Y72" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3618" y="745"/>
+            <point key="canvasLocation" x="4764" y="-571"/>
         </scene>
         <!--Animal Tab Bar Controller-->
         <scene sceneID="vNR-op-cBc">
@@ -2461,17 +2461,17 @@ Cliquez sur le bouton!</string>
         <!--perfil nuevo-->
         <scene sceneID="jMJ-Fb-BNi">
             <objects>
-                <viewController storyboardIdentifier="AnimalVC" id="hcs-Ov-Ltb" userLabel="perfil nuevo" customClass="AnimalVC" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Animal" id="hcs-Ov-Ltb" userLabel="perfil nuevo" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XOb-hr-a6V"/>
                         <viewControllerLayoutGuide type="bottom" id="ugW-bE-Xg4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vqd-7d-0C1">
-                        <rect key="frame" x="0.0" y="64" width="375" height="655"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="719"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vu-JV-o11">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="771"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="884"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hud-vU-zcw" userLabel="Info View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
@@ -2697,9 +2697,6 @@ Cliquez sur le bouton!</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="595" id="9hv-iI-65m"/>
                                         </constraints>
-                                        <connections>
-                                            <segue destination="Rq8-K0-P4b" kind="embed" id="i0T-cA-ksB"/>
-                                        </connections>
                                     </containerView>
                                 </subviews>
                                 <constraints>
@@ -2756,7 +2753,7 @@ Cliquez sur le bouton!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eN8-Ms-b4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5073" y="-123"/>
+            <point key="canvasLocation" x="5521" y="-58"/>
         </scene>
         <!--Profil de l'animal-->
         <scene sceneID="ioQ-bV-OAq">
@@ -2767,11 +2764,11 @@ Cliquez sur le bouton!</string>
                         <viewControllerLayoutGuide type="bottom" id="i2y-0D-zNb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1NG-x8-B3P">
-                        <rect key="frame" x="0.0" y="64" width="375" height="655"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RM5-si-cIH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLQ-f1-V4L" customClass="HideKeyboardOnTouchView" customModule="AnimalsMeet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="422"/>
@@ -3071,7 +3068,7 @@ Cliquez sur le bouton!</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jsc-56-ZSX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="Notifications" image="music" id="cgO-kz-YNK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xew-1B-XJQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xew-1B-XJQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3251,14 +3248,14 @@ Cliquez sur le bouton!</string>
                         <viewControllerLayoutGuide type="bottom" id="p2D-uL-yET"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lX9-Cf-XAM">
-                        <rect key="frame" x="0.0" y="64" width="375" height="655"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ro-dx-IZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4343" y="1236"/>
+            <point key="canvasLocation" x="3809" y="1142"/>
         </scene>
         <!--ChatNC-->
         <scene sceneID="5bd-2Q-AkV">
@@ -3266,7 +3263,7 @@ Cliquez sur le bouton!</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="38U-YF-CSX" userLabel="ChatNC" customClass="ChatNavigationController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="3" title="Messages" image="smartphone" id="fll-XD-NpJ" userLabel="Smartphone item"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Pmr-2l-Cde">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pmr-2l-Cde">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3281,7 +3278,7 @@ Cliquez sur le bouton!</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MmU-cu-czT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="h5b-UZ-eWH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h5b-UZ-eWH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3300,7 +3297,7 @@ Cliquez sur le bouton!</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sxm-pJ-lI7" customClass="NewsBaseViewController" customModule="AnimalsMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Actualités" image="internet" id="Qw3-a7-wGx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="21b-Gy-gHW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="21b-Gy-gHW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3317,13 +3314,13 @@ Cliquez sur le bouton!</string>
                     <tabBarItem key="tabBarItem" tag="4" title="Profil" image="user" id="baZ-4J-edt" userLabel="User item"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="o0j-Wb-gNd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="o0j-Wb-gNd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="hcs-Ov-Ltb" kind="relationship" relationship="rootViewController" id="FsL-1l-PnA"/>
+                        <segue destination="3oR-ch-bF3" kind="relationship" relationship="rootViewController" id="lNS-Lx-umv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqZ-fW-5oR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3335,7 +3332,7 @@ Cliquez sur le bouton!</string>
             <objects>
                 <navigationController storyboardIdentifier="newPost" automaticallyAdjustsScrollViewInsets="NO" id="zmS-6a-U6u" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lcJ-pE-TSW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcJ-pE-TSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3346,7 +3343,7 @@ Cliquez sur le bouton!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDN-H8-Lop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4984.8000000000002" y="634.632683658171"/>
+            <point key="canvasLocation" x="4447" y="835"/>
         </scene>
         <!--LegendViewController-->
         <scene sceneID="rEN-Dv-9y2">
@@ -3404,23 +3401,6 @@ Cliquez sur le bouton!</string>
             </objects>
             <point key="canvasLocation" x="5934" y="1401"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="61a-b4-eFk">
-            <objects>
-                <viewController id="Rq8-K0-P4b" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4W3-Ys-kxl"/>
-                        <viewControllerLayoutGuide type="bottom" id="sh1-g8-vJJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kpW-qT-kDa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Iqy-Ot-Vu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="add-friend" width="64" height="64"/>
@@ -3453,11 +3433,11 @@ Cliquez sur le bouton!</string>
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hk7-Ko-FtT"/>
         <segue reference="WfR-eh-Tn4"/>
-        <segue reference="gwg-S5-azU"/>
-        <segue reference="iOD-lm-IUA"/>
-        <segue reference="m6z-oo-m4b"/>
+        <segue reference="hk7-Ko-FtT"/>
+        <segue reference="8KI-6L-rDo"/>
+        <segue reference="Deu-K2-YQi"/>
+        <segue reference="x47-6l-cMl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
