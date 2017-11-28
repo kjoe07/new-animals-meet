@@ -27,8 +27,7 @@ target 'AnimalsMeet' do
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftLocation'
     pod 'Fabric'
-    pod 'Crashlytics' 
-    pod 'SwiftyJSON'
+    pod 'Crashlytics'
     pod 'SnapKit'
     pod 'ARSLineProgress'
     pod 'FBSDKLoginKit'
@@ -44,5 +43,6 @@ target 'AnimalsMeet' do
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
     pod 'CZPicker'
+    pod 'SwiftyJSON'
 
 end
