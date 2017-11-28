@@ -88,7 +88,7 @@ class Api {
                         }
                     }
             }
-            print(c.debugDescription)
+           // print(c.debugDescription)
         }
     }
     

@@ -21,8 +21,9 @@ class NotificationModel {
 
       user = UserModel(fromJSON: notification["user_sender"])
       let animalJSON = notification["animal_sender"]
-      
-      if animalJSON.exists() && animalJSON.null == nil {
+    
+    
+      if animalJSON.exists() && animalJSON.null == nil && !animalJSON.isEmpty {
          animal = AnimalModel(fromJSON: animalJSON)
       }
       

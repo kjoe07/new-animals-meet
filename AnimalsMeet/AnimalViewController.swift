@@ -793,7 +793,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     @IBOutlet weak var followingCount: UILabel!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var containerHeight: NSLayoutConstraint!
     var animal: AnimalModel!
     var user: UserModel!
     var shouldHideNavigationBar = true
@@ -1246,7 +1246,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
 
 extension AnimalVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //        var isDown = false
+       /* //        var isDown = false
         //        if scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y > 0 {
         //            isDown = false
         //            print("Direction up")
@@ -1254,13 +1254,36 @@ extension AnimalVC: UIScrollViewDelegate {
         //            isDown = true
         //            print("Direction down")
         //        }
+        if scrollView == self.scrollView {
+            print("el scroll")
+        }else{
+            print("el tableview")
+        }
+        print("el offset\(scrollView.contentOffset.y)")
+       
         let tableView = self.selectedViewController.tableView!
-        if scrollView.bounds.intersects(infoView.frame) == true {
+         print("el offset del tableView \(tableView.contentOffset.y)")
+        
+        if scrollView.contentOffset.y > 0.0 && tableView.contentOffset.y == 0.0{
+            /*if tableView.contentOffset.y {
+                
+            }*/
+            UIView.animateKeyframes(withDuration: 0.3, delay: 0.0, options: [], animations: {
+                self.containerHeight.constant = 0.0
+            }, completion: nil)
+            print("mayor")
+        }else if tableView.contentOffset.y < 0{
+            UIView.animateKeyframes(withDuration: 0.3, delay: 0.0, options: [], animations: {
+                self.containerHeight.constant = 230.0
+            }, completion: nil)
+            print("menor")
+        }
+        /*if scrollView.bounds.(infoView.frame) == true {
             //the UIView is within frame, use the UIScrollView's scrolling.
-            
+            print("intersecta")
+            self.containerHeight.constant = 0.0
             if tableView.contentOffset.y == 0 {
                 //tableViews content is at the top of the tableView.
-                
                 tableView.isUserInteractionEnabled = false
                 tableView.resignFirstResponder()
                 print("using scrollView scroll")
@@ -1275,14 +1298,15 @@ extension AnimalVC: UIScrollViewDelegate {
             }
             
         } else {
-            
+            self.containerHeight.constant = 230.0
+            self.view.layoutIfNeeded()
             //UIView is not in frame. Use tableViews scroll.
             
             tableView.isUserInteractionEnabled = true
             scrollView.resignFirstResponder()
             print("using tableView scroll")
             
-        }
+        }*/*/
     }
 }
 

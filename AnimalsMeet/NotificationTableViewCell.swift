@@ -24,21 +24,23 @@ class NotificationTableViewCell: UITableViewCell {
         
         switch code {
         case 0:
-            actionText = "a aimé votre photo"
+            actionText = "a aimé votre photo" //le gusta su foto
             iconNotif.image = UIImage(named: "heart_icon_round")
             
         case 1:
-            actionText = "vous a envoyé un message"
+            actionText = "vous a envoyé un message" //te envió un mensaje
             iconNotif.image = UIImage(named: "chat")
 
         case 2:
-            actionText = "a aimé votre profil"
+            actionText = "a aimé votre profil" //le gustó su perfil
             iconNotif.image = UIImage(named: "heart_icon_round")
-
+        case 3:
+            actionText = "send you an invitation to a Balade" //le gustó su perfil
+            iconNotif.image = UIImage(named: "chat")
         default:
             actionText = "[...]"
         }
-        
+        print("whoForm \(whoFrom)")
         setHtml("\(style)<b>\(whoFrom)</b> \(actionText!)")
     }
     

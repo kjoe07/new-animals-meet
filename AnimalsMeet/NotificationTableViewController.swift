@@ -152,19 +152,23 @@ class NotificationTableViewController: UITableViewController {
         }
         
         let notification = theData[indexPath.row]
+       print("notification: \(notification.user.nickname!)")
+
+        //debugPrint("notification: \(notification.user)")
+        //NSLog("notification", notification)
         
         if let updateDate = notification.updatedAt {
             cell.dateLabel.text = updateDate.localizedString
         }
         
         if let animal = notification.animal {
-            
+            print("mostrando el animal \(animal.name!)")
             cell.setNotificationContent(from: animal.name, action: notification.type)
             cell.profilePic.hnk_setImageFromURL(animal.profilePicUrl)
             
         } else {
             
-            let userName = "@\(notification.user.nickname!)"
+            let userName = "@" + notification.user.nickname!//"@\(notification.user.nickname!)"
             
             cell.setNotificationContent(from: userName, action: notification.type)
             cell.profilePic.kf.setImage(with: notification.user.image)
@@ -174,6 +178,20 @@ class NotificationTableViewController: UITableViewController {
             if let animal = notification.animal {
                 let vc = AnimalVC.newInstance(animal)
                 self.navigationController?.pushViewController(vc, animated: true)
+            }else if let type = notification.type {
+                if type == 1{
+                    self.tabBarController?.selectedIndex = 3
+                    //let newchatVC = ChatTableViewController()
+                    //self.navigationController?.pushViewController(newchatVC, animated: true)
+                }else if type == 0 || type == 3{
+                    //let newFedVC = NewsViewController()
+                    //self.navigationController?.pushViewController(newFedVC, animated: true)
+                    self.tabBarController?.selectedIndex = 0
+                }/*else if type == 2 {
+                    let vc = AnimalVC.newInstance(notification.user)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }*/
+                
             }
         }
         

@@ -18,12 +18,27 @@ class alert {
       view.configureTheme(.success)
       view.configureDropShadow()
       
+      
       let iconText = ["🐶"].sm_random()!
       view.configureContent(title: title, body: subTitle, iconText: iconText)
       view.button?.isHidden = true
       SwiftMessages.show(view: view)
    }
-   
+    static func showAlertSuccessSegue(title: String, subTitle: String)
+    {
+        let view = MessageView.viewFromNib(layout: .CardView)
+        view.configureTheme(.success)
+        view.configureDropShadow()
+        
+        
+        let iconText = ["🐶"].sm_random()!
+        view.configureContent(title: title, body: subTitle, iconText: iconText)
+        view.button?.isHidden = true
+        view.tapHandler = {_ in
+            
+        }
+        SwiftMessages.show(view: view)
+    }
    static func showAlertError(title: String, subTitle: String)
    {
       let view = MessageView.viewFromNib(layout: .CardView)
