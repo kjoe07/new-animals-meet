@@ -6,6 +6,7 @@ target 'AnimalsMeet' do
   use_frameworks!
 
   # Pods for AnimalsMeet
+    pod 'SwiftyJSON'
     pod 'SCLAlertView', :git => 'https://github.com/vikmeup/SCLAlertView-Swift'
     pod 'Fusuma', :git => 'https://github.com/ytakzk/Fusuma.git'
     pod 'SwiftGifOrigin', '~> 1.6.1'
@@ -43,6 +44,6 @@ target 'AnimalsMeet' do
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
     pod 'CZPicker'
-    pod 'SwiftyJSON'
+    
 
 end
