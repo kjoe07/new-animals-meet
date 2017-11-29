@@ -186,7 +186,13 @@ class NotificationTableViewController: UITableViewController {
                 }else if type == 0 || type == 3{
                     //let newFedVC = NewsViewController()
                     //self.navigationController?.pushViewController(newFedVC, animated: true)
+                    /*if (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).pagerVC.pageViewController != (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).feedFriends{
+                        (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).pagerVC.selectedIndex = 0
+                        
+                    }//selected //feedFriends.endpoint = ""
+                    (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).feedFriends.endpoint = "/feeds/friends?\(notification.user.id)"*/
                     self.tabBarController?.selectedIndex = 0
+                    
                 }/*else if type == 2 {
                     let vc = AnimalVC.newInstance(notification.user)
                     self.navigationController?.pushViewController(vc, animated: true)

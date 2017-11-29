@@ -981,6 +981,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         }
         
         if user.isMe {
+            //App.instance.userModel = UserModel.getProfilUser()
+            _ = App.instance.requestUserBreedsAndAnimals()
             let me = App.instance.userModel!
             setUser(me)
             userProfilePic.kf.setImage(with: me.image)
@@ -1060,6 +1062,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
                 }
                 let message = self.user.isFriend() ? "Vous suivez maintenant cette personne" : "Vous ne suivez plus cette personne"
                 alert.showAlertSuccess(title: "Ami", subTitle: message)
+                //App.instance.userModel = UserModel.getProfilUser()
+               _ = App.instance.requestUserBreedsAndAnimals()
             }.catch(execute: App.showRequestFailure)
     }
     

@@ -35,7 +35,7 @@ class NotificationTableViewCell: UITableViewCell {
             actionText = "a aimé votre profil" //le gustó su perfil
             iconNotif.image = UIImage(named: "heart_icon_round")
         case 3:
-            actionText = "send you an invitation to a Balade" //le gustó su perfil
+            actionText = "Il a commencé une Balade" //le gustó su perfil
             iconNotif.image = UIImage(named: "chat")
         default:
             actionText = "[...]"

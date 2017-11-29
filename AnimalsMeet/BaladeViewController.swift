@@ -32,8 +32,8 @@ class BaladeViewController: UIViewController, UITextViewDelegate {
    }
    
    @IBAction func send(_ sender: Any) {
-      _ = Api.instance.post("/hike", withParams: ["hike[content]" : baladeDescription.text!, "hike[sendFriends]" :followedFriends.isOn, "hike[animal_id]" :  App.instance.userData.selectedAnimal, "hike[distanceInKm]" : Int(distanceSlider.value)])
-         //.then { _ in alert.showAlertSuccess(title: "Succès", subTitle: "La balade a été créée") }
+      _ = Api.instance.post("/hike", withParams: ["content" : baladeDescription.text!, "sendFriends" :followedFriends.isOn, "animal_id" :  App.instance.userData.selectedAnimal, "distanceInKm" : Int(distanceSlider.value)])
+         .then { _ in alert.showAlertSuccess(title: "Succès", subTitle: "La balade a été créée") }
          .catch { _ in alert.showAlertError(title: "Erreur", subTitle: "Une erreur est survenue en créant la balade") }
    }
     
