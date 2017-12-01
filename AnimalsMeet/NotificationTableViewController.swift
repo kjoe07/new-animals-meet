@@ -191,6 +191,14 @@ class NotificationTableViewController: UITableViewController {
                         
                     }//selected //feedFriends.endpoint = ""
                     (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).feedFriends.endpoint = "/feeds/friends?\(notification.user.id)"*/
+                    /*if ((self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).pagerVC) != nil{
+                        (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).pagerVC.selectedIndex = 0
+                    }
+                    (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).feedFriends.postId = 81*/
+                    let appDelgate = UIApplication.shared.delegate as! AppDelegate
+                    // FIXME: - Update to real post id comming from Notification endpoint
+                    appDelgate.postID = notification.postId
+                    
                     self.tabBarController?.selectedIndex = 0
                     
                 }/*else if type == 2 {

@@ -19,6 +19,7 @@ class NewsViewController: UIViewController {
     
     var searchBar: UISearchBar!
     var containerView: UIView!
+    var postId: Int!
     
     override func viewDidLoad() {
         feedVC.endpoint = endpoint
@@ -67,7 +68,7 @@ class NewsViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         swapControllers()
     }
-    
+
     func swapControllers() {
         if !isTVC {
             feedVC.view.removeFromSuperview()

@@ -15,6 +15,7 @@ class NotificationModel {
    var type: Int!
    var user: UserModel!
    var animal: AnimalModel?
+    var postId: Int?
    
    init(fromJSON json: JSON) {
       let notification = json["notification"]
@@ -35,5 +36,8 @@ class NotificationModel {
       else {
          updatedAt = Date()
       }
+    if notification["post_number"].null != nil && notification["post_number"].stringValue != "null" && notification["post_number"].stringValue != "" {
+        postId = notification["post_number"].intValue
+    }
    }
 }

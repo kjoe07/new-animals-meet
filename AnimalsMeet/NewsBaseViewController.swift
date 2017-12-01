@@ -56,7 +56,31 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
       pushViewController(pagerVC, animated: false)
       view.backgroundColor = .white
       setPostButton()
+    
    }
+   override func viewDidAppear(_ animated: Bool){
+        /*if let postId = feedFriends.postId {
+            let i = feedFriends.feedVC.theData.index(where: { data in
+                
+                data.id == postId
+            })
+            print("i value: \(i)")
+            let indexPath = IndexPath.init(row: i!, section: 0)
+            feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+        }*/
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if let postID = appDelegate.postID, let data = feedFriends.feedVC.theData {
+            self.pagerVC.selectedIndex = 0
+           // let i = data.index(where: { data in
+             //   data.id == postID
+            //})
+            /*print("i value: \(i)")
+            let indexPath = IndexPath.init(row: i!, section: 0)
+            feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+            appDelegate.postID = nil
+            print("el valor de post id \(String(describing: appDelegate.postID))")*/
+        }
+    }
    
    func pageTabBarController(pageTabBarController: PageTabBarController, didTransitionTo viewController: UIViewController) {
       if viewController == feedPublic {

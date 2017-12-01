@@ -20,7 +20,7 @@ import SwiftMessages
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
-    
+    var postID: Int?
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         let deviceToken = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         #if OFFLINE
-            Api.instance.serverUrl = "http://localhost:3000/v1"
+            Api.instance.serverUrl = "http://192.168.137.1/v1"
         #elseif DEBUG
-            Api.instance.serverUrl = "http://52.169.82.167/v1"//"http://192.168.137.1/v1"//
+            Api.instance.serverUrl = "http://52.169.82.167/v1"//""http://192.168.137.1/v1"//
         #else
             Api.instance.serverUrl = "http://52.169.82.167/v1"
         #endif
@@ -90,7 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let aps = userInfo["aps"] as! [String: AnyObject]
         let custom  = aps["alert"]! as? NSDictionary
+        
         var i = 0
+        //TODO: - Update postID with value in APS or Any Thing else
+        //TODO: - Ask yunier name of field with postId
         switch custom?["loc-key"] as! String {
         case "LIKE":
             i = 1
@@ -103,6 +106,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             break
         case "BALADE":
             i = 0
+            if let postId = userInfo["post_number"] {
+                postID = postId as? Int
+            }            
+            
+            // FIXME: - value of postID here -
+            postID = 85
             break
         default:
             i = 0

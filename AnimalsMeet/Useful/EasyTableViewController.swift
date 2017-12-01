@@ -50,10 +50,10 @@ class EasyTableViewController<T, C: UITableViewCell>: UITableViewController, Eas
     
     var theData: [T]!
     var pageSize = 20
-    private var initializationIsDone = false
-    private var cellReuseIdentifier: String!
-    private var bottomWasReached = false
-    private lazy var indicator = UIActivityIndicatorView()
+   /* private*/ var initializationIsDone = false
+    /*private */ var cellReuseIdentifier: String!
+    /*private */ var bottomWasReached = false
+    /*private*/ lazy var indicator = UIActivityIndicatorView()
     
     private var downloadMethod: Useful.ApiGetter!
     lazy private var backgroundViewWhenDataIsEmpty: UIView = {
@@ -87,7 +87,7 @@ class EasyTableViewController<T, C: UITableViewCell>: UITableViewController, Eas
             }
         }
     }
-    private var loading = false
+    /*private */var loading = false
     
     public func fetchMethod(_ getter: Useful.ApiGetter) {
         downloadMethod = getter
