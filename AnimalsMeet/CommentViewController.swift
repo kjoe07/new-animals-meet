@@ -10,7 +10,7 @@ import UIKit
 import SearchTextField
 import CZPicker
 import SwiftyJSON
-class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerViewDelegate, CZPickerViewDataSource {
+class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerViewDelegate, CZPickerViewDataSource, UITextViewDelegate {
     @IBOutlet weak var writeAComment: UIView!
     @IBOutlet weak var tableViewContainer: UIView!
     
@@ -21,7 +21,7 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
     var users = ["User1","User2","User3"]
     var userMode = false
     let picker = CZPickerView(headerTitle: "Friends", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-    @IBOutlet weak var commentInput: SearchTextField!
+    @IBOutlet weak var commentInput: UITextView! //SearchTextField!
     var userJson = [JSON]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +33,9 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
         }
         commentInput.delegate = self
         commentInput.keyboardType = .emailAddress
+        commentInput.becomeFirstResponder()
         
-        commentInput.addTarget(self, action: #selector(self.textEditingChanged(_:)), for: .editingChanged)
+       // commentInput.addTarget(self, action: #selector(self.textEditingChanged(_:)), for: .editingChanged)
         self.sendButton.alpha = 0
         loadUser()
         
@@ -43,7 +44,21 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
         picker?.needFooterView = false
         
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textViewDidChange(_ textView: UITextView) {
+        if commentInput.text?.isEmpty != false {
+            self.sendButton.alpha = 0
+        }
+        else {
+            self.sendButton.alpha = 1
+        }
+    }
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
+            
+            picker?.show()
+        }
+    }
+    /*func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let lastWord = commentInput.text?.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (commentInput.text as NSString?)?.range(of: lastWord){
             /*if self.search(in: lastWord), searchDuplicate(this: lastWord) == 1  {
                 let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.textView.font!] as [String : Any]
@@ -77,8 +92,8 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
              self.commentInput.attributedText = attributedString/**/
         }
         return true
-    }
-    func textEditingChanged(_ sender: Any) {
+    }*/
+    /*func textEditingChanged(_ sender: Any) {
         if commentInput.text?.isEmpty != false {
             self.sendButton.alpha = 0
         }
@@ -87,16 +102,18 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
         }
         if let b = commentInput.text?.hasSuffix(" @"), b {
             userMode = true
+            //picker.
             picker?.show()
             
         }
         if userMode {
             commentInput.filterStrings(users)
         }
-    }
+    }*/
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         sendComment(self)
+        self.commentInput.text = ""
         return true
     }
     
@@ -113,7 +130,7 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
         commentTableViewController.theData.append(commentModel)
         commentTableViewController.tableView.reloadData()
         commentInput.text = ""
-        self.textEditingChanged(self)
+        //self.textEditingChanged(self)
         
         commentInput.resignFirstResponder()
         media.comment(content: comment)
@@ -150,7 +167,7 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
     }
     
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
-        print("aqui es adonde")
+       /* print("aqui es adonde")
         print("el valor del row\(userJson[row].arrayValue)")
         self.commentInput.text?.append(userJson[row]["nickname"].stringValue)
         /*var attributedString = NSMutableAttributedString()
@@ -174,9 +191,23 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
         }
         //
         self.commentInput.attributedText = attributedString*/
+        self.navigationController?.setNavigationBarHidden(false, animated: true)*/
+        print("aqui es adonde")
+        print("el valor del row\(userJson[row].arrayValue)")
+        //print(fruits[row])
+        commentInput.text.append(userJson[row]["nickname"].stringValue)
+        if let lastWord = commentInput.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (commentInput.text as NSString?)?.range(of: lastWord, options: .backwards){
+            let attributes = [NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName: self.commentInput.font!] as [String : Any]
+            let attributedString = NSMutableAttributedString(string: "@"+userJson[row]["nickname"].stringValue, attributes: attributes)
+            
+            commentInput.textStorage.replaceCharacters(in: lastWordRange, with: attributedString)
+            self.search(in: userJson[row]["nickname"].stringValue)
+        }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+    func czpickerViewWillDismiss(_ pickerView: CZPickerView!) {
+        commentInput.becomeFirstResponder()
+    }
     func czpickerViewDidClickCancelButton(_ pickerView: CZPickerView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
