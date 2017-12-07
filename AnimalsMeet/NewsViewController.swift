@@ -9,7 +9,7 @@
 import UIKit
 import Floaty
 
-class NewsViewController: UIViewController {
+class NewsViewController: UIViewController,UITextFieldDelegate {
     
     lazy var feedVC = FeedViewController(style: .plain)
     lazy var collectionVC = MosaicViewController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -53,6 +53,7 @@ class NewsViewController: UIViewController {
         searchBar.delegate = self
         searchBar.returnKeyType = .done
         
+        
         containerView = UIView()
         self.view.addSubview(containerView)
         containerView.snp.makeConstraints { make in
@@ -67,6 +68,12 @@ class NewsViewController: UIViewController {
 
         hideKeyboardWhenTappedAround()
         swapControllers()
+        
+        for view in searchBar.subviews{
+            if view.isKind(of: UITextField.self){
+                (view as! UITextField).delegate = self
+            }
+        }
     }
 
     func swapControllers() {
@@ -97,13 +104,52 @@ extension NewsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+         self.view.endEditing(true)
+    }
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //searchBar.showsCancelButton = true
         let text = searchText.isEmpty ? nil : searchText
-        
-        feedVC.searchTerm = text
+        print("el texto a buscar \(String(describing: text))")
+        if text == nil {
+            print("quito el responder")
+            searchBar.resignFirstResponder()
+            feedVC.searchTerm = nil
+        }
+        /*feedVC.searchTerm = text
+        //feedVC.search(searchFor: text)
         //feedVC.fetchItems(from: <#T##Int#>, count: <#T##Int#>)
+        let _ = feedVC.shouldRefresh()*/
+    }/**/
+   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("termino la busqueda")
+        let text = (searchBar.text?.isEmpty)! ? nil : searchBar.text
+        if text == nil {
+            searchBar.resignFirstResponder()
+            feedVC.searchTerm = nil
+        }
+        feedVC.searchTerm = text
+        //feedVC.search(searchFor: text!)
         let _ = feedVC.shouldRefresh()
+    } /**/
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("clear TableVIew")
+        //searchBar.showsCancelButton = false
+        // Clear any search criteria
+        searchBar.text = ""
+        feedVC.searchTerm = ""
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data from normal data source
+        self.feedVC.tableView.reloadData()
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        print("el delagado en clear boton")
+        searchBar.resignFirstResponder()
+        feedVC.searchTerm = nil
+        _ = feedVC.shouldRefresh()
+        return true
     }
 
 }

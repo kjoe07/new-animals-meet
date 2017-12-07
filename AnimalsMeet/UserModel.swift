@@ -40,7 +40,10 @@ class UserModel {
       } else if result["user"].null == nil {
          result = result["user"]
       }
-      
+    if result["animals"].null != nil {
+        animals = result["animal"].arrayValue.map{ AnimalModel(fromJSON : $0)}
+    }
+    
       followers = result["followers"].arrayValue.map { UserModel(fromJSON: $0) }
       provider = result["provider"].stringValue
       nickname = result["nickname"].stringValue.replacingOccurrences(of: " ", with: "").lowercased()

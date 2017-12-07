@@ -13,8 +13,11 @@ import SwiftyJSON
 import FBSDKShareKit
 import AFDateHelper
 import SwiftDate
-
+/*protocol update {
+    func updateView()
+}*/
 class MediaCell: UITableViewCell {
+   // var delegate: update?
    
    @IBOutlet var mediaView: UIView!
    @IBOutlet weak var nicknames: UILabel!
@@ -114,7 +117,10 @@ class MediaCell: UITableViewCell {
    }
    
    @IBAction func goToProfile(_ sender: Any) {
-      goToProfile()
+    //if  goToProfile() != nil {
+        goToProfile()
+    //}
+     // goToProfile()
    }
    
    @IBAction func reportPicture(_ sender: Any) {
@@ -192,6 +198,7 @@ class MediaCell: UITableViewCell {
             self.media.likeCount -= 1
             self.media.isLiked = false
             _ = self.media.callForUnlike().then { _ -> Void in self.updateLikeCount() }
+            
 //            sender.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
          } else {
             self.media.likeCount += 1
@@ -200,7 +207,11 @@ class MediaCell: UITableViewCell {
             _ = self.media.callForLike(fromAnimal: App.instance.getSelectedAnimal().id).then { _ -> Void in self.updateLikeCount() }
 //            sender.setImage(#imageLiteral(resourceName: "heart red"), for: .normal)
          }
-      }, completion: nil)
+      }, completion: nil/*{_ in
+        //self.delegate?.updateView()
+        //AnimalVC.view.setNeedsLayout()
+        //AnimalVC.view.layoutIfNeeded()
+      }*/)
    }
    
    @IBAction func showComments(_ sender: Any) {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B4014641DE59996008A0862 /* GenericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4014631DE59996008A0862 /* GenericTextField.swift */; };
+		111E37E01FD7A77E00D0A111 /* headerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111E37DF1FD7A77E00D0A111 /* headerView.xib */; };
 		112795A41FBAA2C8008A204C /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112795A31FBAA2C8008A204C /* request.swift */; };
 		45FEF856C4A672BF352663DA /* Pods_AnimalsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */; };
 		5B7211D41DCAA12900160458 /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */; };
@@ -117,6 +118,7 @@
 
 /* Begin PBXFileReference section */
 		0B4014631DE59996008A0862 /* GenericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTextField.swift; sourceTree = "<group>"; };
+		111E37DF1FD7A77E00D0A111 /* headerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = headerView.xib; sourceTree = "<group>"; };
 		112795A31FBAA2C8008A204C /* request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = request.swift; path = AnimalsMeet/request.swift; sourceTree = SOURCE_ROOT; };
 		135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalsMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				B43FB88E1EE71784004EE2E7 /* ProfileTabViewController.swift */,
 				8F8FDC9F1F99A4B2002E5112 /* TestViewController.swift */,
 				B4AEB8221EE0164C00D0A69D /* UserPicsTableViewController.swift */,
+				111E37DF1FD7A77E00D0A111 /* headerView.xib */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				B49285AF1ECF40A5004E5600 /* AnimalListTableViewCell.xib in Resources */,
 				B493ECF61ED83BAC003F6D1B /* CommentTableViewCell.xib in Resources */,
 				F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */,
+				111E37E01FD7A77E00D0A111 /* headerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

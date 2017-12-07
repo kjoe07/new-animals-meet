@@ -770,7 +770,7 @@ import ARSLineProgress
 import Fusuma
 import Material
 
-class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, PageTabBarControllerDelegate {
+class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, PageTabBarControllerDelegate/*, update */{
     
     @IBOutlet weak var nickname: UILabel!
     @IBOutlet var animal_name_age: UILabel!
@@ -844,8 +844,7 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
     func configureNavigationBar() {
         if shouldHideNavigationBar {
             //navigationController!.setNavigationBarHidden(true, animated: false)
-        }
-        
+        }        
         navigationController?.navigationBar.isTranslucent = true
     }
     
@@ -873,6 +872,8 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
         postFeedVC.pageTabBarItem.titleColor = .gray
         photoFeedVC.pageTabBarItem.title = "Photos"
         photoFeedVC.pageTabBarItem.titleColor = .gray
+        //postFeedVC.updateDelegate = self
+        
         
         //      postFeedVC.tableView.isScrollEnabled = false
         //      photoFeedVC.tableView.isScrollEnabled = false
@@ -1240,6 +1241,11 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
             button.isHidden = true
         }
     }
+    /*func updateView() {
+        print("delegate in like")
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+    }*/
     
     //    var isDragging = false
     //

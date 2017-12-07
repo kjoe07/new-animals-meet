@@ -38,8 +38,8 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
    
     override func viewDidLoad() {
       super.viewDidLoad()
-      searchController.searchBar.sizeToFit()
-      self.navigationItem.titleView = searchController.searchBar
+      //searchController.searchBar.sizeToFit()
+      //self.navigationItem.titleView = searchController.searchBar
       let ViewForDoneButtonOnKeyboard = UIToolbar()
       ViewForDoneButtonOnKeyboard.sizeToFit()
       let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
@@ -48,7 +48,7 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
       pullToRefreshEnabled = true
       tableView.estimatedRowHeight = 120
       tableView.rowHeight = UITableViewAutomaticDimension
-      searchController.searchResultsUpdater = self
+      /*searchController.searchResultsUpdater = self
       definesPresentationContext = true
       searchController.dimsBackgroundDuringPresentation = false
       self.searchController.hidesNavigationBarDuringPresentation = false
@@ -62,7 +62,7 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
         v.backgroundColor = #colorLiteral(red: 0.4651720524, green: 0.7858714461, blue: 0.9568093419, alpha: 1)
         let barButton = UIBarButtonItem(customView: v)
         self.navigationItem.setRightBarButton(barButton, animated: true)
-      searchController.searchBar.delegate = self
+      searchController.searchBar.delegate = self*/
     }
    
     func doneBtnFromKeyboardClicked() {
