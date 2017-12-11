@@ -44,6 +44,6 @@ target 'AnimalsMeet' do
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
     pod 'CZPicker'
-    
+    pod 'LFTwitterProfile'
 
 end

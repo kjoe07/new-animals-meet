@@ -74,7 +74,7 @@ class Api {
                 .validate()
                 .responseJSON() { response in
                    print("la respuesta de: \(Api.instance.serverUrl)\(endpoint):")
-                    print(response)
+                  //  print(response)
                     switch response.result {
                     case .success(let json):
                         fulfill(JSON(json))

@@ -20,7 +20,8 @@ class ConversationViewController: NMessengerViewController {
    var iTextedLast: Bool!
    var conversation: ConversationModel!
    var uglyConversationReloadingTimer: Timer?
-   
+    var lastid : Int!
+    var pageN: Int!
    // TODO: use the library with nice time displays
    func putTimestamp(date: Date) {
       
@@ -88,6 +89,7 @@ class ConversationViewController: NMessengerViewController {
       newMessage.currentViewController = self
       
       if currentGroup.isIncomingMessage == !isIncomingMessage {
+        print("supongo que sea mensaje propio")
          
          if messageDate != nil {
             putTimestamp(date: messageDate)
@@ -105,10 +107,12 @@ class ConversationViewController: NMessengerViewController {
          messengerView.addMessageToMessageGroup(newMessage, messageGroup: self.currentGroup, scrollsToLastMessage: false)
          self.messengerView.addMessage(self.currentGroup, scrollsToMessage: true, withAnimation: isIncomingMessage ? .left : .right)
       } else {
-         self.messengerView.addMessageToMessageGroup(newMessage, messageGroup: self.currentGroup, scrollsToLastMessage: true)
+        print("mensaje entrante")
+         self.messengerView.addMessageToMessageGroup(newMessage, messageGroup: self.currentGroup, scrollsToLastMessage: true) //true
       }
       
       if !isIncomingMessage && shouldSend {
+        print("enviando mensaje")
          conversation.send(msg: text).catch(execute: App.showRequestFailure)
       }
       
@@ -126,23 +130,34 @@ class ConversationViewController: NMessengerViewController {
    func refreshConv() {
       print("refreshing")
       let pageSize = 10
-      let page = conversation.messagesFixme.count / pageSize + 1
+    var page = 0
+    if self.pageN != nil {
+        page = self.pageN
+    }else {
+        page = conversation.messagesFixme.count / pageSize + 1
+    }
+    
       
-      Api.instance.get("/messaging/\(conversation.recipient.id!)/\(page)")
+      Api.instance.get("/messaging/\(conversation.recipient.id!)/\(page)"/**/)
          .then { json -> Void in
+            self.pageN = json["total_page"].intValue
             let messages = json["conversation"].arrayValue.map { msg in
                MessageModel(fromJSON: msg)
             }
             
             let messageCount = self.conversation.messagesFixme.count
-            let lastMessage = self.conversation.messagesFixme.last
+            let lastMessage = self.conversation.messagesFixme.first //self.conversation.messagesFixme.first//
+            print("el ultimo Id \(String(describing: self.lastid))")
             
             for m in messages {
                
-               let conv = self.conversation!
+               //let conv = self.conversation!
                
-               if messageCount == 0 || m.id > lastMessage!.id {
+               /*if messageCount == 0 || m.id > lastMessage!.id {
+                print("contando mensajes \(messageCount)")
+                print("el valor de la  iteracion actual: \(m.id)")
                   if !self.conversationHasLoaded || m.senderId != App.instance.userModel.id {
+                    print("el mensaje no es mio x lo que añado a los mensajes")
                      conv.messagesFixme.append(m)
                      self.shouldSend = false
                      self.messageDate = m.date
@@ -150,10 +165,31 @@ class ConversationViewController: NMessengerViewController {
                      print("added item")
                      self.shouldSend = true
                   }
-               } 
+               } */
+                if messageCount == 0 && !self.conversationHasLoaded{
+                    //conv.messagesFixme.append(m)
+                    self.conversation.messagesFixme.append(m) //insert(m, at: 0) //
+                    self.shouldSend = false
+                    self.messageDate = m.date
+                    _ = self.sendText(m.content, isIncomingMessage: m.senderId != App.instance.userModel.id)
+                    print("added All items in Conversation ")
+                    self.shouldSend = true
+                }else{
+                    print("m.id \(m.id) > lastmesage.id \(String(describing: self.lastid))")
+                    if m.id > (self.lastid)! && m.senderId != App.instance.userModel.id{
+                        print("debo Añadir un mensaje nuevo")
+                        self.conversation.messagesFixme.append(m) //insert(m, at: 0) //append(m)
+                        self.shouldSend = false
+                        self.messageDate = m.date
+                        _ = self.sendText(m.content, isIncomingMessage: m.senderId != App.instance.userModel.id)
+                        print("added new items in Conversation")
+                        self.shouldSend = true
+                    }
+                }
             }
+            self.lastid = self.conversation.messagesFixme.last?.id
             
-            self.conversationHasLoaded = true
+            self.conversationHasLoaded =  self.conversation.messagesFixme.count > 0 ? true : false //true
          }.catch { err in
       }
    }
@@ -181,7 +217,7 @@ class ConversationViewController: NMessengerViewController {
       
       (self.inputBarView as! NMessengerBarView).inputTextViewPlaceholder = "Message..."
       
-      uglyConversationReloadingTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.refreshConv), userInfo: nil, repeats: true);
+      uglyConversationReloadingTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.refreshConv), userInfo: nil, repeats: true);
       self.navigationItem.title = conversation.recipient.name
       self.automaticallyAdjustsScrollViewInsets = false
       
