@@ -36,7 +36,7 @@ class ConversationModel {
    }
    
    func send(msg: String) -> Promise<JSON> {
-      
+      print("el mensaje a enviar al endoint: \(msg)")
       let parameters = ["messaging[correspondent]" : String(recipient.id!), "messaging[content]": msg]
       return Api.instance.request("/messaging", withParams: parameters, method: .post, encoding: URLEncoding.default)
       

@@ -108,6 +108,18 @@ class MediaModel {
    }
    
    func comment(content: String) -> Promise<JSON> {
-      return Api.instance.post("/media/\(id!)/create_comment", withParams: ["content": content])
+    //let new_content = encode_emoji(content)
+      return Api.instance.post("/media/\(id!)/create_comment", withParams: ["content": content.encodeEmoji])
    }
 }
+extension MediaModel{
+    func encode_emoji(_ s: String) -> String {
+        let data = s.data(using: .nonLossyASCII, allowLossyConversion: true)!
+        return String(data: data, encoding: .utf8)!
+    }
+    func decode_emoji(_ s: String) -> String? {
+        let data = s.data(using: .utf8)!
+        return String(data: data, encoding: .nonLossyASCII)
+    }
+}
+

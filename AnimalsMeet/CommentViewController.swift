@@ -263,3 +263,13 @@ extension NSMutableAttributedString {
         return self
     }
 }
+extension UIViewController{
+    func encode_emoji(_ s: String) -> String {
+        let data = s.data(using: .nonLossyASCII, allowLossyConversion: true)!
+        return String(data: data, encoding: .utf8)!
+    }
+    func decode_emoji(_ s: String) -> String? {
+        let data = s.data(using: .utf8)!
+        return String(data: data, encoding: .nonLossyASCII)
+    }
+}

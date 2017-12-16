@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             view.configureTheme(.success)
             view.configureDropShadow()
             let iconText = ["🐶"].sm_random()!
-            view.configureContent(title: custom?["title"] as! String, body: aps["body"] as! String, iconText: iconText)
+            view.configureContent(title: custom?["title"] as! String, body: custom?["body"] as! String, iconText: iconText)
             view.button?.isHidden = true
             view.tapHandler = {_ in
                 /*let storyboard = UIStoryboard(name: "Main", bundle: nil)

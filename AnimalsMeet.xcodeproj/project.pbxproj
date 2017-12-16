@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B4014641DE59996008A0862 /* GenericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4014631DE59996008A0862 /* GenericTextField.swift */; };
+		1104F9FB1FE4F450003A26C5 /* dateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104F9FA1FE4F450003A26C5 /* dateUtils.swift */; };
 		112795A41FBAA2C8008A204C /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112795A31FBAA2C8008A204C /* request.swift */; };
 		45FEF856C4A672BF352663DA /* Pods_AnimalsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */; };
 		5B7211D41DCAA12900160458 /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */; };
@@ -117,6 +118,7 @@
 
 /* Begin PBXFileReference section */
 		0B4014631DE59996008A0862 /* GenericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTextField.swift; sourceTree = "<group>"; };
+		1104F9FA1FE4F450003A26C5 /* dateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateUtils.swift; sourceTree = "<group>"; };
 		112795A31FBAA2C8008A204C /* request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = request.swift; path = AnimalsMeet/request.swift; sourceTree = SOURCE_ROOT; };
 		135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalsMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 		B431F7B41EB8937C00A2C674 /* Useful */ = {
 			isa = PBXGroup;
 			children = (
+				1104F9FA1FE4F450003A26C5 /* dateUtils.swift */,
 				B431F7B51EB8937C00A2C674 /* Api.swift */,
 				B431F7B61EB8937C00A2C674 /* appendAttributedStringWithEase.swift */,
 				A0EB49A61EE7010A00DFD36A /* EasyCollectionViewController.swift */,
@@ -681,6 +684,7 @@
 				"${BUILT_PRODUCTS_DIR}/LFTwitterProfile/LFTwitterProfile.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/NMessenger/NMessenger.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
@@ -726,6 +730,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LFTwitterProfile.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMessenger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
@@ -818,6 +823,7 @@
 				A0EC2E231DBE6BD400A6A77C /* BreedSelectorTableViewController.swift in Sources */,
 				A0EB49A51EE6FDF300DFD36A /* MosaicCollectionViewCell.swift in Sources */,
 				9348376B1E0BCB5400CEFFAB /* FuzzySearch.swift in Sources */,
+				1104F9FB1FE4F450003A26C5 /* dateUtils.swift in Sources */,
 				B4AEB8291EE022E700D0A69D /* Unready.swift in Sources */,
 				A04E353F1DF49A67000D6F19 /* MediaCell.swift in Sources */,
 				A04E353D1DF48D38000D6F19 /* MosaicPicturesCell.swift in Sources */,

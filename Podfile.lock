@@ -64,6 +64,7 @@ PODS:
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
+  - MessageKit (0.8.0)
   - NMessenger (1.0.79):
     - AsyncDisplayKit (= 1.9.92)
   - PINCache (3.0.1-beta)
@@ -121,6 +122,7 @@ DEPENDENCIES:
   - LFTwitterProfile
   - Lightbox
   - Material
+  - MessageKit (= 0.8.0)
   - NMessenger (from `https://github.com/Sevauk/NMessenger.git`)
   - PromiseKit
   - PullToRefreshSwift
@@ -195,6 +197,7 @@ SPEC CHECKSUMS:
   LFTwitterProfile: 57cc1c1602e3b4cf297b3d80b85dff16b5257ad4
   Lightbox: 13f55a0a840f7945dc5ac87931564e7fe569fca9
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
+  MessageKit: fd90428d439d17aa0ec85e1d8e8c93c0232502c8
   NMessenger: 95f338594c597cd5dcac1dc9da19e514fdf3949b
   PINCache: 6911fe422a633e18b3d3ddf2bd4f0e55e36e2892
   PINRemoteImage: 308731aa6534500e58fc211b9cc2bb7252df25ba
@@ -216,6 +219,6 @@ SPEC CHECKSUMS:
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 3fd75c0906a12818731deceff97190abb08a5e22
+PODFILE CHECKSUM: 127af4831b842443e49f0424b34bdeecfe23bea8
 
 COCOAPODS: 1.3.1

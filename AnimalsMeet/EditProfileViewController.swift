@@ -118,6 +118,7 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
    }
    
    @IBAction func saveChanges(_ sender: Any) {
+    print("save Changes")
       guard contentChanged || avatarChanged else { return }
 
       guard nameField.text!.characters.count > 1 else {

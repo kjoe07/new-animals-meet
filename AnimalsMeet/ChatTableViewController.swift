@@ -38,8 +38,8 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
    
     override func viewDidLoad() {
       super.viewDidLoad()
-      searchController.searchBar.sizeToFit()
-      self.navigationItem.titleView = searchController.searchBar
+      //searchController.searchBar.sizeToFit()
+      //self.navigationItem.titleView = searchController.searchBar
       let ViewForDoneButtonOnKeyboard = UIToolbar()
       ViewForDoneButtonOnKeyboard.sizeToFit()
       let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
@@ -48,7 +48,7 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
       pullToRefreshEnabled = true
       tableView.estimatedRowHeight = 120
       tableView.rowHeight = UITableViewAutomaticDimension
-      searchController.searchResultsUpdater = self
+      /*searchController.searchResultsUpdater = self
       definesPresentationContext = true
       searchController.dimsBackgroundDuringPresentation = false
       self.searchController.hidesNavigationBarDuringPresentation = false
@@ -62,7 +62,7 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
         v.backgroundColor = #colorLiteral(red: 0.4651720524, green: 0.7858714461, blue: 0.9568093419, alpha: 1)
         let barButton = UIBarButtonItem(customView: v)
         self.navigationItem.setRightBarButton(barButton, animated: true)
-      searchController.searchBar.delegate = self/**/
+      searchController.searchBar.delegate = self/**/*/
     }
    
     func doneBtnFromKeyboardClicked() {
@@ -72,11 +72,18 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
         //print("la lectura \(item.)")
       cell.profilePic.kf.setImage(with: item.recipient.image)
       cell.name.text = item.recipient.nickname
-      cell.lastMsg.text = item.messages?[0]
-      cell.lastMsgTime.text = item.date.localizedString
+		if let message = item.messages{
+			cell.lastMsg.text = message[0].decodeEmoji
+			//cell.lastMsgTime.text = item.date.localizedString
+		}
+		if let date = item.date{
+			cell.lastMsgTime.text = date.localizedString
+		}
       cell.onTap { _ in
         let vc = ConversationViewController()
-        vc.conversation = item
+		 vc.conversation = item
+		//vc.recipientId = item.recipient.id
+		
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
       }

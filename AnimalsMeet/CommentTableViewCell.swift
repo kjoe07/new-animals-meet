@@ -25,7 +25,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     func configure(comment: CommentModel) {
-
+        print("el comentario: \(comment.text)")
         profilePic.kf.setImage(with: comment.author.image)
         let attributedString = NSMutableAttributedString()
         let words = comment.text.components(separatedBy: " ")
@@ -34,13 +34,13 @@ class CommentTableViewCell: UITableViewCell {
                 print("has it")
                 attributedString.bold((words[i])+" ")
             }else{
-                attributedString.normal((words[i])+" ")
+                attributedString.normal((words[i]).decodeEmoji + " ")
             }
             //let myAddedString = attributedString(string: words[i], attributes: nil)          //  self.commentInput.attributedText
         }
         //
         //self.commentInput.attributedText = attributedString
-        commentContent.attributedText = attributedString//comment.text
+        commentContent.attributedText =  attributedString//comment.text
         updateLikeCount(comment: comment)
         nickname.text = comment.author.nickname
       
@@ -61,5 +61,31 @@ class CommentTableViewCell: UITableViewCell {
             like.text = "J'aime"
         }
     
+    }
+}
+extension UITableViewCell{
+    func encode_emoji(_ s: String) -> String {
+        let data = s.data(using: .nonLossyASCII, allowLossyConversion: true)!
+        return String(data: data, encoding: .utf8)!
+    }
+    func decode_emoji(_ s: String) -> String? {
+        let data = s.data(using: .utf8)!
+        return String(data: data, encoding: .nonLossyASCII)
+    }
+}
+extension String {
+    var decodeEmoji: String{
+        let data = self.data(using: String.Encoding.utf8);
+        let decodedStr = NSString(data: data!, encoding: String.Encoding.nonLossyASCII.rawValue)
+        if let str = decodedStr{
+            return str as String
+        }
+        return self
+    }
+    var encodeEmoji: String{
+        if let encodeStr = NSString(cString: self.cString(using: .nonLossyASCII)!, encoding: String.Encoding.utf8.rawValue){
+            return encodeStr as String
+        }
+        return self
     }
 }
