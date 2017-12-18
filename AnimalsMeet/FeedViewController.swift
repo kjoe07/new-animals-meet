@@ -177,11 +177,13 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
                         //                presentFullScreen(imageURL: item.url, onVC: self)
                     }
                 }
-                cell.goToProfile = {
-                    let profileVC = AnimalVC.newInstance((item ).animal)
-                    profileVC.shouldHideNavigationBar = false
-                    self.navigationController?.pushViewController(profileVC, animated: true)
-                }
+				if item.author.id != App.instance.userModel.id{
+					cell.goToProfile = {
+						let profileVC = AnimalVC.newInstance((item ).animal)
+						profileVC.shouldHideNavigationBar = false
+						self.navigationController?.pushViewController(profileVC, animated: true)
+					}
+				}
                 cell.goToComments = {
                     self.navigationController?.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(CommentViewController.newInstance(item), animated: true)

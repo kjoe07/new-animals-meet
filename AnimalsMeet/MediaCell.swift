@@ -117,8 +117,11 @@ class MediaCell: UITableViewCell {
    }
    
    @IBAction func goToProfile(_ sender: Any) {
+	if let callback = self.goToProfile{
+		callback()
+	}
     //if  goToProfile() != nil {
-        goToProfile()
+	//  goToProfile()
     //}
      // goToProfile()
    }
