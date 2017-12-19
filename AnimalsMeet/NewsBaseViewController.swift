@@ -59,6 +59,7 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
     
    }
    override func viewDidAppear(_ animated: Bool){
+	 print("ya aperecio")
         /*if let postId = feedFriends.postId {
             let i = feedFriends.feedVC.theData.index(where: { data in
                 
@@ -71,6 +72,16 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let postID = appDelegate.postID, let data = feedFriends.feedVC.theData {
             self.pagerVC.selectedIndex = 0
+			self.feedFriends.feedVC.tableView.reloadData()
+			let i = self.feedFriends.feedVC.theData.index(where: { data in
+				//print("el valor de Data.Index: \(data.id)")
+				data.id == postID
+			})
+			print("i value: \(String(describing: i))")
+			let indexPath = IndexPath.init(row: i!, section: 0)
+			self.feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+			appDelegate.postID = nil
+			print("el valor de post id \(String(describing: appDelegate.postID))")
            // let i = data.index(where: { data in
              //   data.id == postID
             //})
@@ -94,5 +105,13 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
    
    override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
-   }
+		print("va a aparecer")
+	
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		print("valor de postId(\(String(describing: appDelegate.postID)))")
+		print("el valor de Data: \(feedFriends.feedVC.theData)")
+		if let postID = appDelegate.postID, let data = feedFriends.feedVC.theData {
+			self.pagerVC.selectedIndex = 0
+		}
+	}
 }

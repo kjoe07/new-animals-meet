@@ -153,7 +153,7 @@ class NotificationTableViewController: UITableViewController {
         
         let notification = theData[indexPath.row]
        print("notification: \(notification.user.nickname!)")
-
+		cell.isUserInteractionEnabled = true
         //debugPrint("notification: \(notification.user)")
         //NSLog("notification", notification)
         
@@ -184,6 +184,7 @@ class NotificationTableViewController: UITableViewController {
                     //let newchatVC = ChatTableViewController()
                     //self.navigationController?.pushViewController(newchatVC, animated: true)
                 }else if type == 0 || type == 3{
+					cell.postID = notification.postId
                     //let newFedVC = NewsViewController()
                     //self.navigationController?.pushViewController(newFedVC, animated: true)
                     /*if (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).pagerVC.pageViewController != (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).feedFriends{
@@ -197,7 +198,8 @@ class NotificationTableViewController: UITableViewController {
                     (self.tabBarController?.viewControllers?[0] as! NewsBaseViewController).feedFriends.postId = 81*/
                     let appDelgate = UIApplication.shared.delegate as! AppDelegate
                     // FIXME: - Update to real post id comming from Notification endpoint
-                    appDelgate.postID = notification.postId
+					print("post Id to AppDelegate \(String(describing: self.theData[indexPath.row].postId))")
+					appDelgate.postID = self.theData[indexPath.row].postId//cell.postID//notification.postId
                     
                     self.tabBarController?.selectedIndex = 0
                     
@@ -211,5 +213,10 @@ class NotificationTableViewController: UITableViewController {
         
         return cell
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		self.shouldRefresh()
+	}
 }
 

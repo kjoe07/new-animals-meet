@@ -60,13 +60,16 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         return c
     }
     /*override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		self.tableView.reloadData()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let postID = appDelegate.postID{
             //self.pagerVC.selectedIndex = 0
             let i = theData.index(where: { data in
+				//print("el valor de Data.Index: \(data.id)")
                 data.id == postID
             })
-            print("i value: \(i)")
+            print("i value: \(String(describing: i))")
             let indexPath = IndexPath.init(row: i!, section: 0)
             self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
             appDelegate.postID = nil

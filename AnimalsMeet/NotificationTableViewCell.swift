@@ -15,6 +15,7 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var notifText: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconNotif: UIImageView!
+	var postID : Int?
     
     private let style = "<meta charset=\"UTF-8\"><style>* { color: #777777; font-family: verdana; font-size: 12; }</style>"
     

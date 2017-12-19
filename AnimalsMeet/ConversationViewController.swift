@@ -28,7 +28,7 @@ class ConversationViewController: MessagesViewController/*NMessengerViewControll
 		
 		let timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.refreshConv), userInfo: nil, repeats: true);
 		//self.navigationItem.title = conversation.recipient.name
-		self.automaticallyAdjustsScrollViewInsets = false
+		//self.automaticallyAdjustsScrollViewInsets = false
 		automaticallyAdjustsScrollViewInsets = false
 		self.refreshConv()
 		messagesCollectionView.messagesDataSource = self
