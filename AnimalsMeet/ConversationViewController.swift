@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Kingfisher
-import AsyncDisplayKit
 import MessageKit
 
 class ConversationViewController: MessagesViewController{
@@ -237,7 +236,9 @@ extension ConversationViewController: MessageInputBarDelegate {
 	func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
 		//let json = JSON.in
 		//json["messageId"] = String(Int(self.messageList.last?.messageId) + 1 )
-		
+		if self.lastid == nil{
+			self.lastid = 0
+		}
 		let array: [String: Any] = ["id" : (self.lastid! += 1) , "user_id": App.instance.userModel.id, "content": text ,"updated_at" : dateUtil.instance.dateToString()]
 		print("el valor de lastid \(self.lastid)")
 		let json = JSON(array)
