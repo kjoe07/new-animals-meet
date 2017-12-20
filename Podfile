@@ -45,4 +45,5 @@ target 'AnimalsMeet' do
     pod 'CZPicker'
     pod 'LFTwitterProfile'
     pod 'MessageKit', '0.8.0'
+	pod 'NMessenger', :git => 'https://github.com/Sevauk/NMessenger.git', :inhibit_warnings => true
 end
