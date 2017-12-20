@@ -68,13 +68,26 @@ class AnimalTableViewController: UITableViewController,UIGestureRecognizerDelega
 	//MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		//self.tableView.tableHeaderView =
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+		self.tableView.estimatedSectionHeaderHeight = 40.0
+		self.automaticallyAdjustsScrollViewInsets = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+		if user == nil && animal != nil {
+			user = UserModel()
+			user.id = animal.ownerId
+			if user.isMe {
+				user = App.instance.userModel
+			}
+		}
+		if user == nil {
+			setUser(App.instance.userModel!)
+		}
+		myAccount.roundify()
+		animalsButton.roundify()
+		addFriendButton.roundify()
+		addFriendButton.isEnabled = user != nil && user.followers != nil
+		sendMessageButton.roundify()
+		plume.roundify()
+		plume.backgroundColor = #colorLiteral(red: 0.4651720524, green: 0.7858714461, blue: 0.9568093419, alpha: 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -189,11 +202,14 @@ class AnimalTableViewController: UITableViewController,UIGestureRecognizerDelega
     }
     */
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let items = ["Photos List", "Photos Grid ", "Posts"]
+		let items = ["Photos", "Posts","Photos Grid"]
 		let customSC = UISegmentedControl(items: items)
+		let v = UIView()
 		customSC.selectedSegmentIndex = 0
 		customSC.frame = CGRect.init(x: 15, y: 15, width: UIScreen.main.bounds.width - 30.0 , height: 30.0)
-		return customSC
+		//return customSC
+		v.addSubview(customSC)
+		return v
 	}
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		switch self.selectedIndex {

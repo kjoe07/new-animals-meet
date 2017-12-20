@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NMessenger
 import SwiftyJSON
 import PromiseKit
 import AFDateHelper
