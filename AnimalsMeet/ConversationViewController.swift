@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyJSON
 import Kingfisher
-import MessageKit
 import AsyncDisplayKit
+import MessageKit
+
 class ConversationViewController: MessagesViewController{
 	var messageList: [MessageModel] = []
 	var pageN :Int!
