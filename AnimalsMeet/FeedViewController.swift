@@ -13,6 +13,7 @@ import PromiseKit
 
 class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     var endpoint: String!
+	var didScroll: Bool?
     var searchTerm: String?{
         didSet{
             print("se inicio el valor dela busqueda: \(String(describing: searchTerm))")
@@ -41,7 +42,36 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         title = "Actualités"
         //loadUser()
     }
-    
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if let didScroll = self.didScroll{
+			if !didScroll{
+				self.tableView.reloadData()
+				let appDelegate = UIApplication.shared.delegate as! AppDelegate
+				if let postID = appDelegate.postID, let data = theData {
+					print("entro en la condicion")
+					
+					let i = data.index(where: { data in
+						//print("el valor de Data.Index: \(data.id)")
+						data.id == postID
+					})
+					print("i value: \(String(describing: i))")
+					let indexPath = IndexPath.init(row: i!, section: 0)
+					self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+					appDelegate.postID = nil
+					print("el valor de post id \(String(describing: appDelegate.postID))")
+					// let i = data.index(where: { data in
+					//   data.id == postID
+					//})
+					/*print("i value: \(i)")
+					let indexPath = IndexPath.init(row: i!, section: 0)
+					feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+					appDelegate.postID = nil
+					print("el valor de post id \(String(describing: appDelegate.postID))")*/
+				}
+			}
+		}
+	}
     override func fetchItems(from: Int, count: Int) -> Promise<[MediaModel]> {
         print("entrando a fetch items")
         let c = Api.instance.get(endpoint).then { JSON -> [MediaModel] in
@@ -126,10 +156,10 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         return cell
     }
     override func shouldLoadMore() -> Promise<Void> {
-        let c = super.shouldLoadMore()
-       /* super.loading = true
+		//let c = super.shouldLoadMore()
+        super.loading = true
         let dataCount = theData == nil ? 0 : theData.count
-        return fetchItems(from: dataCount, count: pageSize).then { items -> () in
+        let c = fetchItems(from: dataCount, count: pageSize).then { items -> () in
             
             self.bottomWasReached = items.count == 0 || (!self.paginated && self.theData != nil)
             
@@ -150,18 +180,22 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
                 self.loading = false
                 self.indicator.isHidden = true
                 self.indicator.removeFromSuperview()
-        }*/
+        }/**/
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let postID = appDelegate.postID{
-            //self.pagerVC.selectedIndex = 0
-            let i = self.theData.index(where: { data in
-                data.id == postID
-            })
-            print("i value: \(String(describing: i))")
-            let indexPath = IndexPath.init(row: i!, section: 0)
-            self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
-            appDelegate.postID = nil
-            print("el valor de post id \(String(describing: appDelegate.postID))")
+			print("postId has a value in ShouldLoadMore: \(postID)")
+			if let theData = self.theData{
+				print("the Data is not nil: \(theData.count)")
+				let i = theData.index(where: { data in
+					data.id == postID
+				})
+				print("i value: \(String(describing: i))")
+				let indexPath = IndexPath.init(row: i!, section: 0)
+				self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+				appDelegate.postID = nil
+				print("el valor de post id \(String(describing: appDelegate.postID))")
+			}
+			
         }
         return c
     }
@@ -271,5 +305,8 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
              _ =  self.shouldRefresh()// self.tableView.reloadData()
         }
     }
+	override func shouldRefresh() -> Promise<Void> {
+		return shouldLoadMore()
+	}
    
 }

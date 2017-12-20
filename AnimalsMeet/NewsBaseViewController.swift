@@ -43,6 +43,7 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
       feedFriends.endpoint = "/feeds/friends"
       feedPublic = NewsViewController()
       feedPublic.endpoint = "/feeds/public"
+
       
       feedFriends.pageTabBarItem.title = "Amis"
       feedFriends.pageTabBarItem.titleLabel!.font = UIFont.boldSystemFont(ofSize: fontSize)
@@ -60,6 +61,8 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
    }
    override func viewDidAppear(_ animated: Bool){
 	 print("ya aperecio")
+		self.feedFriends.feedVC.tableView.reloadData()
+	
         /*if let postId = feedFriends.postId {
             let i = feedFriends.feedVC.theData.index(where: { data in
                 
@@ -71,8 +74,9 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
         }*/
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let postID = appDelegate.postID, let data = feedFriends.feedVC.theData {
+			print("entro en la condicion")
             self.pagerVC.selectedIndex = 0
-			self.feedFriends.feedVC.tableView.reloadData()
+			//self.feedFriends.feedVC.tableView.reloadData()
 			let i = self.feedFriends.feedVC.theData.index(where: { data in
 				//print("el valor de Data.Index: \(data.id)")
 				data.id == postID
@@ -90,7 +94,10 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
             feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
             appDelegate.postID = nil
             print("el valor de post id \(String(describing: appDelegate.postID))")*/
-        }
+		}else{
+			print("does not scroll")
+			self.feedFriends.feedVC.didScroll = false
+		}
     }
    
    func pageTabBarController(pageTabBarController: PageTabBarController, didTransitionTo viewController: UIViewController) {

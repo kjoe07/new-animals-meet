@@ -35,8 +35,7 @@ target 'AnimalsMeet' do
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
     pod 'PusherSwift', :inhibit_warnings => true
-    pod 'NMessenger', :git => 'https://github.com/Sevauk/NMessenger.git', :inhibit_warnings => true
-    pod 'PromiseKit'
+	pod 'PromiseKit'
     pod 'AFDateHelper'
     pod 'PullToRefreshSwift'
     pod 'IQKeyboardManagerSwift'
