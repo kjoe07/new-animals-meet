@@ -51,23 +51,25 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 				if let postID = appDelegate.postID, let data = theData {
 					print("entro en la condicion")
 					
-					let i = data.index(where: { data in
+					if let i = data.index(where: { data in
 						//print("el valor de Data.Index: \(data.id)")
 						data.id == postID
-					})
-					print("i value: \(String(describing: i))")
-					let indexPath = IndexPath.init(row: i!, section: 0)
-					self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
-					appDelegate.postID = nil
-					print("el valor de post id \(String(describing: appDelegate.postID))")
-					// let i = data.index(where: { data in
-					//   data.id == postID
-					//})
-					/*print("i value: \(i)")
-					let indexPath = IndexPath.init(row: i!, section: 0)
-					feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
-					appDelegate.postID = nil
-					print("el valor de post id \(String(describing: appDelegate.postID))")*/
+					}){
+						print("i value: \(String(describing: i))")
+						let indexPath = IndexPath.init(row: i, section: 0)
+						self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+						appDelegate.postID = nil
+						print("el valor de post id \(String(describing: appDelegate.postID))")
+						// let i = data.index(where: { data in
+						//   data.id == postID
+						//})
+						/*print("i value: \(i)")
+						let indexPath = IndexPath.init(row: i!, section: 0)
+						feedFriends.feedVC.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+						appDelegate.postID = nil
+						print("el valor de post id \(String(describing: appDelegate.postID))")*/
+						
+					}
 				}
 			}
 		}
@@ -186,16 +188,16 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 			print("postId has a value in ShouldLoadMore: \(postID)")
 			if let theData = self.theData{
 				print("the Data is not nil: \(theData.count)")
-				let i = theData.index(where: { data in
+				if let i = theData.index(where: { data in
 					data.id == postID
-				})
-				print("i value: \(String(describing: i))")
-				let indexPath = IndexPath.init(row: i!, section: 0)
-				self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
-				appDelegate.postID = nil
-				print("el valor de post id \(String(describing: appDelegate.postID))")
+				}){
+					print("i value: \(String(describing: i))")
+					let indexPath = IndexPath.init(row: i, section: 0)
+					self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+					appDelegate.postID = nil
+					print("el valor de post id \(String(describing: appDelegate.postID))")
+				}
 			}
-			
         }
         return c
     }

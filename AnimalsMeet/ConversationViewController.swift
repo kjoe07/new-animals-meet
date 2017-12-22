@@ -17,13 +17,15 @@ class ConversationViewController: MessagesViewController{
 	var recipientId: Int!
 	var conversation: ConversationModel!
 	var lastid: Int!
+	var timer: Timer!
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		let showProfile = UIBarButtonItem(title: "Voir le profil", style: .plain, target: self, action: #selector(showRecipientProfile))
 		self.navigationItem.rightBarButtonItem = showProfile
 	
-		let timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.refreshConv), userInfo: nil, repeats: true);
+		self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.refreshConv), userInfo: nil, repeats: true);
+		
 		//self.navigationItem.title = conversation.recipient.name
 		//self.automaticallyAdjustsScrollViewInsets = false
 		automaticallyAdjustsScrollViewInsets = false
@@ -40,6 +42,7 @@ class ConversationViewController: MessagesViewController{
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		(self.tabBarController as? AnimalTabBarController)?.centerButton.isHidden = false
+		self.timer.invalidate()
 	}
 	func showRecipientProfile() {
 		let recipientProfileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AnimalVC") as! AnimalVC
@@ -91,6 +94,7 @@ class ConversationViewController: MessagesViewController{
 			}.catch { err in
 		}
 	}
+	
 }
 extension ConversationViewController: MessagesDataSource {
 	
