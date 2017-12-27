@@ -1078,7 +1078,14 @@ class AnimalVC: UIViewController, UIGestureRecognizerDelegate, FusumaDelegate, P
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
+	@IBAction func showSuivis(_ sender: Any) {
+		if let users = self.user?.suivis, !users.isEmpty {
+			let controller = UserListViewController(users: users)
+			let title = "Suivis"			
+			controller.title = title
+			self.navigationController?.pushViewController(controller, animated: true)
+		}
+	}
     func editAnimal(animal: AnimalModel?) {
         let vc = AnimalConfigurationViewController.newInstance(animal: animal)
         navigationController?.pushViewController(vc, animated: true)

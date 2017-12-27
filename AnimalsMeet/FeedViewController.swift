@@ -44,7 +44,9 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if let didScroll = self.didScroll{
+		print("Aparecio Mando a Cargar")
+		_ = self.shouldRefresh()
+		/*if let didScroll = self.didScroll{
 			if !didScroll{
 				self.tableView.reloadData()
 				let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -72,7 +74,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 					}
 				}
 			}
-		}
+		}*/
 	}
     override func fetchItems(from: Int, count: Int) -> Promise<[MediaModel]> {
         print("entrando a fetch items")
@@ -157,6 +159,12 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         
         return cell
     }
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		
+		/*if theData != nil && indexPath.row == theData.count - 1 && !loading && !bottomWasReached {
+			_ = shouldLoadMore()
+		}*/
+	}
     override func shouldLoadMore() -> Promise<Void> {
 		//let c = super.shouldLoadMore()
         super.loading = true
@@ -177,29 +185,29 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             
             self.loading = false
             self.tableView.reloadData()
-         
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate
+			if let postID = appDelegate.postID{
+				print("postId has a value in ShouldLoadMore: \(postID)")
+				if let theData = self.theData{
+					print("the Data is not nil: \(theData.count)")
+					if let i = theData.index(where: { data in
+						data.id == postID
+					}){
+						print("i value: \(String(describing: i))")
+						let indexPath = IndexPath.init(row: i, section: 0)
+						self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
+						appDelegate.postID = nil
+						print("el valor de post id \(String(describing: appDelegate.postID))")
+					}
+				}
+			}
+
             }.always {
                 self.loading = false
                 self.indicator.isHidden = true
                 self.indicator.removeFromSuperview()
         }/**/
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if let postID = appDelegate.postID{
-			print("postId has a value in ShouldLoadMore: \(postID)")
-			if let theData = self.theData{
-				print("the Data is not nil: \(theData.count)")
-				if let i = theData.index(where: { data in
-					data.id == postID
-				}){
-					print("i value: \(String(describing: i))")
-					let indexPath = IndexPath.init(row: i, section: 0)
-					self.tableView.scrollToRow(at: indexPath , at: .top, animated: true)
-					appDelegate.postID = nil
-					print("el valor de post id \(String(describing: appDelegate.postID))")
-				}
-			}
-        }
-        return c
+                return c
     }
     override func onPopulateCell(item: MediaModel?, cell: UITableViewCell) {
         print("Mostrando la Celda")

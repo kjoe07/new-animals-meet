@@ -112,6 +112,7 @@ class NotificationTableViewController: UITableViewController {
             self.loading = false
 			print("reloading tableView")
             self.tableView.reloadData()
+			self.bottomWasReached = true
             }.always {
                 self.loading = false
                 self.indicator.isHidden = true

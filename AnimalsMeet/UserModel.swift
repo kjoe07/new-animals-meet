@@ -26,6 +26,7 @@ class UserModel {
    var followingCount: Int!
    var followersCount: Int!
    var followers: [UserModel]!
+   var suivis: [UserModel]!
    var likeCount: Int!
    
    init() {
@@ -45,6 +46,7 @@ class UserModel {
     }
     
       followers = result["followers"].arrayValue.map { UserModel(fromJSON: $0) }
+	  suivis = result["followings"].arrayValue.map { UserModel(fromJSON: $0) }
       provider = result["provider"].stringValue
       nickname = result["nickname"].stringValue.replacingOccurrences(of: " ", with: "").lowercased()
       name = result["name"].string
