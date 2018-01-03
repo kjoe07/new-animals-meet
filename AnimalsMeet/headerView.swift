@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class headerView: UIView {
 
     /*
@@ -38,13 +37,16 @@ class headerView: UIView {
     @IBOutlet weak var followersCount: UILabel!
     @IBOutlet weak var followingCount: UILabel!
     @IBOutlet weak var likeCount: UILabel!
-    
-    let maxHeight: CGFloat = 80
-    let minHeight: CGFloat = 50
+	@IBOutlet weak var FriendsButton: UIButton!
+	@IBOutlet weak var suivis: UILabel!
+	//@IBOutlet weak var animalButtonConstraintRight: NSLayoutConstraint!
+    let maxHeight: CGFloat = 120//80
+    let minHeight: CGFloat = 90//50
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.iconHeightConstraint.constant = maxHeight
+        //self.iconHeightConstraint.constant = maxHeight
+		
     }
     
     func animator(t: CGFloat) {
@@ -57,7 +59,7 @@ class headerView: UIView {
         
         let height = max(maxHeight - (maxHeight - minHeight) * t, minHeight)
         
-        iconHeightConstraint.constant = height
+        //iconHeightConstraint.constant = height
     }
     
     /*override func sizeThatFits(_ size: CGSize) -> CGSize {

@@ -12,6 +12,12 @@
 		1106D73C1FEAB7100003A0B1 /* gridPhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1106D73A1FEAB7100003A0B1 /* gridPhotosCell.swift */; };
 		1106D73D1FEAB7100003A0B1 /* gridPhotosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1106D73B1FEAB7100003A0B1 /* gridPhotosCell.xib */; };
 		112795A41FBAA2C8008A204C /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112795A31FBAA2C8008A204C /* request.swift */; };
+		11D354C71FFC07FB00F6E0F9 /* headerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D354C21FFC07FB00F6E0F9 /* headerView.xib */; };
+		11D354C81FFC07FB00F6E0F9 /* emptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D354C31FFC07FB00F6E0F9 /* emptyTableViewCell.swift */; };
+		11D354C91FFC07FB00F6E0F9 /* gridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D354C41FFC07FB00F6E0F9 /* gridTableViewCell.swift */; };
+		11D354CA1FFC07FB00F6E0F9 /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D354C51FFC07FB00F6E0F9 /* headerView.swift */; };
+		11D354CB1FFC07FB00F6E0F9 /* sectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D354C61FFC07FB00F6E0F9 /* sectionTableViewCell.swift */; };
+		11D354CD1FFC085000F6E0F9 /* emptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D354CC1FFC085000F6E0F9 /* emptyTableViewCell.xib */; };
 		11E5F4CE1FEA1CA7001679BA /* AnimalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E5F4CD1FEA1CA7001679BA /* AnimalTableViewController.swift */; };
 		45FEF856C4A672BF352663DA /* Pods_AnimalsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */; };
 		5B7211D41DCAA12900160458 /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */; };
@@ -125,6 +131,12 @@
 		1106D73A1FEAB7100003A0B1 /* gridPhotosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gridPhotosCell.swift; sourceTree = "<group>"; };
 		1106D73B1FEAB7100003A0B1 /* gridPhotosCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = gridPhotosCell.xib; sourceTree = "<group>"; };
 		112795A31FBAA2C8008A204C /* request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = request.swift; path = AnimalsMeet/request.swift; sourceTree = SOURCE_ROOT; };
+		11D354C21FFC07FB00F6E0F9 /* headerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = headerView.xib; sourceTree = "<group>"; };
+		11D354C31FFC07FB00F6E0F9 /* emptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emptyTableViewCell.swift; sourceTree = "<group>"; };
+		11D354C41FFC07FB00F6E0F9 /* gridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gridTableViewCell.swift; sourceTree = "<group>"; };
+		11D354C51FFC07FB00F6E0F9 /* headerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
+		11D354C61FFC07FB00F6E0F9 /* sectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sectionTableViewCell.swift; sourceTree = "<group>"; };
+		11D354CC1FFC085000F6E0F9 /* emptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = emptyTableViewCell.xib; sourceTree = "<group>"; };
 		11E5F4CD1FEA1CA7001679BA /* AnimalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewController.swift; sourceTree = "<group>"; };
 		135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalsMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -436,20 +448,26 @@
 				B49285B01ECF41F0004E5600 /* AnimalListTableViewCell.swift */,
 				B49285AE1ECF40A5004E5600 /* AnimalListTableViewCell.xib */,
 				A098D98B1DD205270014270D /* AnimalListTableViewController.swift */,
+				11E5F4CD1FEA1CA7001679BA /* AnimalTableViewController.swift */,
 				A0D7C2941DC7485F006771C8 /* AnimalViewController.swift */,
 				B493ECF11ED4A2CE003F6D1B /* CreateAnimalView.swift */,
 				F1FC84441F5511780085A673 /* EditProfileViewController.swift */,
+				11D354C31FFC07FB00F6E0F9 /* emptyTableViewCell.swift */,
+				11D354CC1FFC085000F6E0F9 /* emptyTableViewCell.xib */,
+				1106D73A1FEAB7100003A0B1 /* gridPhotosCell.swift */,
+				1106D73B1FEAB7100003A0B1 /* gridPhotosCell.xib */,
+				11D354C41FFC07FB00F6E0F9 /* gridTableViewCell.swift */,
+				11D354C51FFC07FB00F6E0F9 /* headerView.swift */,
+				11D354C21FFC07FB00F6E0F9 /* headerView.xib */,
 				8F3B92BF1F7B4A0F00874DAD /* LegendViewController.swift */,
 				A0C861011DD0F6500088A014 /* MyAccountViewController.swift */,
 				B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */,
 				A02BBB4C1EE016EE0035C3D8 /* PostFeedVC.swift */,
 				A0EAA9141EE80ECA00F0BC2B /* ProfilePictureViewController.swift */,
 				B43FB88E1EE71784004EE2E7 /* ProfileTabViewController.swift */,
+				11D354C61FFC07FB00F6E0F9 /* sectionTableViewCell.swift */,
 				8F8FDC9F1F99A4B2002E5112 /* TestViewController.swift */,
 				B4AEB8221EE0164C00D0A69D /* UserPicsTableViewController.swift */,
-				11E5F4CD1FEA1CA7001679BA /* AnimalTableViewController.swift */,
-				1106D73A1FEAB7100003A0B1 /* gridPhotosCell.swift */,
-				1106D73B1FEAB7100003A0B1 /* gridPhotosCell.xib */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -602,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B45950351EDB642C0057E9D8 /* ConversationCell.xib in Resources */,
+				11D354C71FFC07FB00F6E0F9 /* headerView.xib in Resources */,
 				A0EB49AB1EE70A8500DFD36A /* MosaicCollectionViewCell.xib in Resources */,
 				1106D73D1FEAB7100003A0B1 /* gridPhotosCell.xib in Resources */,
 				B493ECF01ED49FB0003F6D1B /* createAnimal.xib in Resources */,
@@ -613,6 +632,7 @@
 				B49285AF1ECF40A5004E5600 /* AnimalListTableViewCell.xib in Resources */,
 				B493ECF61ED83BAC003F6D1B /* CommentTableViewCell.xib in Resources */,
 				F14A3B991F5287FA00B31627 /* UserTableViewCell.xib in Resources */,
+				11D354CD1FFC085000F6E0F9 /* emptyTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +801,7 @@
 				A06CD7A31E1DB93800402965 /* ListMyAnimalsCell.swift in Sources */,
 				93A1BF601E0AA8C000D69CB1 /* AnimalResultCollectionViewCell.swift in Sources */,
 				B431F7BE1EB8FCDE00A2C674 /* CommentViewController.swift in Sources */,
+				11D354CB1FFC07FB00F6E0F9 /* sectionTableViewCell.swift in Sources */,
 				A04031EA1DA3A81B00D83E92 /* alert.swift in Sources */,
 				B493ECF41ED8327C003F6D1B /* CommentModel.swift in Sources */,
 				A0D5FBC11DA9C4C800F3C9BE /* RegisterViewController.swift in Sources */,
@@ -797,6 +818,7 @@
 				B431F7BB1EB8937C00A2C674 /* Useful.swift in Sources */,
 				A0D7C2971DC75F02006771C8 /* AnimalConfigurationViewController.swift in Sources */,
 				A098D98C1DD205270014270D /* AnimalListTableViewController.swift in Sources */,
+				11D354C91FFC07FB00F6E0F9 /* gridTableViewCell.swift in Sources */,
 				A04031DC1DA3A7B300D83E92 /* UserModel.swift in Sources */,
 				8F8FDCA01F99A4B2002E5112 /* TestViewController.swift in Sources */,
 				A088E38F1DBE1AA800B372F5 /* AnimalModel.swift in Sources */,
@@ -816,6 +838,7 @@
 				A0EB49A71EE7010A00DFD36A /* EasyCollectionViewController.swift in Sources */,
 				F1FC84451F5511780085A673 /* EditProfileViewController.swift in Sources */,
 				8F3B92C01F7B4A0F00874DAD /* LegendViewController.swift in Sources */,
+				11D354CA1FFC07FB00F6E0F9 /* headerView.swift in Sources */,
 				93B264581DF4E1A100B88635 /* NotificationTableViewController.swift in Sources */,
 				8F8FDC9B1F96A959002E5112 /* OLEContainerScrollView.m in Sources */,
 				11E5F4CE1FEA1CA7001679BA /* AnimalTableViewController.swift in Sources */,
@@ -823,6 +846,7 @@
 				8F8FDC9E1F96A959002E5112 /* OLESwizzling.m in Sources */,
 				A0DBFB381EC3150800D531FA /* EasyTableViewController.swift in Sources */,
 				A04E35381DF4748D000D6F19 /* MosaicPictures.swift in Sources */,
+				11D354C81FFC07FB00F6E0F9 /* emptyTableViewCell.swift in Sources */,
 				A04031EE1DA3A86500D83E92 /* event.swift in Sources */,
 				B40B095A1EB88AC600782417 /* CommentTableViewController.swift in Sources */,
 				A0C861021DD0F6500088A014 /* MyAccountViewController.swift in Sources */,

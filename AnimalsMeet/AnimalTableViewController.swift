@@ -487,7 +487,7 @@ class AnimalTableViewController: UITableViewController,UIGestureRecognizerDelega
 				if item.author.id != App.instance.userModel.id{
 					cell.goToProfile = {
 						let profileVC = AnimalVC.newInstance((item ).animal)
-						profileVC.shouldHideNavigationBar = false
+						//profileVC.shouldHideNavigationBar = false
 						self.navigationController?.pushViewController(profileVC, animated: true)
 					}
 				}

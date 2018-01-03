@@ -46,7 +46,7 @@ class ConversationViewController: MessagesViewController{
 	}
 	func showRecipientProfile() {
 		let recipientProfileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AnimalVC") as! AnimalVC
-		recipientProfileVC.shouldHideNavigationBar = false
+		//recipientProfileVC.shouldHideNavigationBar = false
 		recipientProfileVC.user = conversation.recipient
 		_ = Api.instance.get("/user/\(conversation.recipient.id!)/animals")
 			.then { json -> [AnimalModel] in

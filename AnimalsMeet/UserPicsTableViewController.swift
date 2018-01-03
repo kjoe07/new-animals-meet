@@ -44,7 +44,7 @@ class UserPicsTableViewController: EasyTableViewController<MediaModel, MediaCell
             return JSON["images"].arrayValue.map {
                MediaModel(fromJSON: $0)
                }.filter {
-                  $0.animal.id != 0
+				$0.animal.id != 0 //FIXME: - validacion en caso que animal no exista -
             }
          }
       }

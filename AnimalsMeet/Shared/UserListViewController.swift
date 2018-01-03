@@ -60,7 +60,7 @@ class UserListViewController: UITableViewController {
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       let user = users[indexPath.row]
       let profileVC = AnimalVC.newInstance(user)
-      profileVC.shouldHideNavigationBar = false
+	//profileVC.shouldHideNavigationBar = false
       
       _ = Api.instance.get("/user/\(user.id!)/animals")
          .then { json -> [AnimalModel] in

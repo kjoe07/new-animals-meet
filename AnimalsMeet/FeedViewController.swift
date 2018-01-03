@@ -227,7 +227,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 				if item.author.id != App.instance.userModel.id{
 					cell.goToProfile = {
 						let profileVC = AnimalVC.newInstance((item ).animal)
-						profileVC.shouldHideNavigationBar = false
+						//profileVC.shouldHideNavigationBar = false
 						self.navigationController?.pushViewController(profileVC, animated: true)
 					}
 				}
@@ -256,7 +256,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
                 let item1  = theData[y!]*/
             cell.onClick {
                 let profileVC = AnimalVC.newInstance(animal!)
-                profileVC.shouldHideNavigationBar = false
+				//profileVC.shouldHideNavigationBar = false
                 self.navigationController?.pushViewController(profileVC, animated: true)
             }//goToProfile = {
                 /**/
