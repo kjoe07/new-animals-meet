@@ -268,8 +268,8 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 		if self.photos {
 			if !grid {
 				if !isempty{
-					let height = CGFloat(userImage[indexPath.row].width)
-					let width = CGFloat(userImage[indexPath.row].height)
+					let height = CGFloat(userImage.count > 0 ? userImage[indexPath.row].width : 0 )
+					let width = CGFloat(userImage.count > 0 ? userImage[indexPath.row].height : 0)
 					let scaleFactor = UIScreen.main.scale
 					let screenWidth = CGFloat(UIScreen.main.bounds.width)
 					let value  = (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
@@ -288,7 +288,7 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 			if isempty {
 				return 280.0
 			}else{
-				return 150.0
+				return 220.0
 			}
 			
 		}
@@ -549,8 +549,8 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 		self.user = user
 		//FIXME: fix Header VIew
 		self.profileHeader.nickname.text = "@\(user.nickname!)"
-		self.profileHeader.followingCount.text = "\(user.followingCount!)"
-		self.profileHeader.followersCount.text = "\(user.followersCount!)"
+		self.profileHeader.followingCount.text = "\(user.followersCount!)"
+		self.profileHeader.followersCount.text = "\(user.followingCount!)"
 		self.profileHeader.likeCount.text = "\(user.likeCount!)"
 		self.profileHeader.myAccount.isHidden = !user.isMe
 		self.profileHeader.sendMessageButton.isHidden = user.isMe

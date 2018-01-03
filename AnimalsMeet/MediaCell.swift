@@ -91,7 +91,7 @@ class MediaCell: UITableViewCell {
          let textView = UITextView()
          textView.text = media.contentText
          textView.isEditable = false
-         textView.isScrollEnabled = false
+		textView.isScrollEnabled = true//false
          textView.font = UIFont.systemFont(ofSize: 18)
          mediaView.addSubview(textView)
          textView.snp.makeConstraints { make in
