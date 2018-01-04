@@ -70,7 +70,7 @@ class Api {
  */
             encoding = URLEncoding.default
             
-            let c = Alamofire.request(Api.instance.serverUrl + endpoint, method: method, parameters: params, encoding: encoding!, headers: headers)
+			_ = Alamofire.request(Api.instance.serverUrl + endpoint, method: method, parameters: params, encoding: encoding!, headers: headers)
                 .validate()
                 .responseJSON() { response in
                    print("la respuesta de: \(Api.instance.serverUrl)\(endpoint):")

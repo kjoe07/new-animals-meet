@@ -330,11 +330,19 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 		}
 		
 		for views in self.tableView.subviews{
-			if views.isKind(of: MediaCell.self){
+			print("eliminando una vista")
+			/*if views.isKind(of: MediaCell.self){
 				print("removing the cell")
 				views.removeFromSuperview()
 			}else if views.isKind(of: gridTableViewCell.self){
 				print("removing the Collection cell")
+				views.removeFromSuperview()
+			}*/
+			if views.isKind(of: MediaCell.self){
+				print("removing the cell")
+				views.removeFromSuperview()
+			}else if views.isKind(of: gridTableViewCell.self){
+				print("removing the cell")
 				views.removeFromSuperview()
 			}
 		}
@@ -670,6 +678,20 @@ extension AnimalVC{
 			presentFullScreen(image: cell.image.image!, onVC: self, media: self.gridImages[collectionView.tag][indexPath.row])
 		}
 		return cell
+	}
+	
+}
+extension AnimalVC: UICollectionViewDelegateFlowLayout{
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: collectionView.frame.width/3 - 2, height: collectionView.frame.width/3 - 2)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		return UIEdgeInsets.init(top: 1, left:1, bottom: 1, right: 1)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 2.0
 	}
 }
 /*

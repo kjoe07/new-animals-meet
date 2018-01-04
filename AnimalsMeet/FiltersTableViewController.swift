@@ -29,8 +29,9 @@ class FilterSettingTableViewController : UITableViewController {
                 item.isHidden = true
             }
         }
- 
-        navigationItem.title = "Filtrez votre recherche"
+		//self.navigationItem.title
+        //navigationItem.title = "Filtrez votre recherche"
+		self.title = "Filtrez votre recherche"
         navigationItem.backBarButtonItem?.title = "Filtrez votre recherche"
         
         let radius: CGFloat = register.bounds.height * 0.5
@@ -49,7 +50,8 @@ class FilterSettingTableViewController : UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        navigationItem.title = nil
+        //navigationItem.title = nil
+		self.title = nil
         if (segue.identifier == "execSearch") {
            self.navigationController?.popToRootViewController(animated: true)
             //let vc = segue.destination as! SearchResultsViewController

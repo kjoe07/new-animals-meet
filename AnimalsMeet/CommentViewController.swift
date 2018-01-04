@@ -201,7 +201,7 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
             let attributedString = NSMutableAttributedString(string: "@"+userJson[row]["nickname"].stringValue, attributes: attributes)
             
             commentInput.textStorage.replaceCharacters(in: lastWordRange, with: attributedString)
-            self.search(in: userJson[row]["nickname"].stringValue)
+           _ = self.search(in: userJson[row]["nickname"].stringValue)
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -214,11 +214,11 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
     
     @nonobjc func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         
-        for row in rows {
+       /* for row in rows {
             if let row = row as? Int {
                 // print(fruits[row])
             }
-        }
+        }*/
     }
     func search(in word :String) -> Bool{
         let nword = word.replacingOccurrences(of: "@", with: "").lowercased()

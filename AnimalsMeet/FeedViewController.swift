@@ -318,5 +318,47 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 	override func shouldRefresh() -> Promise<Void> {
 		return shouldLoadMore()
 	}
-   
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		/*if self.photos {
+			if !grid {
+				if !isempty{
+					let height = CGFloat(userImage.count > 0 ? userImage[indexPath.row].width : 0 )
+					let width = CGFloat(userImage.count > 0 ? userImage[indexPath.row].height : 0)
+					let scaleFactor = UIScreen.main.scale
+					let screenWidth = CGFloat(UIScreen.main.bounds.width)
+					let value  = (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
+					return value > 0 ? value : 100
+				}else{
+					return 280.0
+				}/
+			}else{
+				if isempty {
+					return 280.0
+				}else{
+					return 120.0
+				}
+			}
+		}else{
+			
+				return 220.0
+			
+			
+		}*/
+		if self.theData[indexPath.row].isText{
+			return 220.0
+		}else{
+			
+			let height = CGFloat(theData.count > 0 ? theData[indexPath.row].width : 0 )
+			let width = CGFloat(theData.count > 0 ? theData[indexPath.row].height : 0)
+			let scaleFactor = UIScreen.main.scale
+			let screenWidth = CGFloat(UIScreen.main.bounds.width)
+			var value  = (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
+			/*if theData[indexPath.row].contentText != nil {
+				value += 150.0
+			}*/
+			return value > 0 ? value : 100
+		}
+		return 0
+
+	}
 }

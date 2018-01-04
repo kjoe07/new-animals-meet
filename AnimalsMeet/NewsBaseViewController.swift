@@ -20,14 +20,20 @@ class NewsBaseViewController: UINavigationController, PageTabBarControllerDelega
       
       let image = #imageLiteral(resourceName: "post")
       let v = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-      v.contentMode = .scaleAspectFit
+      v.contentMode = .center///.scaleAspectFit
       v.setImage(image, for: .normal)
       v.addTarget(self, action: #selector(newPost), for: .touchUpInside)
       v.roundify()
       v.backgroundColor = #colorLiteral(red: 0.4651720524, green: 0.7858714461, blue: 0.9568093419, alpha: 1)
+	  v.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+	  v.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
       let barButton = UIBarButtonItem(customView: v)
+	
+	
       
       pagerVC.navigationItem.setRightBarButton(barButton, animated: true)
+	pagerVC.navigationItem.rightBarButtonItem?.width = 20.0
+	//pagerVC.navigationItem.rightBarButtonItem.
       pagerVC.title = "Actualités"
    }
    
