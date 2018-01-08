@@ -15,7 +15,12 @@ class UserModel {
    var provider: String! // (email or facebook)
    var name: String?
    var nickname: String?
-   var id: Int!
+	var id: Int!/*{
+		didSet {
+			print("estableciendo la imagen a: \(Api.instance.serverUrl)/media/\(id!)")
+			self.image = URL(string: "\(Api.instance.serverUrl)/media/\(id!)")!
+		}
+	}*/
    var uid: String!
    var image: URL?
    var email: String!
@@ -54,12 +59,13 @@ class UserModel {
       uid = result["uid"].stringValue
       let imageURI = result["image"].string
       if let imageURI = imageURI, imageURI != "", imageURI != "<null>" { //modified in case image is ""Url.init explote
-        print("la imagen \(imageURI)")
+        /*print("la imagen \(imageURI)")
          image = URL(string: imageURI)
          // WORKAROUND: avoid problem with fixed address being returned by the server
          let path = image!.path
          let baseUrl = URL(string: Api.instance.serverUrl)
-         image = URL(string: path, relativeTo: baseUrl)
+         image = URL(string: path, relativeTo: baseUrl)*/
+		image = URL(string: "\(Api.instance.serverUrl)/media/\(imageURI)")
       } else {
          image = URL(string: "http://5943f28e6f4c50095616f995.golpher-alba-38686.netlify.com/anonymous.png")
       }

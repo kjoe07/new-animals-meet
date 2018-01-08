@@ -163,7 +163,7 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
     }
     
     func czpickerView(_ pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        return userJson[row]["name"].stringValue
+        return userJson[row]["nickname"].stringValue
     }
     
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){

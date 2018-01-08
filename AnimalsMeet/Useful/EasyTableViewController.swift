@@ -161,6 +161,7 @@ class EasyTableViewController<T, C: UITableViewCell>: UITableViewController, Eas
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if theData != nil && indexPath.row == theData.count - 1 && !loading && !bottomWasReached {
+			print("going to reload the Data because is nil or reached bottom")
              _ = shouldLoadMore()
         }
     }

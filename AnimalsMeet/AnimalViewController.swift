@@ -69,7 +69,7 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 		//_ = self.shouldLoadMore()
 		//_ = self.shouldLoadMorePost()
 		tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.profileHeader.height + 35.0, 0, 0, 0)
-		//TODO: - if user is not me the myAccount should not be visible -
+		
 		self.profileHeader.myAccount.roundify()
 		self.profileHeader.myAccount.addTarget(self, action: #selector(self.goAccount(_:)), for: .touchUpInside)
 		self.profileHeader.animalsButton.roundify()
@@ -88,6 +88,8 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 			//print("suivis Tap")
 			self.showSuivis(sender: self)
 		}
+		self.profileHeader.nickname.adjustsFontSizeToFitWidth = true
+		self.profileHeader.animal_name_age.adjustsFontSizeToFitWidth = true
 		self.profileHeader.sendMessageButton.addTarget(self, action: #selector(self.talkTo(_:)), for: .touchUpInside)
 		self.tableView.addPullRefresh {
 			if self.photos {
@@ -124,6 +126,7 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 			_ = App.instance.requestUserBreedsAndAnimals()
 			let me = App.instance.userModel!
 			setUser(me)
+			print("url for me pic: \(me.image!)")
 			self.profileHeader.userProfilePic.kf.setImage(with: me.image)
 			self.profileHeader.userProfilePic.onTap { _ in
 				if self.user.id == App.instance.userModel.id {
@@ -268,12 +271,24 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 		if self.photos {
 			if !grid {
 				if !isempty{
-					let height = CGFloat(userImage.count > 0 ? userImage[indexPath.row].width : 0 )
+					/*let height = CGFloat(userImage.count > 0 ? userImage[indexPath.row].width : 0 )
 					let width = CGFloat(userImage.count > 0 ? userImage[indexPath.row].height : 0)
 					let scaleFactor = UIScreen.main.scale
 					let screenWidth = CGFloat(UIScreen.main.bounds.width)
-					let value  = (height / (width / (screenWidth * scaleFactor))) / scaleFactor + 100
-					return value > 0 ? value : 100
+					let value  = (height / (height / (screenWidth * scaleFactor))) / scaleFactor + 100
+					print("el value f height is: \(value) =  \(height) / \(width) / \(screenWidth) * \(scaleFactor) / \(scaleFactor)")
+					return value > 0 ? value : 100*/
+					let height = CGFloat(userImage[indexPath.row].height)
+					let width = CGFloat(userImage[indexPath.row].width)
+					let scaleFactor = UIScreen.main.scale
+					let screenWidth = CGFloat(UIScreen.main.bounds.width)
+					let imageHeight = ((height / (width / (screenWidth * scaleFactor))) / scaleFactor) > 0  ? (height / (width / (screenWidth * scaleFactor))) / scaleFactor : 335.5
+					if userImage[indexPath.row].description != ""{
+						return imageHeight + 150.0
+					}else{
+						return imageHeight + 80.0
+					}
+					//return imageHeight
 				}else{
 					return 280.0
 				}//*
@@ -478,6 +493,7 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 	func configureAnimalInfo() {
 		self.profileHeader.animal_name_age.text = "\(animal.name!), \(animal.year!)"
 		self.profileHeader.animal_breed.text = animal.breedName()
+		self.profileHeader.animal_breed.adjustsFontSizeToFitWidth = true
 		if animal.loof && animal.heat ?? false {
 			self.profileHeader.animal_state_icon_3.image = UIImage(named: "thermometer")
 			self.profileHeader.animal_state_icon_4.image = UIImage(named: "family-tree")
@@ -485,6 +501,8 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 			self.profileHeader.animal_state_icon_4.isHidden = false
 		} else if animal.loof {
 			self.profileHeader.animal_state_icon_3.image = UIImage(named: "family-tree")
+			self.profileHeader.animal_state_icon_3.frame.size.width = 21.0
+			self.profileHeader.animal_state_icon_3.frame.size.height = 21.0
 			self.profileHeader.animal_state_icon_3.isHidden = false
 			self.profileHeader.animal_state_icon_4.isHidden = true
 		} else if animal.heat ?? false {
@@ -557,6 +575,7 @@ class AnimalVC: UIViewController, FusumaDelegate, UICollectionViewDelegate,UICol
 		self.user = user
 		//FIXME: fix Header VIew
 		self.profileHeader.nickname.text = "@\(user.nickname!)"
+		self.profileHeader.nickname.adjustsFontSizeToFitWidth = true
 		self.profileHeader.followingCount.text = "\(user.followersCount!)"
 		self.profileHeader.followersCount.text = "\(user.followingCount!)"
 		self.profileHeader.likeCount.text = "\(user.likeCount!)"

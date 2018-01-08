@@ -31,6 +31,8 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
                     return y
             }
             print(conversations.count)
+			//self.bottomWasReached = true
+			//self.loading = false
             return conversations
       }
     }
@@ -109,4 +111,43 @@ class ChatTableViewController: EasyTableViewController<ConversationModel, Conver
     func activeSearchBar(){
         self.searchController.searchBar.becomeFirstResponder()
     }
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {		
+		if theData == nil /*&& indexPath.row == theData.count - 1 && !loading && !bottomWasReached*/ {
+			print("going to reload the Data because is nil or reached bottom")
+			_ = shouldLoadMore()
+		}
+	}
+	override func shouldRefresh() -> Promise<Void> {
+		/*if theData != nil {
+			theData = nil
+		}*/
+		return shouldLoadMore()
+	}
+	
+	override func shouldLoadMore() -> Promise<Void> {
+		
+		loading = true
+		let dataCount = theData == nil ? 0 : theData.count
+		return fetchItems(from: dataCount, count: pageSize).then { items -> () in
+			
+			self.bottomWasReached = items.count == 0 || (!self.paginated && self.theData != nil)
+			
+			if self.theData == nil {
+				self.theData = []
+			}
+			
+			if self.paginated {
+				self.theData.append(contentsOf: items)
+			} else {
+				self.theData = items
+			}
+			
+			self.loading = false
+			self.tableView.reloadData()
+			}.always {
+				self.loading = false
+				self.indicator.isHidden = true
+				self.indicator.removeFromSuperview()
+		}
+	}
 }

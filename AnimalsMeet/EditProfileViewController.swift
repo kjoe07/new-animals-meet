@@ -121,12 +121,12 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
     print("save Changes")
       guard contentChanged || avatarChanged else { return }
 
-      guard nameField.text!.characters.count > 1 else {
+      guard nameField.text!.count > 1 else {
          alert.showAlertError(title: "Attention", subTitle: "Veuillez saisir un nom")
          return
       }
       
-      guard nicknameField.text!.characters.count > 1 else {
+      guard nicknameField.text!.replacingOccurrences(of: " ", with:"").count > 1 else {
          alert.showAlertError(
             title: "Attention",
             subTitle: "Veuillez saisir un nom d' utilisateur"

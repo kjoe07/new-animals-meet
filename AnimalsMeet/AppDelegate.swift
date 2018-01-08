@@ -104,14 +104,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 					}
 				}
 				.catch { err in
+					if err._code != NSURLErrorTimedOut{
 					print(err)
-					App.instance.logout()
+						App.instance.logout()
+					}else{
+						alert.showAlertError(title: "Erreur de connexion", subTitle: "s'il vous plaît vérifier votre connexion internet")
+					}
 			}
 		}
 		//  Fabric.with([Answers.self])
 		// Fabric.with([Crashlytics.self])
 		UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound], completionHandler: { _,_ in
-			application.registerForRemoteNotifications()
+			//application.registerForRemoteNotifications()
+			DispatchQueue.main.async {
+				UIApplication.shared.registerForRemoteNotifications()
+			}
 		})
 		return true
 	}
@@ -126,8 +133,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		print("el valor de Custom: \(String(describing: custom))")
 		
 		var i = 0
-		//TODO: - Update postID with value in APS or Any Thing else
-		//TODO: - Ask yunier name of field with postId
 		switch custom?["loc-key"] as! String {
 		case "LIKE":
 			print("is like custom[loc-key]")

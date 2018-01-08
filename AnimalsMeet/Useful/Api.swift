@@ -79,13 +79,18 @@ class Api {
                     case .success(let json):
                         fulfill(JSON(json))
                     case .failure(let error):
-                        if let err = error as? AFError {
-                            if err.isResponseSerializationError {
-                                fulfill(JSON.null)
-                            } else {
-                                reject(error)
-                            }
-                        }
+						if error._code == NSURLErrorTimedOut {
+							//HANDLE TIMEOUT HERE
+							reject(error)
+						}else{
+							if let err = error as? AFError {
+								if err.isResponseSerializationError {
+									fulfill(JSON.null)
+								} else {
+									reject(error)
+								}
+							}
+						}
                     }
             }
            // print(c.debugDescription)

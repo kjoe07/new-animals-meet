@@ -272,7 +272,10 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
                .then {  // sync animal avatar
                   return self.animal.sync().then { _ -> Void in }
                }
-            }
+			}.catch { error in
+				print(error)
+				alert.showAlertError(title: "Erreur", subTitle: "Un problème est survenu. Veuillez réessayer.")
+			}
          }
          
          self.currentSync = animalSync.always {

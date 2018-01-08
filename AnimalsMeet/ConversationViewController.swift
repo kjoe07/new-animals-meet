@@ -35,6 +35,9 @@ class ConversationViewController: MessagesViewController{
 		messagesCollectionView.messagesDisplayDelegate = self
 		messagesCollectionView.messageCellDelegate = self
 		messageInputBar.delegate = self
+		self.messageInputBar.inputTextView.placeholder = "Message..."
+		self.messageInputBar.sendButton.title = "Envoyer"
+		self.messageInputBar.sendButton.titleLabel?.adjustsFontSizeToFitWidth = true
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		(self.tabBarController as? AnimalTabBarController)?.centerButton.isHidden = true
@@ -112,20 +115,37 @@ extension ConversationViewController: MessagesDataSource {
 		return messageList[indexPath.section]
 	}
 	
-	/*func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
-		var image = UIImage()
+	func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
+		var image = UIImage(named: "anonymous")
+		//let avatar = UIImageView()
+		if Int(message.sender.id) != App.instance.userModel.id {
 		if let correspondentAvatar = conversation.recipient?.image {
 			let avatar = UIImageView()
 			avatar.kf.setImage(with: correspondentAvatar,
 			                   placeholder: nil,
 			                   options: [.transition(.fade(1))],
 			                   progressBlock: nil,
-			                   completionHandler: nil);
-			image = avatar.image!
+			                   completionHandler: nil)
+			image = avatar.image
 		}
-		return Avatar(image: image )
-		//SampleData().getAvatarFor(sender: message.sender)
-	}*/
+		
+			return Avatar(image: image)/**/
+			
+		}else{
+				let avatar = UIImageView()
+				avatar.kf.setImage(with: App.instance.userModel.image,placeholder: nil,options:[.transition(.fade(1))],progressBlock: nil,completionHandler: nil)
+				image = avatar.image
+			return Avatar(image: image)
+		}
+		//let ir = Avatar()
+		
+		//SampleData().getAvatarFor(sender: message.sender)/**/
+		/*if Int(messageList[indexPath.row].sender.id) == App.instance.userModel.id{
+			return Avatar.init(image: nil, initals: "Me")
+		}else{
+			return Avatar.init(image: nil, initals: "Rp")
+		}*/
+	}
 	
 	func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
 		let name = message.sender.displayName
@@ -135,7 +155,7 @@ extension ConversationViewController: MessagesDataSource {
 	func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
 		let formatter = DateFormatter()
 		formatter.dateStyle = .medium
-		let dateString = formatter.string(from: message.sentDate)
+		//let dateString = formatter.string(from: message.sentDate)
 		return NSAttributedString(string: message.sentDate.localizedString/*dateString*/, attributes: [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .caption2)])
 	}
 	

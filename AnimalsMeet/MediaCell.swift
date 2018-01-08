@@ -194,7 +194,7 @@ class MediaCell: UITableViewCell {
    }
    
    @IBAction func doLike(_ sender: UIButton) {
-      
+      //if self.media.author.id != App.instance.userModel.id
       UIView.transition(with: sender, duration: 0.2, options: .transitionCrossDissolve, animations: {
          
          if self.media.isLiked {

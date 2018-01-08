@@ -149,6 +149,9 @@ class App {
             self.userData.expiry = Int(result["expiry"].stringValue)
             self.userData.uid = result["uid"].stringValue
             self.userData.client = result["client"].stringValue
+			print("client: \(self.userData.client)")
+			print("UID: \(self.userData.uid)")
+			print("token: \(self.userData.accessToken)")
             return self.requestUserBreedsAndAnimals()
       }
    }

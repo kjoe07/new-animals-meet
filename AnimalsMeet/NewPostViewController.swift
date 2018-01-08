@@ -108,8 +108,10 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
          }.always {
             ARSLineProgress.hide()
          }.catch { err in
+			ARSLineProgress.hide()
             self.sendButton.isEnabled = true
             App.showRequestFailure(err)
+			
       }
    }
    
@@ -125,6 +127,7 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
          .catch { _ in
             alert.showAlertError(title: "Erreur", subTitle: "Impossible d'envoyer le post")
             self.sendButton.isEnabled = true
+			ARSLineProgress.hide()
       }
    }
    
