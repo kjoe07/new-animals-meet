@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import SwiftyJSON
 import PromiseKit
 import Alamofire
+import SwiftyJSON
 
 extension NSNotification.Name {
    
