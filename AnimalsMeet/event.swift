@@ -7,36 +7,36 @@
 //
 
 import Foundation
-import Crashlytics
+//import Crashlytics
 
 class Event {
     
     static func customEvent(name: String, attributes: [String : Any]) {
-         Answers.logCustomEvent(withName: name, customAttributes: attributes)
+        // Answers.logCustomEvent(withName: name, customAttributes: attributes)
     }
     
     static func trackUser(name: String, contentType: String, contentId: String, attributes: [String : Any]) {
-        Answers.logContentView(withName: name, contentType: contentType, contentId: contentId, customAttributes: attributes)
+        //Answers.logContentView(withName: name, contentType: contentType, contentId: contentId, customAttributes: attributes)
 
     }
     
     
     static func trackLogin(userId: String, userEmail: String) {
-        Answers.logLogin(withMethod: "Digits",
+        /*Answers.logLogin(withMethod: "Digits",
                                    success: true,
                                    customAttributes: [
                                     "User ID": userId,
                                     "User Email": userEmail
-            ])
+            ])*/
     }
     
     static func trackSignUp(userId: String, userEmail: String) {
-        Answers.logSignUp(withMethod: "Digits",
+        /*Answers.logSignUp(withMethod: "Digits",
                                     success: true,
                                     customAttributes: [
                                         "User ID": userId,
                                         "User Email": userEmail
-                                    ])
+                                    ])*/
     }
     
 }

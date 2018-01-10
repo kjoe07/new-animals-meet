@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import Fabric
+//import Fabric
 import FBSDKShareKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 import UserNotifications
-import Crashlytics
+//import Crashlytics
 import IQKeyboardManagerSwift
 import ARSLineProgress
 import SwiftMessages
