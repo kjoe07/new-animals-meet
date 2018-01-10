@@ -27,14 +27,14 @@ target 'AnimalsMeet' do
     pod 'FontAwesomeKit'
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftLocation'
-    pod 'Fabric'
-    pod 'Crashlytics'
+	#pod 'Fabric'
+	#pod 'Crashlytics'
     pod 'SnapKit'
     pod 'ARSLineProgress'
     pod 'FBSDKLoginKit'
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
-    pod 'PusherSwift', :inhibit_warnings => true
+	#pod 'PusherSwift', :inhibit_warnings => true
 	pod 'PromiseKit'
     pod 'AFDateHelper'
     pod 'PullToRefreshSwift'
@@ -43,7 +43,7 @@ target 'AnimalsMeet' do
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
     pod 'CZPicker'
-    pod 'LFTwitterProfile'
+	#pod 'LFTwitterProfile'
 	pod 'MessageKit'#, '0.8.0'
-	pod 'NMessenger', :git => 'https://github.com/Sevauk/NMessenger.git', :inhibit_warnings => true
+	#pod 'NMessenger', :git => 'https://github.com/Sevauk/NMessenger.git', :inhibit_warnings => true
 end

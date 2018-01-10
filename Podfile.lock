@@ -2,15 +2,6 @@ PODS:
   - AFDateHelper (4.1.2)
   - Alamofire (4.4.0)
   - ARSLineProgress (2.1.1)
-  - AsyncDisplayKit (1.9.92):
-    - AsyncDisplayKit/PINRemoteImage (= 1.9.92)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.92)
-  - AsyncDisplayKit/Core (1.9.92):
-    - AsyncDisplayKit/ASDealloc2MainObject
-  - AsyncDisplayKit/PINRemoteImage (1.9.92):
-    - AsyncDisplayKit/Core
-    - PINCache (= 3.0.1-beta)
-    - PINRemoteImage/iOS (= 3.0.0-beta.3)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -18,10 +9,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - Cereal (3.0.1)
-  - Crashlytics (3.8.4):
-    - Fabric (~> 1.6.3)
   - CZPicker (0.4.3)
-  - Fabric (1.6.11)
   - FBSDKCoreKit (4.22.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.22.1):
@@ -57,21 +45,12 @@ PODS:
   - ImagePicker (2.1.1)
   - IQKeyboardManagerSwift (5.0.6)
   - Kingfisher (3.9.1)
-  - LFTwitterProfile (0.1.1):
-    - SnapKit (~> 3.0)
   - Lightbox (1.0.0):
     - Hue
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
   - MessageKit (0.8.0)
-  - NMessenger (1.0.79):
-    - AsyncDisplayKit (= 1.9.92)
-  - PINCache (3.0.1-beta)
-  - PINRemoteImage/Core (3.0.0-beta.3):
-    - PINCache (>= 3.0.0-beta)
-  - PINRemoteImage/iOS (3.0.0-beta.3):
-    - PINRemoteImage/Core
   - PromiseKit (4.2.0):
     - PromiseKit/Foundation (= 4.2.0)
     - PromiseKit/QuartzCore (= 4.2.0)
@@ -84,7 +63,6 @@ PODS:
   - PromiseKit/UIKit (4.2.0):
     - PromiseKit/CorePromise
   - PullToRefreshSwift (3.0.3)
-  - PusherSwift (4.1.0)
   - SCLAlertView (0.7.0)
   - SearchTextField (1.1.8)
   - Sensitive (5.2)
@@ -105,9 +83,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - ARSLineProgress
   - Cereal
-  - Crashlytics
   - CZPicker
-  - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -119,14 +95,11 @@ DEPENDENCIES:
   - ImagePicker (from `https://github.com/hyperoslo/ImagePicker.git`)
   - IQKeyboardManagerSwift (~> 5.0)
   - Kingfisher
-  - LFTwitterProfile
   - Lightbox
   - Material
   - MessageKit
-  - NMessenger (from `https://github.com/Sevauk/NMessenger.git`)
   - PromiseKit
   - PullToRefreshSwift
-  - PusherSwift
   - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift`)
   - SearchTextField
   - Sensitive
@@ -150,8 +123,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/Haneke/HanekeSwift.git
   ImagePicker:
     :git: https://github.com/hyperoslo/ImagePicker.git
-  NMessenger:
-    :git: https://github.com/Sevauk/NMessenger.git
   SCLAlertView:
     :git: https://github.com/vikmeup/SCLAlertView-Swift
 
@@ -165,9 +136,6 @@ CHECKOUT OPTIONS:
   ImagePicker:
     :commit: 0e1c45311b8b586e1bb7ab29bc9be395737c18b7
     :git: https://github.com/hyperoslo/ImagePicker.git
-  NMessenger:
-    :commit: b93fc4ff2246a06cded3d1c2181647f0d882ee56
-    :git: https://github.com/Sevauk/NMessenger.git
   SCLAlertView:
     :commit: f8e497a2bae0a034d8d78ed643f5c00f7c164f0b
     :git: https://github.com/vikmeup/SCLAlertView-Swift
@@ -176,12 +144,9 @@ SPEC CHECKSUMS:
   AFDateHelper: b19c83daa132e398b34fbea085a1554ce07adfe9
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   ARSLineProgress: 688f3fe810515200186cebee349e06f822575fe6
-  AsyncDisplayKit: 49d94f5739669d666ff7cdc3430f43f0b2cfbeaf
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Cereal: e37032cb23f5b62670044bf0e5d393541c1b7aa9
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CZPicker: 55aa1751ea26e209814552da1a9a08cba8bbf72a
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSDKCoreKit: 9c2daf0162214d6d2e21cf8208a9c6c2a2e42b9c
   FBSDKLoginKit: 00cf28916b9f0169763a3d61985d745b579fe304
   FBSDKShareKit: 1cbd0fdc2bb3277dd3522512855dcf1f4088f734
@@ -194,16 +159,11 @@ SPEC CHECKSUMS:
   ImagePicker: 4845cf22f8dd201ff5730474b619f017d374a3b8
   IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
   Kingfisher: 6729a0baaa458245bfb8cd5a1296c71c10d6eb6c
-  LFTwitterProfile: 57cc1c1602e3b4cf297b3d80b85dff16b5257ad4
   Lightbox: 13f55a0a840f7945dc5ac87931564e7fe569fca9
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   MessageKit: fd90428d439d17aa0ec85e1d8e8c93c0232502c8
-  NMessenger: 95f338594c597cd5dcac1dc9da19e514fdf3949b
-  PINCache: 6911fe422a633e18b3d3ddf2bd4f0e55e36e2892
-  PINRemoteImage: 308731aa6534500e58fc211b9cc2bb7252df25ba
-  PromiseKit: 08dfb783c161ddcd95b7912421f14c5113fd8318
+  PromiseKit: '08dfb783c161ddcd95b7912421f14c5113fd8318'
   PullToRefreshSwift: 0743b818072bfd7c9464addc2d1b987b131057ca
-  PusherSwift: 13257260d77445f44ee26d7843e9311186b26e79
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SearchTextField: 1d43b423c2acd3a9e2b37a74180e0cb137fcf1e7
   Sensitive: 010a176b4ebf6f0bf8beadc397d27e8405bf5bdf
@@ -211,7 +171,7 @@ SPEC CHECKSUMS:
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
   SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   SwiftLocation: 1fe2e15a5812e961496e82eeaca71d03e829e47a
-  SwiftMessages: 09cea3336e3fb63c3578983c8aac65acaa6d884a
+  SwiftMessages: '09cea3336e3fb63c3578983c8aac65acaa6d884a'
   SwiftyBase64: 8de4de96a08454e742fdda614dff12d2c62ecbe9
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TextFieldEffects: 9e5cce561ea39c75b86e9d3637601727a67e8b23
@@ -219,6 +179,6 @@ SPEC CHECKSUMS:
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 139ce72f8178d3e4094de2011a3db8c3d95f8f0c
+PODFILE CHECKSUM: d0fe760ea64aa2e813eb211729a0099c7d26f54f
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.1

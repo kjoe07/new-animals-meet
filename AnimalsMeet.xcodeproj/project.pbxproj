@@ -127,6 +127,7 @@
 
 /* Begin PBXFileReference section */
 		0B4014631DE59996008A0862 /* GenericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTextField.swift; sourceTree = "<group>"; };
+		0F971ED36E0C8E0B8441EB99 /* Pods-AnimalsMeet.debug offline.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug offline.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug offline.xcconfig"; sourceTree = "<group>"; };
 		1104F9FA1FE4F450003A26C5 /* dateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateUtils.swift; sourceTree = "<group>"; };
 		1106D73A1FEAB7100003A0B1 /* gridPhotosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gridPhotosCell.swift; sourceTree = "<group>"; };
 		1106D73B1FEAB7100003A0B1 /* gridPhotosCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = gridPhotosCell.xib; sourceTree = "<group>"; };
@@ -139,8 +140,7 @@
 		11D354CC1FFC085000F6E0F9 /* emptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = emptyTableViewCell.xib; sourceTree = "<group>"; };
 		11E5F4CD1FEA1CA7001679BA /* AnimalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewController.swift; sourceTree = "<group>"; };
 		135FFB200493AA1AF695545B /* Pods_AnimalsMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalsMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
-		2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug offline.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug offline.xcconfig"; sourceTree = "<group>"; };
+		540F0230ED0CEA6C3261BC6B /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
 		5B21BC9C1DBAE147008FEDA3 /* AnimalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTabBarController.swift; sourceTree = "<group>"; };
 		5B7211D31DCAA12900160458 /* FiltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersTableViewController.swift; sourceTree = "<group>"; };
 		5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtend.swift; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 		A0EC2E1D1DBE211400A6A77C /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A0EC2E221DBE6BD400A6A77C /* BreedSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedSelectorTableViewController.swift; sourceTree = "<group>"; };
 		A0F4F4C91EEB10BD004D67E6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		A2866C354B7B8DCAF257C069 /* Pods-AnimalsMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.release.xcconfig"; sourceTree = "<group>"; };
 		B405704A1ECDFA2400A6C260 /* MediaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MediaCell.xib; path = Useful/MediaCell.xib; sourceTree = "<group>"; };
 		B40A58021E1DB73200497998 /* MarkedUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkedUIImage.swift; sourceTree = "<group>"; };
 		B40B09551EB88A9A00782417 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -237,6 +236,7 @@
 		B4D7FFC11EE8591200FB9A30 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsBaseViewController.swift; sourceTree = "<group>"; };
 		B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		E2E5E6AC6EB6D93D7C7F28D9 /* Pods-AnimalsMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.release.xcconfig"; sourceTree = "<group>"; };
 		F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -287,9 +287,9 @@
 		89E80DBC0B3E35270993C2E9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */,
-				A2866C354B7B8DCAF257C069 /* Pods-AnimalsMeet.release.xcconfig */,
-				2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */,
+				540F0230ED0CEA6C3261BC6B /* Pods-AnimalsMeet.debug.xcconfig */,
+				0F971ED36E0C8E0B8441EB99 /* Pods-AnimalsMeet.debug offline.xcconfig */,
+				E2E5E6AC6EB6D93D7C7F28D9 /* Pods-AnimalsMeet.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FAF2E1AFAF7B7C74721B82F9 /* [CP] Embed Pods Frameworks */ = {
@@ -1026,7 +1026,7 @@
 		};
 		A0D054CC1DA276E8007B3944 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 153660C8E8F4C39CD2C971A5 /* Pods-AnimalsMeet.debug.xcconfig */;
+			baseConfigurationReference = 540F0230ED0CEA6C3261BC6B /* Pods-AnimalsMeet.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1052,7 +1052,7 @@
 		};
 		A0D054CD1DA276E8007B3944 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2866C354B7B8DCAF257C069 /* Pods-AnimalsMeet.release.xcconfig */;
+			baseConfigurationReference = E2E5E6AC6EB6D93D7C7F28D9 /* Pods-AnimalsMeet.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1134,7 +1134,7 @@
 		};
 		F1E492991F468179001CEA21 /* Debug Offline */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F54904328984661109F8C94 /* Pods-AnimalsMeet.debug offline.xcconfig */;
+			baseConfigurationReference = 0F971ED36E0C8E0B8441EB99 /* Pods-AnimalsMeet.debug offline.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
