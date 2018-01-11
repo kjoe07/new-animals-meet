@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+# platform :ios, '9.0'
 
 target 'AnimalsMeet' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -27,23 +27,24 @@ target 'AnimalsMeet' do
     pod 'FontAwesomeKit'
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftLocation'
-	pod 'Fabric'
-	pod 'Crashlytics'
+    pod 'Fabric'
+    pod 'Crashlytics'
     pod 'SnapKit'
     pod 'ARSLineProgress'
     pod 'FBSDKLoginKit'
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
-	#pod 'PusherSwift', :inhibit_warnings => true
-	pod 'PromiseKit'
+    pod 'PusherSwift', :inhibit_warnings => true
+    pod 'NMessenger', :git => 'https://github.com/Sevauk/NMessenger.git', :inhibit_warnings => true
+    pod 'PromiseKit'
     pod 'AFDateHelper'
     pod 'PullToRefreshSwift'
-	pod 'IQKeyboardManagerSwift' , '~> 5.0'
+    pod 'IQKeyboardManagerSwift'
     pod 'Material'
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
     pod 'CZPicker'
-	#pod 'LFTwitterProfile'
-	pod 'MessageKit'#, '0.8.0'
-	#pod 'NMessenger', :git => 'https://github.com/Sevauk/NMessenger.git', :inhibit_warnings => true
+	pod 'MessageKit', '0.8.0'
+
+
 end
