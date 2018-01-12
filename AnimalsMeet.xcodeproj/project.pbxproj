@@ -143,6 +143,7 @@
 		5B89FDC91DD12F2E005FC42A /* UIColorExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtend.swift; sourceTree = "<group>"; };
 		5B89FDCB1DD148E5005FC42A /* UIKitViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitViewUtils.swift; sourceTree = "<group>"; };
 		5BE889AC1DBADAAC00C9BFB2 /* AnimalConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalConnectViewController.swift; sourceTree = "<group>"; };
+		74F4BE40C63C78193F6C04E7 /* Pods-AnimalsMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.release.xcconfig"; sourceTree = "<group>"; };
 		8F3B92BF1F7B4A0F00874DAD /* LegendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendViewController.swift; sourceTree = "<group>"; };
 		8F3B92FF1F94163B00874DAD /* SearchTextField */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SearchTextField; path = Pods/SearchTextField; sourceTree = "<group>"; };
 		8F8FDC911F96A958002E5112 /* AnimalsMeet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnimalsMeet-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 		A0EC2E1D1DBE211400A6A77C /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A0EC2E221DBE6BD400A6A77C /* BreedSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedSelectorTableViewController.swift; sourceTree = "<group>"; };
 		A0F4F4C91EEB10BD004D67E6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A3CC701EBB0EA56E3AE09C62 /* Pods-AnimalsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug.xcconfig"; sourceTree = "<group>"; };
 		B405704A1ECDFA2400A6C260 /* MediaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MediaCell.xib; path = Useful/MediaCell.xib; sourceTree = "<group>"; };
 		B40A58021E1DB73200497998 /* MarkedUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkedUIImage.swift; sourceTree = "<group>"; };
 		B40B09551EB88A9A00782417 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		B4D7FFC11EE8591200FB9A30 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		B4D7FFC31EE859A000FB9A30 /* NewsBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsBaseViewController.swift; sourceTree = "<group>"; };
 		B4E127851EE728ED00E0AC95 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		B7C46659FF1506A4C1D2AE0A /* Pods-AnimalsMeet.debug offline.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsMeet.debug offline.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsMeet/Pods-AnimalsMeet.debug offline.xcconfig"; sourceTree = "<group>"; };
 		F14A3B961F5287FA00B31627 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		F14A3B971F5287FA00B31627 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		F14A3B9A1F528B0D00B31627 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +283,9 @@
 		89E80DBC0B3E35270993C2E9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				A3CC701EBB0EA56E3AE09C62 /* Pods-AnimalsMeet.debug.xcconfig */,
+				B7C46659FF1506A4C1D2AE0A /* Pods-AnimalsMeet.debug offline.xcconfig */,
+				74F4BE40C63C78193F6C04E7 /* Pods-AnimalsMeet.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1014,6 +1020,7 @@
 		};
 		A0D054CC1DA276E8007B3944 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3CC701EBB0EA56E3AE09C62 /* Pods-AnimalsMeet.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1039,6 +1046,7 @@
 		};
 		A0D054CD1DA276E8007B3944 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74F4BE40C63C78193F6C04E7 /* Pods-AnimalsMeet.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1120,6 +1128,7 @@
 		};
 		F1E492991F468179001CEA21 /* Debug Offline */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7C46659FF1506A4C1D2AE0A /* Pods-AnimalsMeet.debug offline.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

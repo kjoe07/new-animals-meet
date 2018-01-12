@@ -82,7 +82,6 @@ PODS:
   - PromiseKit/UIKit (4.2.0):
     - PromiseKit/CorePromise
   - PullToRefreshSwift (3.0.3)
-  - PusherSwift (4.1.0)
   - SCLAlertView (0.7.0)
   - SearchTextField (1.1.8)
   - Sensitive (5.2)
@@ -123,7 +122,6 @@ DEPENDENCIES:
   - NMessenger (from `https://github.com/Sevauk/NMessenger.git`)
   - PromiseKit
   - PullToRefreshSwift
-  - PusherSwift
   - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift`)
   - SearchTextField
   - Sensitive
@@ -199,7 +197,6 @@ SPEC CHECKSUMS:
   PINRemoteImage: 308731aa6534500e58fc211b9cc2bb7252df25ba
   PromiseKit: 08dfb783c161ddcd95b7912421f14c5113fd8318
   PullToRefreshSwift: 0743b818072bfd7c9464addc2d1b987b131057ca
-  PusherSwift: 13257260d77445f44ee26d7843e9311186b26e79
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SearchTextField: 1d43b423c2acd3a9e2b37a74180e0cb137fcf1e7
   Sensitive: 010a176b4ebf6f0bf8beadc397d27e8405bf5bdf
@@ -215,6 +212,6 @@ SPEC CHECKSUMS:
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 33d6b89389b2fa63fb0fa5e974e838ef2f58da45
+PODFILE CHECKSUM: 8c28cc33b4ead665efd27e9092ed5c3538bee91f
 
 COCOAPODS: 1.3.1
