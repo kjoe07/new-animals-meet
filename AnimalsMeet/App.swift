@@ -130,9 +130,9 @@ class App {
             print("retrieved animals")
             let items = json["myanimal"].arrayValue
             self.userModel.animals = items.map { AnimalModel(fromJSON: $0) }
-			if self.userModel.animals?.count == 0{
+			/*if self.userModel.animals?.count == 0{
 				self.logout()
-			}
+			}*/
 			}
       }
    }
