@@ -344,6 +344,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 			
 			
 		}*/
+		if self.searchTerm == nil {
 		if self.theData[indexPath.row].isText{
 			return 220.0
 		}else{
@@ -357,7 +358,10 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 				value += 150.0
 			}*/
 			return value > 0 ? value : 100
+			}}else{
+			return 150.0
 		}
+		
 		return 0
 
 	}
