@@ -140,7 +140,6 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
       if let image = self.avatarImageView.image, avatarChanged {
          avatarPromise = avatarPromise.then { _ -> Promise<Void> in
             let imageData = UIImageJPEGRepresentation(image, 0.3)!
-            
             let media = MediaModel()
             media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
             return media.callForCreate(taggedUser: nil).then { json -> Void in
@@ -149,7 +148,6 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
             }
          }
       }
-      
       var infoPromise = Promise<Void>(value: ())
       
       if contentChanged {
@@ -178,7 +176,7 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
             self.onSuccess?()
          }.catch { error in
             print(error)
-            alert.showAlertError(title: "Erreur", subTitle: "Un problème est survenu. Veuillez réessayer.")
+            alert.showAlertError(title: "Erreur", subTitle: "Un problème est survenu. Veuillez réessayer.\(error)")
          }
    }
    
