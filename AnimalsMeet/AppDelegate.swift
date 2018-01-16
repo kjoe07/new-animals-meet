@@ -114,12 +114,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		}
 		//  Fabric.with([Answers.self])
 		// Fabric.with([Crashlytics.self])
+		if #available(iOS 11.0, *){
 		UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound], completionHandler: { _,_ in
 			//application.registerForRemoteNotifications()
 			DispatchQueue.main.async {
 				UIApplication.shared.registerForRemoteNotifications()
 			}
-		})
+		})}
+		else{
+			UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound], completionHandler: { _,_ in
+				application.registerForRemoteNotifications()
+			})
+		}
 		return true
 	}
 	func application(_ application: UIApplication, open url: URL, sourceApplication: String?,  annotation: Any) -> Bool {
