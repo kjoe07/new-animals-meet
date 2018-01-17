@@ -54,7 +54,7 @@ class CommentViewController: UIViewController, UITextFieldDelegate, CZPickerView
     }
     func textViewDidChangeSelection(_ textView: UITextView) {
         if let lastWord = textView.text.components(separatedBy: " ").last, lastWord.hasPrefix("@"), let lastWordRange = (textView.text as NSString?)?.range(of: lastWord){
-            
+            textView.resignFirstResponder()
             picker?.show()
         }
     }
