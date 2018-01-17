@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				(self.window?.rootViewController as? UITabBarController)?.selectedIndex = 1
 				
 				self.window?.makeKeyAndVisible()*/
-				self.presentView(Set: i)
+				self.presentView(Set: 0)
 			}
 			SwiftMessages.show(view: view)
 		}else{
