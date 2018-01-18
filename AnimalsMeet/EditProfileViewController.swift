@@ -93,6 +93,9 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
       self.user = user
       nameField.text = user.name
       nicknameField.text = user.nickname
+	if nameField.text != "" && nicknameField.text != ""{
+		saveButton.isEnabled = true
+	}
       
       if user.image != nil {
          self.avatarImageView.kf.setImage(
@@ -106,7 +109,8 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
    }
    
    func contentDidChange(sender: Any) {
-      contentChanged = nameField.text != user.name || nicknameField.text != user.nickname
+      //contentChanged = nameField.text != user.name || nicknameField.text != user.nickname
+	contentChanged = nameField.text != "" && nicknameField.text != ""
    }
    
    @IBAction func changeImage(_ sender: Any) {
@@ -119,7 +123,7 @@ class EditProfileViewController: UIViewController, FusumaDelegate, UITextFieldDe
    
    @IBAction func saveChanges(_ sender: Any) {
     print("save Changes")
-      guard contentChanged || avatarChanged else { return }
+     // guard contentChanged || avatarChanged else { return }
 
       guard nameField.text!.count > 1 else {
          alert.showAlertError(title: "Attention", subTitle: "Veuillez saisir un nom")
