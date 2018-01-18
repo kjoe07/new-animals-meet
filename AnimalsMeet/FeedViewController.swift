@@ -45,7 +45,8 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		print("Aparecio Mando a Cargar")
-		_ = self.shouldRefresh()
+		//_ = self.shouldRefresh()
+		self.shouldLoadMore()
 		/*if let didScroll = self.didScroll{
 			if !didScroll{
 				self.tableView.reloadData()
@@ -160,13 +161,14 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         return cell
     }
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		
-		/*if theData != nil && indexPath.row == theData.count - 1 && !loading && !bottomWasReached {
+		/*
+		if theData != nil && indexPath.row == theData.count - 1 && !loading && !bottomWasReached {
 			_ = shouldLoadMore()
 		}*/
 	}
     override func shouldLoadMore() -> Promise<Void> {
 		//let c = super.shouldLoadMore()
+		print("going to load more")
         super.loading = true
         let dataCount = theData == nil ? 0 : theData.count
         let c = fetchItems(from: dataCount, count: pageSize).then { items -> () in

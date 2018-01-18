@@ -39,7 +39,7 @@ target 'AnimalsMeet' do
     pod 'PromiseKit'
     pod 'AFDateHelper'
     pod 'PullToRefreshSwift'
-    pod 'IQKeyboardManagerSwift'
+    pod 'IQKeyboardManagerSwift','4.0.13'
     pod 'Material'
     pod 'SwiftDate', '~> 4.0'
     pod 'SearchTextField'
