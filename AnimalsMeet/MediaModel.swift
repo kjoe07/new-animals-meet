@@ -15,7 +15,7 @@ extension NSNotification.Name {
    
 }
 
-class MediaModel {
+class MediaModel:Equatable {
    static let MediaLikedNotification = NSNotification.Name("MediaLiked")
    static let MediaKey = "Media"
    
@@ -111,6 +111,9 @@ class MediaModel {
     //let new_content = encode_emoji(content)
       return Api.instance.post("/media/\(id!)/create_comment", withParams: ["content": content.encodeEmoji])
    }
+	static func == (lhs: MediaModel, rhs: MediaModel) -> Bool {
+		return lhs.author.id == rhs.author.id
+	}
 }
 extension MediaModel{
     func encode_emoji(_ s: String) -> String {

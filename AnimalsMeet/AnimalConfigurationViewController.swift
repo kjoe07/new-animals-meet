@@ -134,6 +134,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          create_edit_button.setTitle("Créer l'animal", for: .normal)
          animal = AnimalModel()
          newAnimal = true
+		//profilePic.kf.setImage(with: nil, placeholder: #imageLiteral(resourceName: "anonymous"), options: nil, progressBlock: nil, completionHandler: nil)
       } else {
          create_edit_button.setTitle("Enregister l'animal", for: .normal)
 		/*if (animal.id) != nil{

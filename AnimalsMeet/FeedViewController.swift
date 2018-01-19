@@ -17,20 +17,29 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     var searchTerm: String?{
         didSet{
             print("se inicio el valor dela busqueda: \(String(describing: searchTerm))")
-            if let search = searchTerm{
+			self.searchFilter()
+            /*if let search = searchTerm{
                 print("no es nill: \(search)")
                 self.SearchUser(for: search)
                 //self.search(searchFor: search)
             }else{
                 print("elinando datos de la busqueda")
                 User = nil
-            }
+            }*/
+			
+			/*User = theData.filter{
+				($0.author.nickname?.contains(self.searchTerm!))! || $0.animal.name.contains(self.searchTerm!)
+				/*$0.nickname == searchTerm || ($0.animals?.contains(where: {
+					$0.name == searchTerm
+				}))!*/
+			}*/
+			//self.tableView.reloadData()
         }
     }/* */
-    
+	var searchJSON: [MediaModel]?
     var userJson: [JSON]!
     var i : Int?
-    var User : [UserModel]?
+    var User : [MediaModel]? //[UserModel]?
     //var updateDelegate: update?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +137,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             } else {
                 tableView.backgroundView?.removeFromSuperview()
                 tableView.backgroundView = nil
+				print("retorna  en la busqueda \(User == nil ? 0 : User?.count)")
                 return User == nil ? 0 : (User?.count)!
             }
             print("retorna  en la busqueda 0")
@@ -155,7 +165,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
                 return cell
             }
             self.i = indexPath.row
-            onPopulateCell(item: nil, cell: cell as! ConversationCell)
+			onPopulateCell(item: User?[indexPath.row], cell: cell as! ConversationCell)
         }
         
         return cell
@@ -245,11 +255,11 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             if let myuser = User?[i!]{
             print("resultado de la Busqueda")
             let cell = cell as! ConversationCell
-                let animal = User?[i!].animals?[0]
+                let animal = User?[i!].animal
             //cell.index
             cell.profilePic.rounded()
-            cell.profilePic.kf.setImage(with: myuser.image/*userJson[i!]["image"].url author.*/)
-            cell.name.text = myuser.nickname//userJson[i!]["nickname"].stringValue //(item1)author.
+            cell.profilePic.kf.setImage(with: item?.author.image /*myuser.image*//*userJson[i!]["image"].url author.*/)
+            cell.name.text = item?.author.nickname//userJson[i!]["nickname"].stringValue //(item1)author.
             cell.lastMsg.isHidden = true
             cell.lastMsgTime.isHidden = true
                 /*let y = self.theData.index(where: { data in
@@ -272,7 +282,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         }
         
     }
-    func search(searchFor string: String){
+    /*func search(searchFor string: String){
        User = userJson.map{
             UserModel(fromJSON: $0)
             }.filter{ m -> Bool in
@@ -298,7 +308,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         print("los valores de la busqueda \(String(describing: User))")
         self.tableView.reloadData()
         //_ = shouldLoadMore()
-    }
+    }*/
     func loadUser(){
         let endpoint = "/user"
        _ = Api.instance.get(endpoint).then {JSON in
@@ -306,7 +316,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             self.userJson =  JSON["users"].arrayValue
         }
     }
-    func SearchUser(for name :String){
+    /*func SearchUser(for name :String){
         let endpoint = "/user?search=\(name)&&animal=true"
         Api.instance.get(endpoint).then {JSON in
             // print("the Json in response promise \(JSON)")
@@ -316,7 +326,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         }.always {
              _ =  self.shouldRefresh()// self.tableView.reloadData()
         }
-    }
+    }*/
 	override func shouldRefresh() -> Promise<Void> {
 		return shouldLoadMore()
 	}
@@ -366,5 +376,32 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 		
 		return 0
 
+	}
+	func searchFilter(){
+		if searchTerm != ""{
+			let data =	theData.filter{ m -> Bool in
+				self.searchTerm != nil ? (((m.author.nickname?.lowercased().contains((self.searchTerm?.lowercased())!))! || m.animal.name.lowercased().contains((self.searchTerm?.lowercased())!)) /*?? false*/) : true
+			}
+			User = data.reduce([], {
+				$0.contains($1) ? $0 : $0 + [$1]
+			})
+		}
+		self.tableView.reloadData()
+	}
+	
+}
+extension String {
+	
+	func contains(_ find: String) -> Bool{
+		return self.range(of: find) != nil
+	}
+	
+	func containsIgnoringCase(_ find: String) -> Bool{
+		return self.range(of: find, options: .caseInsensitive) != nil
+	}
+}
+public extension Sequence where Iterator.Element: Hashable {
+	var uniqueElements: [Iterator.Element] {
+		return Array( Set(self) )
 	}
 }
