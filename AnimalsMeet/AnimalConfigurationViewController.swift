@@ -72,7 +72,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       self.view.onSwipe(to: .right) { (swipeGestureRecognizer) -> Void in
          self.navigationController?.popToRootViewController(animated: true)
       }
-      
+	
       if animal != nil {
          
          ask_age.text = animal.year
@@ -105,6 +105,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          
       } else {
          title = "Nouvel animal"
+		self.profilePic.image = nil
       }
    }
    
@@ -126,8 +127,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       ask_age.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 26, height: 0))
       ask_age.addSubview(image2)
       
-      let round: CGFloat = profilePic.bounds.height * 0.5
-      UIKitViewUtils.setCornerRadius(sender: profilePic, radius: round)
+	
       
       if animal == nil {
          create_edit_button.setTitle("Créer l'animal", for: .normal)
@@ -135,6 +135,10 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          newAnimal = true
       } else {
          create_edit_button.setTitle("Enregister l'animal", for: .normal)
+		if (animal.id) != nil{
+			let round: CGFloat = profilePic.bounds.height * 0.5
+			UIKitViewUtils.setCornerRadius(sender: profilePic, radius: round)
+		}
       }
    }
    
@@ -233,9 +237,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       
       // TODO        selectedBreeds
       
-      let imageData = UIImageJPEGRepresentation(profilePic.image!, 0.3)!
-      media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
-      media.animal = animal
+	
       
       if profilePic.image == nil {
          alert.showAlertError(title: "Attention", subTitle: "Veuillez choisir une photo de profil")
@@ -246,14 +248,17 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       } else if animal.breed == nil {
          alert.showAlertError(title: "Attention", subTitle: "Veuillez choisir une race")
       } else {
-         
+		let imageData = UIImageJPEGRepresentation(profilePic.image!, 0.3)!
+		media.rawData = imageData.base64EncodedString(options: .lineLength64Characters)
+		media.animal = animal
          alert.showProgressAlert(title: "Chargement en cours", subTitle: "Enregistrement de l'animal...")
          
-         var animalSync = self.newAnimal
-            ? self.animal.syncCreate().then { json -> Void in
+         var animalSync = self.newAnimal  ? self.animal.syncCreate().then { json -> Void in
+			print("create animal")
                self.animal.id = json["myanimal"]["id"].intValue
             }
             : self.animal.sync().then { json -> Void in
+				print("update animal")
 //               self.animal.id = json["id"].intValue
             }
          
@@ -263,6 +268,7 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          
          
          if picHaveChanged {
+			print("mando a crear una foto")
             animalSync = animalSync.then {
                // create new media object associated to the animal
                return media.callForCreate(taggedUser: nil)
