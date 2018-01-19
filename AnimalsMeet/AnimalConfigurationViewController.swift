@@ -126,7 +126,8 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
       image2.frame = CGRect(x: 12, y: 9, width: 13, height: 13)
       ask_age.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 26, height: 0))
       ask_age.addSubview(image2)
-      
+		let round: CGFloat = profilePic.bounds.height * 0.5
+		UIKitViewUtils.setCornerRadius(sender: profilePic, radius: round)
 	
       
       if animal == nil {
@@ -135,10 +136,9 @@ class AnimalConfigurationViewController: UIViewController, UITextFieldDelegate, 
          newAnimal = true
       } else {
          create_edit_button.setTitle("Enregister l'animal", for: .normal)
-		if (animal.id) != nil{
-			let round: CGFloat = profilePic.bounds.height * 0.5
-			UIKitViewUtils.setCornerRadius(sender: profilePic, radius: round)
-		}
+		/*if (animal.id) != nil{
+			
+		}*/
       }
    }
    
