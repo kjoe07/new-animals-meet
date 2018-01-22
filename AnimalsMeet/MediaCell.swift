@@ -27,6 +27,7 @@ class MediaCell: UITableViewCell {
    @IBOutlet weak var likeLbl: UILabel!
    @IBOutlet weak var postTime: UILabel!
    @IBOutlet weak var legend: UITextView!
+	@IBOutlet weak var commentlbl: UILabel!
    
    var media: MediaModel!
    var goToProfile: (() -> ())!
@@ -35,7 +36,9 @@ class MediaCell: UITableViewCell {
    func updateLikeCount() {
       likeLbl.text = "\(media.likeCount) J'aime"
    }
-   
+	func updateCommentCount() {
+		commentlbl.text = "\(media.likeCount) Comment"
+	}
    func setMedia(_ media: MediaModel) {
       updateCurrentMedia(media)
       

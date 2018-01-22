@@ -218,6 +218,14 @@ extension ConversationViewController: MessageCellDelegate {
 	}
 	
 	func didTapMessage<T: UIView>(in cell: MessageCollectionViewCell<T>) {
+		let indexpath = self.messagesCollectionView.indexPath(for: cell)//self.collectionViewController?.collectionView.indexPath(for: cell)
+		messageList.remove(at: (indexpath?.row)!)
+		if messageList.count == 0 {
+			messagesCollectionView.reloadData()
+		}else{
+			messagesCollectionView.deleteItems(at: [indexpath!])
+		}
+		//self.messagesCollectionView.reloadData()
 		print("Message tapped")
 	}
 	

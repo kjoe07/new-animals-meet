@@ -35,6 +35,7 @@ class MediaModel:Equatable {
       }
    }
    var likeCount = 0
+	var commentCount = 0
    var rawData: String!
    var width = 400
    var height = 300
