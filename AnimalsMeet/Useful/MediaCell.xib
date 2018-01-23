@@ -151,6 +151,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="commentlbl" destination="scg-dm-mYX" id="GHK-8f-qW6"/>
                 <outlet property="legend" destination="wBr-Mp-R2o" id="uWn-tk-w23"/>
                 <outlet property="likeBtn" destination="qEy-0f-kWp" id="4bC-hx-W2W"/>
                 <outlet property="likeLbl" destination="MxW-kX-iey" id="QIy-7b-f6v"/>

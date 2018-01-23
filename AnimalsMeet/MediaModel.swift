@@ -63,14 +63,16 @@ class MediaModel:Equatable {
          id = json["id"].intValue
       }
       
-	for like in json["like"].arrayValue { //TODO: - check like format in json response -
+	/*for like in json["like"].arrayValue { //TODO: - check like format in json response -
          likeCount += 1
          if like["user_id"].intValue == App.instance.userModel.id {
             isLiked = true
          }
-      }
+      }*/
       
-      likeCount = json["like"].count
+      //likeCount = json["like"].count
+	likeCount = json["likes"].intValue
+	commentCount = json["comments"].intValue
       animal = AnimalModel(fromJSON: json["animal"])
       //taggedUser = [String]()
    }

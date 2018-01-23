@@ -37,7 +37,7 @@ class MediaCell: UITableViewCell {
       likeLbl.text = "\(media.likeCount) J'aime"
    }
 	func updateCommentCount() {
-		commentlbl.text = "\(media.likeCount) Comment"
+		commentlbl.text = "\(media.commentCount) Comment"
 	}
    func setMedia(_ media: MediaModel) {
       updateCurrentMedia(media)
@@ -75,6 +75,7 @@ class MediaCell: UITableViewCell {
       }
       nicknames.attributedText = title
       updateLikeCount()
+	  updateCommentCount()
       legend.isHidden = media.description == nil
       legend.textContainerInset = UIEdgeInsets.zero
       legend.textContainer.lineFragmentPadding = 0;
@@ -97,6 +98,7 @@ class MediaCell: UITableViewCell {
 		 textView.isScrollEnabled = true//false
          textView.font = UIFont.systemFont(ofSize: 18)
          mediaView.addSubview(textView)
+		commentlbl.isHidden = false
          textView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsetsMake(0, 10, 0, 10))
          }
@@ -116,6 +118,8 @@ class MediaCell: UITableViewCell {
             make.height.equalTo(imageHeight)
          }
          image.contentMode = .scaleAspectFill
+		commentlbl.isHidden = true
+		//image.alpha = 0.3
       }
    }
    
