@@ -27,7 +27,7 @@ class MediaCell: UITableViewCell {
    @IBOutlet weak var likeLbl: UILabel!
    @IBOutlet weak var postTime: UILabel!
    @IBOutlet weak var legend: UITextView!
-	@IBOutlet weak var commentlbl: UILabel!
+    @IBOutlet weak var commentlbl: UILabel!
    
    var media: MediaModel!
    var goToProfile: (() -> ())!
@@ -36,9 +36,9 @@ class MediaCell: UITableViewCell {
    func updateLikeCount() {
       likeLbl.text = "\(media.likeCount) J'aime"
    }
-	func updateCommentCount() {
-		commentlbl.text = "\(media.commentCount) Comment"
-	}
+    func updateCommentCount() {
+        commentlbl.text = "\(media.commentCount) Comment"
+    }
    func setMedia(_ media: MediaModel) {
       updateCurrentMedia(media)
       
@@ -75,7 +75,7 @@ class MediaCell: UITableViewCell {
       }
       nicknames.attributedText = title
       updateLikeCount()
-	  updateCommentCount()
+      updateCommentCount()
       legend.isHidden = media.description == nil
       legend.textContainerInset = UIEdgeInsets.zero
       legend.textContainer.lineFragmentPadding = 0;
@@ -95,10 +95,10 @@ class MediaCell: UITableViewCell {
          let textView = UITextView()
          textView.text = media.contentText
          textView.isEditable = false
-		 textView.isScrollEnabled = true//false
+         textView.isScrollEnabled = true//false
          textView.font = UIFont.systemFont(ofSize: 18)
          mediaView.addSubview(textView)
-		commentlbl.isHidden = false
+        commentlbl.isHidden = false
          textView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsetsMake(0, 10, 0, 10))
          }
@@ -118,17 +118,17 @@ class MediaCell: UITableViewCell {
             make.height.equalTo(imageHeight)
          }
          image.contentMode = .scaleAspectFill
-		commentlbl.isHidden = true
-		//image.alpha = 0.3
+        commentlbl.isHidden = true
+        //image.alpha = 0.3
       }
    }
    
    @IBAction func goToProfile(_ sender: Any) {
-	if let callback = self.goToProfile{
-		callback()
-	}
+    if let callback = self.goToProfile{
+        callback()
+    }
     //if  goToProfile() != nil {
-	//  goToProfile()
+    //  goToProfile()
     //}
      // goToProfile()
    }

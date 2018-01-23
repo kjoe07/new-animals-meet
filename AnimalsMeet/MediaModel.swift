@@ -35,7 +35,7 @@ class MediaModel:Equatable {
       }
    }
    var likeCount = 0
-	var commentCount = 0
+    var commentCount = 0
    var rawData: String!
    var width = 400
    var height = 300
@@ -63,7 +63,7 @@ class MediaModel:Equatable {
          id = json["id"].intValue
       }
       
-	/*for like in json["like"].arrayValue { //TODO: - check like format in json response -
+    /*for like in json["like"].arrayValue { //TODO: - check like format in json response -
          likeCount += 1
          if like["user_id"].intValue == App.instance.userModel.id {
             isLiked = true
@@ -71,8 +71,8 @@ class MediaModel:Equatable {
       }*/
       
       //likeCount = json["like"].count
-	likeCount = json["likes"].intValue
-	commentCount = json["comments"].intValue
+    likeCount = json["likes"].intValue
+    commentCount = json["comments"].intValue
       animal = AnimalModel(fromJSON: json["animal"])
       //taggedUser = [String]()
    }
@@ -114,9 +114,9 @@ class MediaModel:Equatable {
     //let new_content = encode_emoji(content)
       return Api.instance.post("/media/\(id!)/create_comment", withParams: ["content": content.encodeEmoji])
    }
-	static func == (lhs: MediaModel, rhs: MediaModel) -> Bool {
-		return lhs.author.id == rhs.author.id
-	}
+    static func == (lhs: MediaModel, rhs: MediaModel) -> Bool {
+        return lhs.author.id == rhs.author.id
+    }
 }
 extension MediaModel{
     func encode_emoji(_ s: String) -> String {

@@ -117,12 +117,12 @@ extension NewsViewController: UISearchBarDelegate {
             searchBar.resignFirstResponder()
             feedVC.searchTerm = nil
         }
-        feedVC.searchTerm = text
+        //feedVC.searchTerm = text
         //feedVC.search(searchFor: text)
         //feedVC.fetchItems(from: <#T##Int#>, count: <#T##Int#>)
         //let _ = feedVC.shouldRefresh()/**/
     }/**/
-   /*func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("termino la busqueda")
         let text = (searchBar.text?.isEmpty)! ? nil : searchBar.text
         if text == nil {
@@ -132,7 +132,7 @@ extension NewsViewController: UISearchBarDelegate {
         feedVC.searchTerm = text
         //feedVC.search(searchFor: text!)
         let _ = feedVC.shouldRefresh()
-    } */
+    } /**/
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("clear TableVIew")
         //searchBar.showsCancelButton = false

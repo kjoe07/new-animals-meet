@@ -17,15 +17,15 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
     var searchTerm: String?{
         didSet{
             print("se inicio el valor dela busqueda: \(String(describing: searchTerm))")
-			self.searchFilter()
-            /*if let search = searchTerm{
+			//self.searchFilter()
+            if let search = searchTerm{
                 print("no es nill: \(search)")
                 self.SearchUser(for: search)
                 //self.search(searchFor: search)
             }else{
                 print("elinando datos de la busqueda")
                 User = nil
-            }*/
+            }/**/
 			
 			/*User = theData.filter{
 				($0.author.nickname?.contains(self.searchTerm!))! || $0.animal.name.contains(self.searchTerm!)
@@ -39,7 +39,8 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 	var searchJSON: [MediaModel]?
     var userJson: [JSON]!
     var i : Int?
-    var User : [MediaModel]? //[UserModel]?
+    //var User : [MediaModel]? //[UserModel]?
+	var User: [UserModel]?
     //var updateDelegate: update?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,7 +166,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
                 return cell
             }
             self.i = indexPath.row
-			onPopulateCell(item: User?[indexPath.row], cell: cell as! ConversationCell)
+			onPopulateCell(item: nil/*User?[indexPath.row]*/, cell: cell as! ConversationCell)
         }
         
         return cell
@@ -255,11 +256,11 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             if let myuser = User?[i!]{
             print("resultado de la Busqueda")
             let cell = cell as! ConversationCell
-                let animal = User?[i!].animal
+				let animal = myuser.animals![0]//User?[i!].animal
             //cell.index
             cell.profilePic.rounded()
-            cell.profilePic.kf.setImage(with: item?.author.image /*myuser.image*//*userJson[i!]["image"].url author.*/)
-            cell.name.text = item?.author.nickname//userJson[i!]["nickname"].stringValue //(item1)author.
+            cell.profilePic.kf.setImage(with: myuser.image/*item?.author.image *//*userJson[i!]["image"].url author.*/)
+            cell.name.text = myuser.nickname//userJson[i!]["nickname"].stringValue //(item1)author.item?.author.nickname
             cell.lastMsg.isHidden = true
             cell.lastMsgTime.isHidden = true
                 /*let y = self.theData.index(where: { data in
@@ -267,7 +268,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
                 })
                 let item1  = theData[y!]*/
             cell.onClick {
-                let profileVC = AnimalVC.newInstance(animal!)
+				let profileVC = AnimalVC.newInstance(animal)
 				//profileVC.shouldHideNavigationBar = false
                 self.navigationController?.pushViewController(profileVC, animated: true)
             }//goToProfile = {
@@ -316,7 +317,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
             self.userJson =  JSON["users"].arrayValue
         }
     }
-    /*func SearchUser(for name :String){
+    func SearchUser(for name :String){
         let endpoint = "/user?search=\(name)&&animal=true"
         Api.instance.get(endpoint).then {JSON in
             // print("the Json in response promise \(JSON)")
@@ -326,7 +327,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
         }.always {
              _ =  self.shouldRefresh()// self.tableView.reloadData()
         }
-    }*/
+    }/**/
 	override func shouldRefresh() -> Promise<Void> {
 		return shouldLoadMore()
 	}
@@ -377,7 +378,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 		return 0
 
 	}
-	func searchFilter(){
+	/*func searchFilter(){
 		if searchTerm != ""{
 			let data =	theData.filter{ m -> Bool in
 				self.searchTerm != nil ? (((m.author.nickname?.lowercased().contains((self.searchTerm?.lowercased())!))! || m.animal.name.lowercased().contains((self.searchTerm?.lowercased())!)) /*?? false*/) : true
@@ -387,7 +388,7 @@ class FeedViewController : EasyTableViewController<MediaModel, MediaCell> {
 			})
 		}
 		self.tableView.reloadData()
-	}
+	}*/
 	
 }
 extension String {
