@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import MessageKit
+import PromiseKit
 class MessageModel : MessageType{
     
 	//var id: Int!
@@ -37,6 +38,8 @@ class MessageModel : MessageType{
 		//id = json["id"].intValue
 		//date = Date(fromString: json["updated_at"].stringValue, format: .custom("yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"))
     }
-
+	func callForRemove() -> Promise<JSON> {
+		return Api.instance.delete("/messaging/\(messageId)")
+	}
 	
 }

@@ -218,13 +218,36 @@ extension ConversationViewController: MessageCellDelegate {
 	}
 	
 	func didTapMessage<T: UIView>(in cell: MessageCollectionViewCell<T>) {
-		let indexpath = self.messagesCollectionView.indexPath(for: cell)//self.collectionViewController?.collectionView.indexPath(for: cell)
-		messageList.remove(at: (indexpath?.row)!)
-		if messageList.count == 0 {
-			messagesCollectionView.reloadData()
-		}else{
-			messagesCollectionView.deleteItems(at: [indexpath!])
-		}
+		let indexpath = self.messagesCollectionView.indexPath(for: cell)
+		let alertController = UIAlertController(title: "Delete mensaje",message: "esta seguro que desea Eliminar el mensaje",preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "Ok",style: .default, handler: {_ in
+			print("removing message")
+			let c = self.messageList[(indexpath?.row)!].callForRemove().then{ _ -> Void in
+				self.messageList.remove(at: (indexpath?.row)!)
+				if self.messageList.count == 0 {
+					self.messagesCollectionView.reloadData()
+				}else{
+					self.messagesCollectionView.deleteItems(at: [indexpath!])
+				}
+				
+			}
+		}))
+		present(alertController, animated: true, completion: nil)
+		
+		//self.collectionViewController?.collectionView.indexPath(for: cell)
+		/*let c = messageList[(indexpath?.row)!].callForRemove().then{ _ -> Void in
+			self.messageList.remove(at: (indexpath?.row)!)
+			if self.messageList.count == 0 {
+				self.messagesCollectionView.reloadData()
+			}else{
+				self.messagesCollectionView.deleteItems(at: [indexpath!])
+			}
+			
+		}*/
+		//return c
+		//conversation.callForRemove(messageList[indexpath.row].messageId)
+		
+		
 		//self.messagesCollectionView.reloadData()
 		print("Message tapped")
 	}
