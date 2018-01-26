@@ -108,8 +108,9 @@ class MediaModel:Equatable {
    }
    
    func callForUnlike() -> Promise<JSON> {
-      let parameters = ["like" : ["media" : "\(id ?? 0)", "animal": "\(App.instance.getSelectedAnimal().id!)"]]
-      return Api.instance.delete("/like", withParams: parameters)
+      let parameters = ["like" : ["animal": "\(App.instance.getSelectedAnimal().id!)"]]
+	//print("send to delete like:\(id),Animal: \(App.instance.getSelectedAnimal().id!)")
+      return Api.instance.delete("/like/\(id!)", withParams: parameters)
    }
    
    func comment(content: String) -> Promise<JSON> {

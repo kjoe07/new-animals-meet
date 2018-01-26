@@ -221,6 +221,7 @@ class MediaCell: UITableViewCell {
       UIView.transition(with: sender, duration: 0.2, options: .transitionCrossDissolve, animations: {
          
          if self.media.isLiked {
+			print("Do unlike")
             self.media.likeCount -= 1
             self.media.isLiked = false
             _ = self.media.callForUnlike().then { _ -> Void in self.updateLikeCount() }
