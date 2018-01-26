@@ -72,6 +72,8 @@ class MediaModel:Equatable {
       
       //likeCount = json["like"].count
     likeCount = json["likes"].intValue
+	isLiked = json["user_like"].boolValue
+	
     commentCount = json["comments"].intValue
       animal = AnimalModel(fromJSON: json["animal"])
       //taggedUser = [String]()

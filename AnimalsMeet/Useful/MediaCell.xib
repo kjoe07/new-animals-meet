@@ -84,7 +84,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aimé par 10 personnes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxW-kX-iey">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aimé par 10 personnes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxW-kX-iey">
                         <rect key="frame" x="28" y="442.5" width="129.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
@@ -111,8 +111,8 @@
                             <action selector="reportPicture:" destination="PnK-8e-IpZ" eventType="touchUpInside" id="DXs-F4-c1S"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 personnes comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scg-dm-mYX">
-                        <rect key="frame" x="380.5" y="442" width="132" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aimé par 10 personnes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htk-pH-fl1">
+                        <rect key="frame" x="383" y="442" width="129.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -124,16 +124,16 @@
                     <constraint firstItem="0Xg-S0-ZsW" firstAttribute="centerY" secondItem="qEy-0f-kWp" secondAttribute="centerY" id="44s-rf-dKm"/>
                     <constraint firstItem="DZd-kA-hca" firstAttribute="leading" secondItem="6oT-N8-pc3" secondAttribute="leadingMargin" constant="8" id="8mD-vk-sx3"/>
                     <constraint firstItem="Yd5-oG-D08" firstAttribute="leading" secondItem="qEy-0f-kWp" secondAttribute="trailing" constant="16" id="9qK-jU-sDk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Htk-pH-fl1" secondAttribute="trailing" constant="16" id="CHV-Hp-lSr"/>
                     <constraint firstItem="MxW-kX-iey" firstAttribute="top" secondItem="qEy-0f-kWp" secondAttribute="bottom" constant="12" id="ERF-4L-vdX"/>
+                    <constraint firstItem="Htk-pH-fl1" firstAttribute="top" secondItem="nuV-UV-RJ8" secondAttribute="bottom" constant="13.5" id="JuE-Dk-f9H"/>
                     <constraint firstItem="MxW-kX-iey" firstAttribute="leading" secondItem="qEy-0f-kWp" secondAttribute="leading" id="L4T-0q-x4n"/>
                     <constraint firstItem="18b-vr-s7g" firstAttribute="centerY" secondItem="DZd-kA-hca" secondAttribute="centerY" id="ODB-8m-Ota"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="scg-dm-mYX" secondAttribute="trailing" constant="16" id="Osg-DR-rlS"/>
                     <constraint firstItem="Yd5-oG-D08" firstAttribute="centerY" secondItem="qEy-0f-kWp" secondAttribute="centerY" id="PV0-XB-sg9"/>
                     <constraint firstItem="0Xg-S0-ZsW" firstAttribute="leading" secondItem="Yd5-oG-D08" secondAttribute="trailing" constant="16" id="QjP-pU-xl3"/>
                     <constraint firstItem="qEy-0f-kWp" firstAttribute="leading" secondItem="DZd-kA-hca" secondAttribute="leading" id="Qyg-KG-6be"/>
                     <constraint firstItem="wBr-Mp-R2o" firstAttribute="top" secondItem="MxW-kX-iey" secondAttribute="bottom" constant="8" id="U9V-dB-gxS"/>
                     <constraint firstItem="0Xg-S0-ZsW" firstAttribute="top" secondItem="GRa-wo-grQ" secondAttribute="bottom" constant="10" id="Zbp-AM-IGZ"/>
-                    <constraint firstItem="scg-dm-mYX" firstAttribute="top" secondItem="nuV-UV-RJ8" secondAttribute="bottom" constant="13.5" id="bCW-QS-foV"/>
                     <constraint firstAttribute="trailingMargin" secondItem="z2d-8v-hPM" secondAttribute="trailing" constant="8" id="bvS-Ym-k2V"/>
                     <constraint firstAttribute="bottomMargin" secondItem="wBr-Mp-R2o" secondAttribute="bottom" constant="8" id="cFL-d9-jAX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nuV-UV-RJ8" secondAttribute="trailing" constant="16" id="gGO-gl-KZY"/>
@@ -151,10 +151,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="commentlbl" destination="scg-dm-mYX" id="GHK-8f-qW6"/>
                 <outlet property="legend" destination="wBr-Mp-R2o" id="uWn-tk-w23"/>
                 <outlet property="likeBtn" destination="qEy-0f-kWp" id="4bC-hx-W2W"/>
-                <outlet property="likeLbl" destination="MxW-kX-iey" id="QIy-7b-f6v"/>
+                <outlet property="likeLbl" destination="Htk-pH-fl1" id="VR5-uy-8go"/>
+                <outlet property="likelabletop" destination="CHV-Hp-lSr" id="HUV-gc-BF9"/>
                 <outlet property="mediaView" destination="GRa-wo-grQ" id="lC9-xT-6Ph"/>
                 <outlet property="nicknames" destination="18b-vr-s7g" id="Eaf-dT-yWI"/>
                 <outlet property="postTime" destination="z2d-8v-hPM" id="ZjT-vo-8aG"/>

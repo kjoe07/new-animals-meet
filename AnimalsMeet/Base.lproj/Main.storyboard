@@ -2867,7 +2867,7 @@ Cliquez sur le bouton!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ro-dx-IZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4014" y="1122"/>
+            <point key="canvasLocation" x="4105" y="1119"/>
         </scene>
         <!--ChatNC-->
         <scene sceneID="5bd-2Q-AkV">
@@ -3189,7 +3189,7 @@ Cliquez sur le bouton!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDN-H8-Lop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4984.8000000000002" y="634.632683658171"/>
+            <point key="canvasLocation" x="4934" y="773"/>
         </scene>
         <!--LegendViewController-->
         <scene sceneID="rEN-Dv-9y2">
